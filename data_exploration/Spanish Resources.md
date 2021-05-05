@@ -21,9 +21,8 @@ NLP for Evaluating Text Readability, Literature Review:
 How to evaluate Text Readability with NLP:
 https://medium.com/glose-team/how-to-evaluate-text-readability-with-nlp-9c04bd3f46a2 
 
-Automatic Text Difficulty Classifier (paper in which NLP methods were used to classify Portuguese texts as A1, A2, B1, B2, and C1): 
-
-Link to pdf: https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwisi8CZpLPwAhUKWK0KHXB4Ad0QFjAPegQICRAD&url=http%3A%2F%2Fwww.inesc-id.pt%2Fpublications%2F11043%2Fpdf&usg=AOvVaw1YwUH-2Yixi14ScOVTzoIX
+Automatic Text Difficulty Classifier (paper in which NLP methods were used to classify Portuguese texts as A1, A2, B1, B2, and C1):
+https://www.inesc-id.pt/publications/11043/pdf
 
 Some main points:
  they used a lot of gold standard annotated data which we would need to scrape if we were to use this method
@@ -46,7 +45,7 @@ The corpus used to train the classifier consists of 237 texts, exams and materia
 ML algorithms available in WEKA were tested, the best-performing learning algorithm was LogitBoost, with a root mean square error of 0.269. Note: I don’t think any neural methods were tested. WEKA: http://old-www.cms.waikato.ac.nz/ml/weka/
 
 Linguistic Features for Readability Assessment (paper): 
-https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwisi8CZpLPwAhUKWK0KHXB4Ad0QFjASegQIChAD&url=https%3A%2F%2Fwww.aclweb.org%2Fanthology%2F2020.bea-1.1.pdf&usg=AOvVaw2KAJBmAS_S2sxKapnYIKmp
+https://www.aclweb.org/anthology/2020.bea-1.1.pdf
 Incorporates Linguistics Features with Neural Models
 Used the single numerical output of a neural model as one of the features, and joined it with the linguistic features, and fed these features as input into one of the simpler non-neural models. 
 Word embeddings of the text as input to the neural model
@@ -56,9 +55,9 @@ Conclusion: addition of linguistic features does not improve state-of-the-art de
 
 
 Computational Assessment of Text Readability:
-A Survey of Current and Future Research (2014): https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjEmYHnr7PwAhU7FzQIHTEPBIE4ChAWMAJ6BAgGEAM&url=http%3A%2F%2Fwww-personal.umich.edu%2F~kevynct%2Fpubs%2FITL-readability-invited-article-v10-camera.pdf&usg=AOvVaw0pq1ij9Mk5JX8ZS9RlX52k
+A Survey of Current and Future Research (2014): http://www-personal.umich.edu/~kevynct/pubs/ITL-readability-invited-article-v10-camera.pdf
 
-Text Complexity (Natural Language) (2018): https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjEmYHnr7PwAhU7FzQIHTEPBIE4ChAWMAN6BAgCEAM&url=http%3A%2F%2Fcs229.stanford.edu%2Fproj2018%2Freport%2F185.pdf&usg=AOvVaw1YKCr1ccb8_89V04eZjOf4 
+Text Complexity (Natural Language) (2018): http://cs229.stanford.edu/proj2018/report/185.pdf 
 Tested different models with linguistic features, LSTM did best -> Transformers would probably do better but this was 2018
 
 
