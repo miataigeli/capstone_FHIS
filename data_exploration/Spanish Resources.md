@@ -21,37 +21,34 @@ NLP for Evaluating Text Readability, Literature Review:
 How to evaluate Text Readability with NLP:
 https://medium.com/glose-team/how-to-evaluate-text-readability-with-nlp-9c04bd3f46a2 
 
-Automatic Text Difficulty Classifier (paper in which NLP methods were used to classify Portuguese texts as A1, A2, B1, B2, and C1):
-https://www.inesc-id.pt/publications/11043/pdf
+Automatic Text Difficulty Classifier (paper in which NLP methods were used to classify Portuguese texts as A1, A2, B1, B2, and C1): https://www.inesc-id.pt/publications/11043/pdf
 
 Some main points:
- they used a lot of gold standard annotated data which we would need to scrape if we were to use this method
-the extraction of linguistic features from texts is a core task to classify by reading level
-need to take lexical difficulty (vocabulary level) and syntactic difficulty (sentence complexity, verb tenses?) into account
- so just operating based on frequency lists won't work
-STRING used to extract features - performs allthe basic NLP tasks, namely tokenization and text segmentation, part-of-speech tagging, rule-based and statistical morphosyntactic disambiguation, shallow parsing (chunking) and deep parsing (dependency extraction)
-YAH (Yet Another Hyphenator) used to extract the number of syllables
-both STRING and YAH are Portuguese-specific, so we’d need to find or create equivalents for Spanish
-52 features extracted by the system, 7 categories (found in Appendix):
-POS tags: ADJ, ADV, ART, CONJ, INTERJ, NOUN, NUM, PASTPART, PREP, PRON, PUNCT, SYMBOL
-Chunks: NP, AP, PP, ADVP, VTEMP, VASP, VMOD, VCOP, VPASTPART, VGER, VINF, VF, SC
-Word and sentence features: number of sentences, number of words, number of unique words, word frequencies
-Verb features: number of unique verb forms, number of auxiliary verbs, number of main verbs
-Different metrics involving averages and frequencies
-Metrics involving syllables
-Extra features: total number of dependencies, total number of tree nodes, etc
-Note: Dependency parsing!
-The corpus used to train the classifier consists of 237 texts, exams and materials used for teaching European Portuguese as a foreign language -> might be a good idea for us to use Spanish textbooks
-ML algorithms available in WEKA were tested, the best-performing learning algorithm was LogitBoost, with a root mean square error of 0.269. Note: I don’t think any neural methods were tested. WEKA: http://old-www.cms.waikato.ac.nz/ml/weka/
+* they used a lot of gold standard annotated data which we would need to scrape if we were to use this method
+* the extraction of linguistic features from texts is a core task to classify by reading level
+* need to take lexical difficulty (vocabulary level) and syntactic difficulty (sentence complexity, verb tenses?) into account, so just operating based on frequency lists won't work
+* STRING used to extract features - performs allthe basic NLP tasks, namely tokenization and text segmentation, part-of-speech tagging, rule-based and statistical morphosyntactic disambiguation, shallow parsing (chunking) and deep parsing (dependency extraction)
+* YAH (Yet Another Hyphenator) used to extract the number of syllables
+* both STRING and YAH are Portuguese-specific, so we’d need to find or create equivalents for Spanish
+* 52 features extracted by the system, 7 categories (found in Appendix):
+* POS tags: ADJ, ADV, ART, CONJ, INTERJ, NOUN, NUM, PASTPART, PREP, PRON, PUNCT, SYMBOL
+* Chunks: NP, AP, PP, ADVP, VTEMP, VASP, VMOD, VCOP, VPASTPART, VGER, VINF, VF, SC
+* Word and sentence features: number of sentences, number of words, number of unique words, word frequencies
+* Verb features: number of unique verb forms, number of auxiliary verbs, number of main verbs
+* Different metrics involving averages and frequencies
+* Metrics involving syllables
+* Extra features: total number of dependencies, total number of tree nodes, etc
+* Note: Dependency parsing!
+* The corpus used to train the classifier consists of 237 texts, exams and materials used for teaching European Portuguese as a foreign language -> might be a good idea for us to use Spanish textbooks
+* ML algorithms available in WEKA were tested, the best-performing learning algorithm was LogitBoost, with a root mean square error of 0.269. Note: I don’t think any neural methods were tested. WEKA: http://old-www.cms.waikato.ac.nz/ml/weka/
 
-Linguistic Features for Readability Assessment (paper): 
-https://www.aclweb.org/anthology/2020.bea-1.1.pdf
-Incorporates Linguistics Features with Neural Models
-Used the single numerical output of a neural model as one of the features, and joined it with the linguistic features, and fed these features as input into one of the simpler non-neural models. 
-Word embeddings of the text as input to the neural model
-All experiments involved 5-fold cross validation. 
-Models tested: SVMs, Linear Models and Logistic Regression, CNN (Convolutional Neural Networks), Transformers (pretrained BERT model sourced from the HuggingFace transformers library), HAN (Hierarchical attention network): two bidirectional RNNs each with a separate attention mechanism - one that attends to different words within each sentence, and one that attends to the sentences within the document -> thought to better mimic the structure of documents. 
-Conclusion: addition of linguistic features does not improve state-of-the-art deep learning models. However, in low-resource settings, they can improve the performance of deep learning models. Similarly, with more diverse and more accurately and consistently labeled corpora, the linguistic features could prove more useful.
+Linguistic Features for Readability Assessment (paper): https://www.aclweb.org/anthology/2020.bea-1.1.pdf
+* Incorporates Linguistics Features with Neural Models
+* Used the single numerical output of a neural model as one of the features, and joined it with the linguistic features, and fed these features as input into one of the simpler non-neural models. 
+* Word embeddings of the text as input to the neural model
+* All experiments involved 5-fold cross validation. 
+* Models tested: SVMs, Linear Models and Logistic Regression, CNN (Convolutional Neural Networks), Transformers (pretrained BERT model sourced from the HuggingFace transformers library), HAN (Hierarchical attention network): two bidirectional RNNs each with a separate attention mechanism - one that attends to different words within each sentence, and one that attends to the sentences within the document -> thought to better mimic the structure of documents. 
+* Conclusion: addition of linguistic features does not improve state-of-the-art deep learning models. However, in low-resource settings, they can improve the performance of deep learning models. Similarly, with more diverse and more accurately and consistently labeled corpora, the linguistic features could prove more useful.
 
 
 Computational Assessment of Text Readability:
