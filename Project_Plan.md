@@ -2,9 +2,9 @@
 
 
 ## Description
-The aim of this project is to build a proof-of-concept graded reader retrieval system to allow users to retrieve documents that are suitable for their reading level, but with some portion vocabulary outside that level so that they are challenged to improve their comprehension skills. The *ideal* system is envisioned as a multi-lingual web-based platform, with the capability to retreive reading materials from the internet that match a user's CEFR (Common European Framework of Reference for Languages) level upon the user's request, with additional search parameters that allow the user to filter for specific grammatical constructions and cut-off thresholds to ensure only a specified fraction of vocabulary is from the user's CEFR level.
+The aim of this project is to build a proof-of-concept graded reader retrieval system to allow users to retrieve documents that are suitable for their reading level, but with some portion vocabulary outside that level so that they are challenged to improve their comprehension skills. The *ideal* system is envisioned as a multilingual web-based platform, with the capability to retrieve reading materials from the internet that match a user's CEFR (Common European Framework of Reference for Languages) level upon the user's request, with additional search parameters that allow the user to filter for specific grammatical constructions and cut-off thresholds to ensure only a specified fraction of vocabulary is from the user's CEFR level.
 
-For the purposes of building a proof-of-concept system within 7 weeks, the project scope is limited to search through a locally-hosted collection of graded documents from the Spanish language, instead of a multi-lingual internet search engine. The priority of the project is to assemble a corpus of documents labelled with CEFR levels, then train a machine learning model on this corpus to learn to assign the reading level of any given document, build a document retrieval backend, and finish with a frontend GUI. Time permitting, the additional search parameters (grammar filters, vocabulary thresholds) may be incorporated.
+For the purposes of building a proof-of-concept system within 7 weeks, the project scope is limited to search through a locally-hosted collection of graded documents from the Spanish language, instead of a multilingual internet search engine. The priority of the project is to assemble a corpus of documents labelled with CEFR levels, then train a machine learning model on this corpus to learn to assign the reading level of any given document, build a document retrieval backend, and finish with a frontend GUI. Time permitting, the additional search parameters (grammar filters, vocabulary thresholds) may be incorporated.
 
 
 ## Datasets
@@ -14,7 +14,7 @@ An ideal dataset for this project is a corpus of A- and B-level Spanish texts, w
 - [Lingua](https://lingua.com/spanish/reading/): Short texts with difficulty ranging from A1 to B2
 - Spanish textbooks and literature in PDF format
 
-One challenge with the data collection task is the lack of data. Gathering all resources, we expect to collect 10-20 documents for each of the A and B level, hence 30-40 documents in total. Although we will incorporate the use of linguistic features when training our model, it is possible that this amount of data will not be enough to develop a well-performing model. We will discuss with our mentor and the Capstone partners to arrive at a solution to improve the current situation.
+One challenge with the data collection task is the lack of data. Gathering all resources, we expect to collect 10-20 documents for each of the A- and B-level, hence 30-40 documents in total. Although we will incorporate the use of linguistic features when training our model, it is possible that this amount of data will not be enough to develop a well-performing model. We will discuss with our mentor and the Capstone partners to arrive at a solution to improve the current situation.
 
 Since all of the texts will be labelled with their CEFR levels, no further annotation is needed. When data collection is completed, this dataset will be stored in JSON format for easy distribution.
 
@@ -77,7 +77,7 @@ We will calculate the average length of sentences in the text. We expect that th
 We will calculate the type-to-token ratio (TTR) for each text. A high value of TTR implies high lexical diversity while a low value of TTR implies low lexical diversity. We expect higher lexical diversity for more advanced texts. 
 
 - #### The proportions of different POS tags (nouns, verbs, adjectives, prepositions, etc.):
-We will count the proportion of different POS tags occuring within each text. We expect that there would be a correlation between the proportions of different POS tags and the types of documents they are, and thus the difficulty level of the document. For example, government documents or scholarly papers tend to have a large proportion of nouns while narratives tend to have a large proportion of past verbs and third person pronouns. We would like to use this information to classify readaibility of texts.
+We will count the proportion of different POS tags occurring within each text. We expect that there would be a correlation between the proportions of different POS tags and the types of documents they are, and thus the difficulty level of the document. For example, government documents or scholarly papers tend to have a large proportion of nouns while narratives tend to have a large proportion of past verbs and third person pronouns. We would like to use this information to classify readability of texts.
 
 - #### The number of tokens, types:
 We will use the total number of tokens and the total number of types in the text.
