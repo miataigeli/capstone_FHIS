@@ -20,7 +20,7 @@ def read_corpus(path):
 
     path: (str) the path of the directory containing the JSON files
 
-    corpus: (dict{list[dicts]}) a dictionary of texts arranged by reading level
+    return: (dict{list[dicts]}) a dictionary of texts arranged by reading level
     (a text is a single cohesive piece of reading material, be it a short
     story, a poem, song lyrics, a book chapter, etc.)
     """
@@ -199,7 +199,7 @@ class A1:
 
         url: (str) an url lead to a list of vocabulary
 
-        return: (list) a list of Spanish words
+        return: (set) a set of Spanish words
         """
 
         url = "https://www.gutenberg.org/files/22065/22065-h/22065-h.htm#VOCABULARY"
