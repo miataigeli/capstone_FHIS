@@ -1,5 +1,7 @@
 import os
+import re
 import json
+import time
 from collections import defaultdict
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -34,11 +36,26 @@ def read_corpus(path):
 
 
 class A1:
-    def __init__(self):
-        self.spanish1 = self.get_span1_vocab()
-        self.spanish2 = self.get_span2_vocab()
+    """
+    Class definition for loading, scraping, writing A1-level vocabularies
+    """
+    def __init__(self, mode="txt"):
+        assert mode.lower() in ["txt", "url"], "Invalid mode! ('txt' or 'url' allowed)"
+        if mode.lower() == "txt":
+            with open("../vocab/spanish1.txt", "r", encoding="utf-8") as f:
+                self.spanish1 = set()
+                for line in f:
+                    self.spanish1.add(line.strip())
+            with open("../vocab/spanish2.txt", "r", encoding="utf-8") as f:
+                self.spanish2 = set()
+                for line in f:
+                    self.spanish2.add(line.strip())
+        else:
+            self.spanish1 = self.get_span1_vocab()
+            self.spanish2 = self.get_span2_vocab()
+            self.write_vocab()
+
         self.vocab = self.spanish1 | self.spanish2
-        self.gutenberg = self.get_gutenberg_vocab()
 
     def get_wiki_vocab(self, url):
         """
@@ -119,7 +136,7 @@ class A1:
                 vocab_list.extend([e.strip("/,()") for e in elem.split(" ")])
 
         return {
-            word
+            word.strip()
             for word in vocab_list
             if (word != "" and "(" not in word and "/" not in word and "," not in word)
         }
@@ -138,7 +155,7 @@ class A1:
             "a", {"href": re.compile(r"/wiki/Spanish_1/.*")}
         )
         url_list = [
-            soup_url + re.search(r'(/wiki/Spanish_1)(/.*)(" )', str(tag)).group(2)
+            url + re.search(r'(/wiki/Spanish_1)(/.*)(" )', str(tag)).group(2)
             for tag in tag_list
             if "Linguistic_characteristics" not in str(tag)
         ]
@@ -146,6 +163,7 @@ class A1:
         spanish1_vocab = set()
         for url in url_list:
             spanish1_vocab |= self.get_wiki_vocab(url)
+            time.sleep(0.2)
 
         return spanish1_vocab
 
@@ -163,7 +181,7 @@ class A1:
             "a", {"href": re.compile(r"/wiki/Spanish_2/Chapter.*")}
         )
         url_list = [
-            soup_url
+            url
             + re.search(r'(/wiki/Spanish_2)(/Chapter.*)(" )', str(tag)).group(2)
             for tag in tag_list
         ]
@@ -171,6 +189,7 @@ class A1:
         spanish2_vocab = set()
         for url in url_list:
             spanish2_vocab |= self.get_wiki_vocab(url)
+            time.sleep(0.2)
 
         return spanish2_vocab
 
@@ -191,3 +210,16 @@ class A1:
             for tag in soup.find("ul").findAll("b")
             if str(tag.string) != str(tag.string).upper()
         }
+
+    def write_vocab(self):
+        with open("../vocab/spanish1.txt", "w", encoding="utf-8") as fout:
+            output = ""
+            for word in self.spanish1:
+                output += word + "\n"
+            fout.write(output)
+
+        with open("../vocab/spanish2.txt", "w", encoding="utf-8") as fout:
+            output = ""
+            for word in self.spanish2:
+                output += word + "\n"
+            fout.write(output)
