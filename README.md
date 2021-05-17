@@ -6,6 +6,6 @@ Team:
 * Mia Li
 * Shreyas Shankar
 
-Teamwork Contract: [`Teamwork_contract.md`](./Teamwork_contract.md)
+Teamwork Contract: [`Teamwork_contract.md`](./docs/Teamwork_contract.md)
 
-Project Plan: [`Project_Plan.md`](./Project_Plan.md)
+Project Plan: [`Project_Plan.md`](./docs/Project_Plan.md)
