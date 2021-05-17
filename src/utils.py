@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 
 
-def read_corpus(path):
+def read_corpus(path="../corpus/"):
     """
     Given a path to a directory containing JSON files of the scraped corpus
     documents and their metadata, load them all into a dict{list[dicts]}
