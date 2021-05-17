@@ -12,3 +12,6 @@ https://docs.google.com/document/d/1q2Dm-t63pBWMtjOVChrBpKPjV2xlo5Koq3Aok1Q9n6A/
 
 - week 2 plan & checklist:
 https://docs.google.com/document/d/1Mg-asupAc0O1Wt1tHzqfUjte3-arZJNWQmZ4lMGxouI/edit?usp=sharing
+
+- Rule-based model pipeline:
+https://deepnote.com/project/Rule-based-model-nzjIn5ikQ92RjVJy8KtfHQ/%2Fnotebook.ipynb
