@@ -2,6 +2,7 @@ import os
 import re
 import json
 import time
+import spacy
 from collections import defaultdict
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
@@ -223,3 +224,62 @@ class A1:
             for word in self.spanish2:
                 output += word + "\n"
             fout.write(output)
+
+            
+class text_processor:
+    """
+    Tools for pre-processing texts using spaCy for downstream tasks
+    """
+    def __init__(self, text=""):
+        self.tokens = []
+        self.lemmas = []
+        self.tags = []
+        self.parses = []
+        if text:
+            self.text = self.preprocess(text)
+            self.spacy_pipeline(self.text)
+    
+    def preprocess(self, text):
+        """
+        Process the given text to remove trailing numbers and whitespaces
+        
+        text: (str) the text (story, poem, paragraph, chapter) to process
+        
+        return: (str) the processed text
+        """
+        text_processed = []
+        for s in text.strip().split("\n"):
+            if s.strip()[-1].isdigit():
+                s = s[:-4]
+            text_processed.append(s.strip())
+        text_processed = list(filter(lambda s: not s.isspace(), text_processed))
+        text_processed = " ".join(text_processed)
+        return text_processed
+    
+    def spacy_pipeline(self, text):
+        """
+        Run the given text through the pretrained spaCy pipeline to extract
+        tokens, lemmas, morphologized POS tags and dependency parses for each
+        sentence in the text.
+        
+        text: (str) the text (story, poem, paragraph, chapter) to process
+        
+        (no return values, the processed items are saved to lists that are
+        attributes of the text_processor object)
+        """
+        nlp = spacy.load("es_core_news_md")
+        doc = nlp(text)
+        for sent in doc.sents:
+            sent_tokens = []
+            sent_lemmas = []
+            sent_tags = []
+            sent_parses = []
+            for token in sent:
+                sent_tokens.append(token.text)
+                sent_lemmas.append(token.lemma_)
+                sent_tags.append(token.tag_)
+                sent_parses.append(token.dep_)
+            self.tokens.append(sent_tokens)
+            self.lemmas.append(sent_lemmas)
+            self.tags.append(sent_tags)
+            self.parses.append(sent_parses)
