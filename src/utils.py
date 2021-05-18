@@ -32,7 +32,10 @@ def read_corpus(path="../corpus/"):
             with open(os.path.join(path, file), "r", encoding="utf-8") as f:
                 doc_list = json.load(f)
                 for d in doc_list:
-                    corpus[d["level"]].append(d)
+                    level = d["level"]
+                    if level == "A2/B1":
+                        level = "B1"
+                    corpus[level].append(d)
     return corpus
 
 
@@ -234,6 +237,7 @@ class text_processor:
         self.tokens = []
         self.lemmas = []
         self.tags = []
+        self.morphs = []
         self.parses = []
         if text:
             self.text = self.preprocess(text)
@@ -259,7 +263,7 @@ class text_processor:
     def spacy_pipeline(self, text):
         """
         Run the given text through the pretrained spaCy pipeline to extract
-        tokens, lemmas, morphologized POS tags and dependency parses for each
+        tokens, lemmas, POS tags, morphology, and dependency parses for each
         sentence in the text.
         
         text: (str) the text (story, poem, paragraph, chapter) to process
@@ -273,13 +277,16 @@ class text_processor:
             sent_tokens = []
             sent_lemmas = []
             sent_tags = []
+            sent_morphs = []
             sent_parses = []
             for token in sent:
                 sent_tokens.append(token.text)
                 sent_lemmas.append(token.lemma_)
-                sent_tags.append(token.tag_)
+                sent_tags.append(token.pos_)
+                sent_morphs.append(token.tag_)
                 sent_parses.append(token.dep_)
             self.tokens.append(sent_tokens)
             self.lemmas.append(sent_lemmas)
             self.tags.append(sent_tags)
+            self.morphs.append(sent_morphs)
             self.parses.append(sent_parses)
