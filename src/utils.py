@@ -234,6 +234,7 @@ class text_processor:
     Tools for pre-processing texts using spaCy for downstream tasks
     """
     def __init__(self, text=""):
+        self.sents = []
         self.tokens = []
         self.lemmas = []
         self.tags = []
@@ -264,8 +265,8 @@ class text_processor:
     def spacy_pipeline(self, text):
         """
         Run the given text through the pretrained spaCy pipeline to extract
-        tokens, lemmas, POS tags, morphology, and dependency parses for each
-        sentence in the text.
+        sentences, tokens, lemmas, POS tags, morphology, and dependency parses
+        for each sentence in the text.
         
         text: (str) the text (story, poem, paragraph, chapter) to process
         
@@ -286,6 +287,7 @@ class text_processor:
                 sent_tags.append(token.pos_)
                 sent_morphs.append(token.tag_)
                 sent_parses.append(token.dep_)
+            self.sents.append(sent.text)
             self.tokens.append(sent_tokens)
             self.lemmas.append(sent_lemmas)
             self.tags.append(sent_tags)
