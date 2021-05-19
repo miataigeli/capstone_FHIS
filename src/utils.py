@@ -239,6 +239,7 @@ class text_processor:
         self.tags = []
         self.morphs = []
         self.parses = []
+        self.sents = [] ### Christina - added 
         if text:
             self.text = self.preprocess(text)
             self.spacy_pipeline(self.text)
@@ -290,3 +291,4 @@ class text_processor:
             self.tags.append(sent_tags)
             self.morphs.append(sent_morphs)
             self.parses.append(sent_parses)
+            self.sents.append(sent.text)        # Christina - added 
