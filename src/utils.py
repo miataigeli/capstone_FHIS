@@ -43,6 +43,7 @@ class A1:
     """
     Class definition for loading, scraping, writing A1-level vocabularies
     """
+
     def __init__(self, mode="txt"):
         assert mode.lower() in ["txt", "url"], "Invalid mode! ('txt' or 'url' allowed)"
         if mode.lower() == "txt":
@@ -185,8 +186,7 @@ class A1:
             "a", {"href": re.compile(r"/wiki/Spanish_2/Chapter.*")}
         )
         url_list = [
-            url
-            + re.search(r'(/wiki/Spanish_2)(/Chapter.*)(" )', str(tag)).group(2)
+            url + re.search(r'(/wiki/Spanish_2)(/Chapter.*)(" )', str(tag)).group(2)
             for tag in tag_list
         ]
 
@@ -228,11 +228,12 @@ class A1:
                 output += word + "\n"
             fout.write(output)
 
-            
+
 class text_processor:
     """
     Tools for pre-processing texts using spaCy for downstream tasks
     """
+
     def __init__(self, text=""):
         self.sents = []
         self.tokens = []
@@ -240,35 +241,36 @@ class text_processor:
         self.tags = []
         self.morphs = []
         self.parses = []
+        self.text = text
         if text:
-            self.text = self.preprocess(text)
+            self.preprocess(self.text)
             self.spacy_pipeline(self.text)
-    
+
     def preprocess(self, text):
         """
         Process the given text to remove trailing numbers and whitespaces
-        
+
         text: (str) the text (story, poem, paragraph, chapter) to process
-        
+
         return: (str) the processed text
         """
         text_processed = []
         for s in text.strip().split("\n"):
-            if s.strip()[-1].isdigit():
-                s = s[:-4]
-            text_processed.append(s.strip())
+            if len(s):
+                s = re.sub(r"\b\d{,3}\b", "", s.strip())
+                s = re.sub(r"\s+", " ", s)
+                text_processed.append(s.strip())
         text_processed = list(filter(lambda s: not s.isspace(), text_processed))
-        text_processed = " ".join(text_processed)
-        return text_processed
-    
+        self.text = " ".join(text_processed)
+
     def spacy_pipeline(self, text):
         """
         Run the given text through the pretrained spaCy pipeline to extract
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
-        
+
         text: (str) the text (story, poem, paragraph, chapter) to process
-        
+
         (no return values, the processed items are saved to lists that are
         attributes of the text_processor object)
         """
