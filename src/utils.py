@@ -39,6 +39,39 @@ def read_corpus(path="../corpus/"):
     return corpus
 
 
+def frequency_list_50k(file="./es_50k.txt"):
+    """
+    Given a path to a text file of 50k Spanish words ordered by frequency of
+    occurrence, return a list of the words in order.
+
+    file: (str) the path of the frequency list text file
+
+    return: (list) a list of Spanish words
+    """
+    freq_list = []
+    with open(file, "r", encoding="utf-8") as f:
+        for line in f:
+            freq_list.append(line.strip().split(" ")[0])
+    return freq_list
+
+
+def freq_lookup(word, freq_list):
+    """
+    Given a word to look up in an ordered frequency list, return the position
+    of that word in the list (1-indexed). If the word is not present return 0.
+
+    word: (str) the word to search in the list
+    freq_list: (list[str]) the ordered list of words to search
+
+    return: (int) the index of the word if present in the list
+    """
+    try:
+        idx = freq_list.index(word) + 1
+    except:
+        idx = 0
+    return idx
+
+
 class A1:
     """
     Class definition for loading, scraping, writing A1-level vocabularies
