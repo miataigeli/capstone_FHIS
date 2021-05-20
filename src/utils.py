@@ -274,6 +274,12 @@ class text_processor:
         (no return values, the processed items are saved to lists that are
         attributes of the text_processor object)
         """
+        self.sents = []
+        self.tokens = []
+        self.lemmas = []
+        self.tags = []
+        self.morphs = []
+        self.parses = []
         nlp = spacy.load("es_core_news_md")
         doc = nlp(text)
         for sent in doc.sents:
