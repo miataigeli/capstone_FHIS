@@ -15,3 +15,6 @@ https://docs.google.com/document/d/1Mg-asupAc0O1Wt1tHzqfUjte3-arZJNWQmZ4lMGxouI/
 
 - Rule-based model pipeline:
 https://deepnote.com/project/Rule-based-model-nzjIn5ikQ92RjVJy8KtfHQ/%2Fnotebook.ipynb
+
+- week3 meeting slides:
+https://docs.google.com/presentation/d/1z4xeELRTpL9YEELpwaOhhyfFBEK1c8T_y-3gEkA4bPY/edit?usp=sharing
