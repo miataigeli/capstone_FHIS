@@ -61,7 +61,7 @@ def freq_lookup(word, freq_list):
     of that word in the list (1-indexed). If the word is not present return 0.
 
     word: (str) the word to search in the list
-    freq_list: (list[str]) the ordered list of words to search
+    freq_list: (list[str]) the ordered list of words to search through
 
     return: (int) the index of the word if present in the list
     """
@@ -70,6 +70,26 @@ def freq_lookup(word, freq_list):
     except:
         idx = 0
     return idx
+
+
+def word_ranks(text, freq_list):
+    """
+    Given a tokenized text in the form of a list of lists of tokens, and a
+    frequency list to search through, return a list of lists of integers,
+    where the integers correspond to the ranks of the words in a frequency list.
+
+    text: (list[list[str]]) the tokenized text
+    freq_list: (list[str]) the ordered list of words to search through
+
+    return: (list[list[int]]) the ranks of each of the tokens in the text
+    """
+    ranked_tokens = []
+    for sent in text:
+        ranked_sent = []
+        for token in sent:
+            ranked_sent.append(freq_lookup(token, freq_list))
+        ranked_tokens.append(ranked_sent)
+    return ranked_tokens
 
 
 class A1:
