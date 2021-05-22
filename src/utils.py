@@ -39,10 +39,64 @@ def read_corpus(path="../corpus/"):
     return corpus
 
 
+def frequency_list_50k(file="./es_50k.txt"):
+    """
+    Given a path to a text file of 50k Spanish words ordered by frequency of
+    occurrence, return a list of the words in order.
+
+    file: (str) the path of the frequency list text file
+
+    return: (list) a list of Spanish words
+    """
+    freq_list = []
+    with open(file, "r", encoding="utf-8") as f:
+        for line in f:
+            freq_list.append(line.strip().split(" ")[0])
+    return freq_list
+
+
+def freq_lookup(word, freq_list):
+    """
+    Given a word to look up in an ordered frequency list, return the position
+    of that word in the list (1-indexed). If the word is not present return 0.
+
+    word: (str) the word to search in the list
+    freq_list: (list[str]) the ordered list of words to search through
+
+    return: (int) the index of the word if present in the list
+    """
+    try:
+        idx = freq_list.index(word) + 1
+    except:
+        idx = 0
+    return idx
+
+
+def word_ranks(text, freq_list):
+    """
+    Given a tokenized text in the form of a list of lists of tokens, and a
+    frequency list to search through, return a list of lists of integers,
+    where the integers correspond to the ranks of the words in a frequency list.
+
+    text: (list[list[str]]) the tokenized text
+    freq_list: (list[str]) the ordered list of words to search through
+
+    return: (list[list[int]]) the ranks of each of the tokens in the text
+    """
+    ranked_tokens = []
+    for sent in text:
+        ranked_sent = []
+        for token in sent:
+            ranked_sent.append(freq_lookup(token, freq_list))
+        ranked_tokens.append(ranked_sent)
+    return ranked_tokens
+
+
 class A1:
     """
     Class definition for loading, scraping, writing A1-level vocabularies
     """
+
     def __init__(self, mode="txt"):
         assert mode.lower() in ["txt", "url"], "Invalid mode! ('txt' or 'url' allowed)"
         if mode.lower() == "txt":
@@ -185,8 +239,7 @@ class A1:
             "a", {"href": re.compile(r"/wiki/Spanish_2/Chapter.*")}
         )
         url_list = [
-            url
-            + re.search(r'(/wiki/Spanish_2)(/Chapter.*)(" )', str(tag)).group(2)
+            url + re.search(r'(/wiki/Spanish_2)(/Chapter.*)(" )', str(tag)).group(2)
             for tag in tag_list
         ]
 
@@ -228,11 +281,12 @@ class A1:
                 output += word + "\n"
             fout.write(output)
 
-            
+
 class text_processor:
     """
     Tools for pre-processing texts using spaCy for downstream tasks
     """
+
     def __init__(self, text=""):
         self.sents = []
         self.tokens = []
@@ -241,38 +295,46 @@ class text_processor:
         self.morphs = []
         self.parses = []
         self.sents = [] ### Christina - added 
+        self.text = text
+
         if text:
-            self.text = self.preprocess(text)
+            self.preprocess(self.text)
             self.spacy_pipeline(self.text)
-    
+
     def preprocess(self, text):
         """
         Process the given text to remove trailing numbers and whitespaces
-        
+
         text: (str) the text (story, poem, paragraph, chapter) to process
-        
+
         return: (str) the processed text
         """
         text_processed = []
         for s in text.strip().split("\n"):
-            if s.strip()[-1].isdigit():
-                s = s[:-4]
-            text_processed.append(s.strip())
+            if len(s):
+                s = re.sub(r"\b\d{,3}\b", "", s.strip())
+                s = re.sub(r"\s+", " ", s)
+                text_processed.append(s.strip())
         text_processed = list(filter(lambda s: not s.isspace(), text_processed))
-        text_processed = " ".join(text_processed)
-        return text_processed
-    
+        self.text = " ".join(text_processed)
+
     def spacy_pipeline(self, text):
         """
         Run the given text through the pretrained spaCy pipeline to extract
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
-        
+
         text: (str) the text (story, poem, paragraph, chapter) to process
-        
+
         (no return values, the processed items are saved to lists that are
         attributes of the text_processor object)
         """
+        self.sents = []
+        self.tokens = []
+        self.lemmas = []
+        self.tags = []
+        self.morphs = []
+        self.parses = []
         nlp = spacy.load("es_core_news_md")
         doc = nlp(text)
         for sent in doc.sents:
@@ -294,3 +356,4 @@ class text_processor:
             self.morphs.append(sent_morphs)
             self.parses.append(sent_parses)
             self.sents.append(sent.text)        # Christina - added 
+
