@@ -18,3 +18,6 @@ https://deepnote.com/project/Rule-based-model-nzjIn5ikQ92RjVJy8KtfHQ/%2Fnotebook
 
 - week3 meeting slides:
 https://docs.google.com/presentation/d/1z4xeELRTpL9YEELpwaOhhyfFBEK1c8T_y-3gEkA4bPY/edit?usp=sharing
+
+- week 3 plan & checklist:
+https://docs.google.com/document/d/1Vv3uyCzB6MOOQcuEm2EEWuALlRdvwyAjwXRr0jHt4rs/edit?usp=sharing
