@@ -284,6 +284,8 @@ class A1:
 
 class text_processor:
     """
+    !!! DEPRECATED !!!
+    !!! USE features.py INSTEAD !!!
     Tools for pre-processing texts using spaCy for downstream tasks
     """
 
@@ -294,7 +296,7 @@ class text_processor:
         self.tags = []
         self.morphs = []
         self.parses = []
-        self.sents = [] ### Christina - added 
+        self.sents = []
         self.text = text
 
         if text:
@@ -355,5 +357,4 @@ class text_processor:
             self.tags.append(sent_tags)
             self.morphs.append(sent_morphs)
             self.parses.append(sent_parses)
-            self.sents.append(sent.text)        # Christina - added 
-
+            self.sents.append(sent.text)
