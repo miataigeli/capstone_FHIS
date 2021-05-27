@@ -100,6 +100,8 @@ class feature_pipeline:
                 s = re.sub(r"\b\d{,3}\b", "", s.strip())
                 # Replace excessive whitespaces with single spaces
                 s = re.sub(r"\s+", " ", s.strip())
+                # Remove leftover leading periods and commas
+                s = re.sub(r"^[,.]+", "", s.strip())
                 text_processed.append(s.strip().lower())
         text_processed = list(filter(lambda s: not s.isspace(), text_processed))
         self.text = " ".join(text_processed)
