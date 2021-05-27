@@ -15,8 +15,8 @@ from utils import A1
 
 class feature_pipeline:
     """
-    Pipeline for extracting features from a text in preparation for downstream
-    classification tasks
+    Pipeline for extracting features from texts in preparation for downstream
+    classification tasks.
     """
 
     def __init__(
@@ -27,7 +27,20 @@ class feature_pipeline:
         freq_list_type="df",
         full_spacy=False,
     ):
-        """"""
+        """
+        Initialize object attritubtes from parameters and run pre-processing
+        setup functions (eg., load spaCy pipeline, build frequency lists, etc.)
+
+        text: (str) the text (story, poem, paragraph, chapter, etc.) to process
+        flatten: (bool) flag to flatten lists of tokens/lemmas/etc.
+        class_mode: (str) whether to generate features at the document level or
+                    the sentence level
+        freq_list_type: (str) whether the frequency list is a list object or a
+                        pandas DataFrame object
+        full_spacy: (bool) flag to specify whether to extract sentences, tokens,
+                    lemmas, POS tags, morphology tags, and dependency parses of
+                    a given text by default
+        """
 
         assert class_mode.lower() in [
             "document",
@@ -58,7 +71,13 @@ class feature_pipeline:
             self.full_spacy()
 
     def flatten(self, list_of_sents):
-        """"""
+        """
+        Flatten a list of lists of tokens into just a list of tokens.
+
+        list_of_sents: (list[list[str]]) a tokenized text arranged by sentences
+
+        return: (list[str]) a list of tokens from the text
+        """
         return [tok for sent in list_of_sents for tok in sent]
 
     def preprocess(self, text=None):
@@ -87,7 +106,13 @@ class feature_pipeline:
         return self.text
 
     def get_sentences(self, text=None):
-        """"""
+        """
+        Return the sentences from a raw text
+
+        text: (str) a raw text
+
+        return: (list[str]) list of sentences in the text
+        """
         if text is None:
             text = self.text
 
@@ -97,7 +122,15 @@ class feature_pipeline:
         return self.sentences
 
     def get_tokens(self, text=None):
-        """"""
+        """
+        Return the tokens from a raw text. If the attribute self.flatten is True
+        the function returns a flat list of tokens, otherwise the tokens are
+        arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str]) / (list[list[str]]) list of tokens in the text
+        """
         if text is None:
             text = self.text
 
@@ -114,7 +147,15 @@ class feature_pipeline:
         return self.tokens
 
     def get_lemmas(self, text=None):
-        """"""
+        """
+        Return the lemmas from a raw text. If the attribute self.flatten is True
+        the function returns a flat list of lemmas, otherwise the lemmas are
+        arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str]) / (list[list[str]]) list of lemmas in the text
+        """
         if text is None:
             text = self.text
 
@@ -131,7 +172,15 @@ class feature_pipeline:
         return self.lemmas
 
     def get_pos_tags(self, text=None):
-        """"""
+        """
+        Return the POS tags from a raw text. If the attribute self.flatten is True
+        the function returns a flat list of tags, otherwise the tags are
+        arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str]) / (list[list[str]]) list of POS tags in the text
+        """
         if text is None:
             text = self.text
 
@@ -148,7 +197,15 @@ class feature_pipeline:
         return self.pos_tags
 
     def get_morphology(self, text=None):
-        """"""
+        """
+        Return the morphologized tags from a raw text. If the attribute
+        self.flatten is True the function returns a flat list of morphologized
+        tags, otherwise the morphologized tags are arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str]) / (list[list[str]]) list of tags in the text
+        """
         if text is None:
             text = self.text
 
@@ -165,7 +222,15 @@ class feature_pipeline:
         return self.morphs
 
     def get_dependency_parses(self, text=None):
-        """"""
+        """
+        Return the dependency parses from a raw text. If the attribute
+        self.flatten is True the function returns a flat list of dependency
+        parses, otherwise the dependency parses are arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str]) / (list[list[str]]) list of parses in the text
+        """
         if text is None:
             text = self.text
 
@@ -187,7 +252,7 @@ class feature_pipeline:
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
 
-        text: (str) the text (story, poem, paragraph, chapter) to process
+        text: (str) the text (story, poem, paragraph, chapter, etc.) to process
 
         (no return values, the processed items are saved to lists that are
         attributes of the text_processor object)
@@ -223,6 +288,14 @@ class feature_pipeline:
             self.sents.append(sent.text)
 
     def frequency_list_10k(self):
+        """
+        Extract words, their frequencies and their lemmatized forms from Wiktionary
+        frequency lists of the top 10,000 words from Spanish subtitling data.
+
+        return: (pandas.DataFrame) a DataFrame of Spanish words, their
+                frequencies and their lemmatized forms
+        """
+
         urls = [
             "https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Spanish1000",
             "https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/Spanish1001-2000",
@@ -283,9 +356,9 @@ class feature_pipeline:
 
     def word_ranks_from_list(self, token_list=None, freq_list=None):
         """
-        Given a tokenized text in the form of a lists of tokens, and a frequency
-        list to search through, return a list of lists of integers, where the
-        integers correspond to the ranks of the words in a frequency list.
+        Given a tokenized text in the form of a lists of tokens and a frequency
+        list to search through, return a list of integers, where the integers
+        correspond to the ranks of the words in a frequency list.
 
         token_list: (list[str]) the tokenized text
         freq_list: (list[str]) the ordered list of words to search through
@@ -308,7 +381,16 @@ class feature_pipeline:
         return ranked_tokens
 
     def word_ranks_from_df(self, lemma_list=None, df=None):
-        """"""
+        """
+        Given a lemmatized text in the form of a lists of lemmas and a DataFrame
+        frequency list to search through, return a list of integers, where the
+        integers correspond to the ranks of the words in a frequency list.
+
+        lemma_list: (list[str]) the lemmatized text
+        df: (pandas.DataFrame) DataFrame containing the lemmas to search through
+
+        return: (list[int]) the ranks of each of the lemmatized tokens
+        """
         if lemma_list is None:
             lemma_list = self.lemmas
 
@@ -329,19 +411,36 @@ class feature_pipeline:
         return ranked_text
 
     def avg_word_freq(self):
-        """"""
+        """
+        Compute the average rank of a token in a text from a list of Spanish
+        token frequencies.
+
+        return: (float) the average token frequency rank
+        """
         ranked_text = self.word_ranks()
         return sum(ranked_text) / len(ranked_text)
 
     def num_tokens(self, token_list=None):
-        """"""
+        """
+        Return the number of tokens in a list of tokens (tokenized text)
+
+        token_list: (list[str]) the tokenized text
+
+        return: (int) the number of tokens
+        """
         if token_list is None:
             token_list = self.tokens
 
         return len(token_list)
 
     def avg_sent_length(self, sentences=None):
-        """"""
+        """
+        Return the average number of tokens per sentence in a text
+
+        sentences: (list[str]) a text split into a list of sentences
+
+        return: (float) the average number of tokens per sentence
+        """
         if sentences is None:
             sentences = self.sentences
 
@@ -349,7 +448,13 @@ class feature_pipeline:
         return mean([len(tokenizer(sent)) for sent in sentences])
 
     def ttr(self, token_list=None):
-        """"""
+        """
+        Return the type-token ratio (TTR) for a text given a list of tokens
+
+        token_list: (list[str]) the tokenized text
+
+        return: (float) the type-token ratio
+        """
         if token_list is None:
             token_list = self.tokens
 
@@ -357,7 +462,18 @@ class feature_pipeline:
         return len(types) / len(token_list)
 
     def pos_proportions(self, pos_list=None):
-        """"""
+        """
+        Given the list of POS tags of a text, extract the proportions of each
+        POS tag in the text as well as the proportions of content words and
+        function words in the text.
+        
+        pos_list: (list[str]) the POS tags of the text
+
+        return:
+            pos_props: (dict{float}) dict of proportions of POS tags in the text
+            cat_props: (dict{float}) dict of proportions of content and function
+                       words in the text
+        """
 
         if pos_list is None:
             pos_list = self.pos_tags
@@ -414,18 +530,159 @@ class feature_pipeline:
         for pos, count in pos_counts.items():
             pos_props[pos] = count / len(pos_list)
 
-        cat_props = {"CONTENT": 0.0, "FUNCTION": 0.0}
+        cat_props = {}
         for cat, count in cat_counts.items():
             cat_props[cat] = cat_counts[cat] / total
 
-        assert (
-            round(cat_props["CONTENT"] + cat_props["FUNCTION"], 2) == 1
-        ), f"{cat_props['CONTENT']}\n{cat_props['FUNCTION']}"
-
         return pos_props, cat_props
 
+    def pronoun_density(self, pos_list=None):
+        """
+        Return the density of pronouns in a text, calculated as the proportion
+        of the number of pronouns and the number of non-pronouns.
+
+        pos_list: (list[str]) the POS tags of the text
+
+        return: (float) the pronoun density of the text
+        """
+        if pos_list is None:
+            pos_list = self.pos_tags
+
+        total_prons = 0
+        for pos in pos_list:
+            if pos == "PRON":
+                total_prons += 1
+        return total_prons / (len(pos_list) - total_prons)
+
+    def logical_operators(self, token_list=None):
+        """
+        Return the density of logical operators in a text, calculated as the
+        proportion of the number of logical operators and the number of non-operators.
+
+        token_list: (list[str]) the tokenized text
+
+        return: (float) the logical operator density of the text
+        """
+        if token_list is None:
+            token_list = self.tokens
+
+        LOGICAL_OPS = {"si", "y", "o", "u", "no"}  # if, and, or, not
+
+        total_logical_ops = 0
+        for token in token_list:
+            if token in LOGICAL_OPS:
+                total_logical_ops += 1
+        return total_logical_ops / (len(token_list) - total_logical_ops)
+
+    def connectives(self, text=None):
+        """
+        Return the number of connective phrases in a text.
+
+        text: (str) the raw text
+
+        return: (int) the number of connectives in the text
+        """
+        if text is None:
+            text = self.text
+
+        CONNECTIVES = {
+            "por eso",
+            "a pesar de",
+            "además",
+            "y",
+            "también",
+            "incluso",
+            "pero",
+            "aunque",
+            "sin embargo",
+            "no obstante",
+            "porque",
+            "ya que",
+            "puesto que",
+            "debido a que",
+            "a causa de que",
+            "como",
+            "así",
+            "entonces",
+            "por lo tanto",
+            "en consecuencia",
+            "después",
+            "antes",
+            "al mismo tiempo",
+            "finalmente",
+            "al principio",
+            "por último",
+            "dado que",
+            "pese a",
+            "es decir",
+            "o sea",
+            "y luego",
+            "primero",
+            "todavía",
+            "aún",
+            "cuando",
+            "aunque",
+            "por consiguiente",
+            "consecuentemente",
+            "por otra parte",
+            "es decir",
+            "por lo visto",
+            "que yo sepa",
+            "de todas formas",
+            "de todas maneras",
+            "aparte de",
+            "tal como",
+            "a vez de",
+            "en concreto",
+            "en pocas palabras",
+            "tan pronto como",
+            "mientras tanto",
+            "hasta",
+            "por último",
+            "pues",
+            "en cuanto",
+            "por fin",
+            "al mismo tiempo",
+            "a la misma vez",
+            "inmediatamente",
+            "durante",
+            "eventualmente",
+            "frecuentemente",
+            "al rato",
+            "en primer lugar",
+            "anoche",
+            "luego",
+            "nunca",
+            "ahora",
+            "muchas veces",
+            "al otro día",
+            "desde entonces",
+            "raramente",
+            "algunas veces",
+            "pronto",
+        }
+
+        conn_count = 0
+        for conn in CONNECTIVES:
+            if conn in text:
+                conn_count += 1
+
+        return conn_count
+
     def a_level_vocab_features(self, token_list=None, pos_list=None):
-        """"""
+        """
+        Given a tokenized text in the form of a lists of tokens and the
+        corresponding list of POS tags, extract the percentage of A-level word
+        tokens and types after removing whitespaces and stopwords.
+
+        token_list: (list[str]) the tokenized text
+        pos_list: (list[str]) the POS tags of the tokenized text
+
+        return:
+            no_sw_length: (int) length of the text with stopwords removed
+            a_vocab_percent: (float) percentage of A-level word tokens in the text
+            a_vocab_percent_set: (float) percentage of A-level word types in the text
+        """
         if token_list is None:
             token_list = self.tokens
 
@@ -529,6 +786,9 @@ class feature_pipeline:
         num_tokens = self.num_tokens()
         avg_sent_length = self.avg_sent_length()
         no_sw_len, a_level_token_prop, a_level_type_prop = self.a_level_vocab_features()
+        num_connectives = self.connectives()
+        logical_operator_density = self.logical_operators()
+        pronoun_density = self.pronoun_density()
         ttr = self.ttr()
         avg_word_freq = self.avg_word_freq()
         fh_score, syls_per_sent = self.fernandez_huerta_score()
@@ -544,6 +804,9 @@ class feature_pipeline:
             avg_sent_length,
             a_level_token_prop,
             a_level_type_prop,
+            num_connectives,
+            logical_operator_density,
+            pronoun_density,
             ttr,
             avg_word_freq,
             fh_score,
@@ -558,6 +821,9 @@ class feature_pipeline:
             "avg_sent_length",
             "proportion_of_a_level_tokens",
             "proportion_of_a_level_types",
+            "num_connectives",
+            "logical_operator_density",
+            "pronoun_density",
             "ttr",
             "avg_rank_of_lemmas_in_freq_list",
             "fernandez_huerta_score",
