@@ -358,17 +358,7 @@ class feature_pipeline:
 
     def pos_proportions(self, pos_list=None):
         """"""
-        if pos_list is None:
-            pos_list = self.pos_tags
 
-        pos_counts = Counter(pos_list)
-        pos_props = {}
-        for pos, count in pos_counts.items():
-            pos_props[pos] = count / len(pos_list)
-        return pos_props
-
-    def content_function_props(self, pos_list=None):
-        """"""
         if pos_list is None:
             pos_list = self.pos_tags
 
@@ -385,33 +375,54 @@ class feature_pipeline:
             "PART",
         }
 
-        cat_count = {"CONTENT": 0, "FUNCTION": 0}
-        total_len = len(pos_list)
-        total = 0
+        cat_counts = {"CONTENT": 0, "FUNCTION": 0}
 
+        pos_counts = {
+            "ADJ": 0,
+            "ADP": 0,
+            "ADV": 0,
+            "AUX": 0,
+            "CONJ": 0,
+            "CCONJ": 0,
+            "DET": 0,
+            "INTJ": 0,
+            "NOUN": 0,
+            "NUM": 0,
+            "PART": 0,
+            "PRON": 0,
+            "PROPN": 0,
+            "PUNCT": 0,
+            "SCONJ": 0,
+            "SYM": 0,
+            "VERB": 0,
+            "X": 0,
+            "EOL": 0,
+            "SPACE": 0,
+        }
+
+        total = 0
         for pos in pos_list:
             if pos in CONTENT_POS:
-                cat_count["CONTENT"] += 1
+                cat_counts["CONTENT"] += 1
                 total += 1
             elif pos in FUNCTION_POS:
-                cat_count["FUNCTION"] += 1
+                cat_counts["FUNCTION"] += 1
                 total += 1
-            elif pos == "SPACE":
-                pass  # ignore
-            # punctuation, which we ignore but need to remove from total_len
-            else:
-                total_len -= 1
+            pos_counts[pos] += 1
 
-        assert cat_count["CONTENT"] + cat_count["FUNCTION"] == total_len
+        pos_props = {}
+        for pos, count in pos_counts.items():
+            pos_props[pos] = count / len(pos_list)
 
-        cat_prop = {"CONTENT": 0.0, "FUNCTION": 0.0}
+        cat_props = {"CONTENT": 0.0, "FUNCTION": 0.0}
+        for cat, count in cat_counts.items():
+            cat_props[cat] = cat_counts[cat] / total
 
-        for cat, count in cat_count.items():
-            cat_prop[cat] = cat_count[cat] / total_len
+        assert (
+            round(cat_props["CONTENT"] + cat_props["FUNCTION"], 2) == 1
+        ), f"{cat_props['CONTENT']}\n{cat_props['FUNCTION']}"
 
-        assert round(cat_prop["CONTENT"] + cat_prop["FUNCTION"], 2) == 1
-
-        return cat_prop
+        return pos_props, cat_props
 
     def a_level_vocab_features(self, token_list=None, pos_list=None):
         """"""
@@ -521,10 +532,9 @@ class feature_pipeline:
         ttr = self.ttr()
         avg_word_freq = self.avg_word_freq()
         fh_score, syls_per_sent = self.fernandez_huerta_score()
-        pos_props = self.pos_proportions()
+        pos_props, cat_props = self.pos_proportions()
         pos_props_labels = list(pos_props.keys())
         pos_props = list(pos_props.values())
-        cat_props = self.content_function_props()
         cat_props_labels = list(cat_props.keys())
         cat_props = list(cat_props.values())
 
