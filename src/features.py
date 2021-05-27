@@ -247,7 +247,7 @@ class feature_pipeline:
 
         return df
 
-    def frequency_list_50k(self, file="./es_50k.txt"):
+    def frequency_list_50k(self, file="../vocab/es_50k.txt"):
         """
         Given a path to a text file of 50k Spanish words ordered by frequency of
         occurrence, return a list of the words in order.
