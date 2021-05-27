@@ -84,7 +84,7 @@ class feature_pipeline:
         """
         Process the given text to remove trailing numbers and whitespaces
 
-        text: (str) the text (story, poem, paragraph, chapter) to process
+        text: (str) the text (story, poem, paragraph, chapter, etc.) to process
 
         return: (str) the processed text
         """
@@ -466,7 +466,7 @@ class feature_pipeline:
         Given the list of POS tags of a text, extract the proportions of each
         POS tag in the text as well as the proportions of content words and
         function words in the text.
-        
+
         pos_list: (list[str]) the POS tags of the text
 
         return:
@@ -771,7 +771,14 @@ class feature_pipeline:
         return fh_score, syls_per_sent
 
     def feature_extractor(self, text=None):
-        """"""
+        """
+        Perform preprocessing and extract all the features from the text
+
+        text: (str) the text (story, poem, paragraph, chapter, etc.) to process
+
+        return: (dict) the features extracted from the text
+        """
+
         if text is None:
             text = self.text
         else:
@@ -793,43 +800,22 @@ class feature_pipeline:
         avg_word_freq = self.avg_word_freq()
         fh_score, syls_per_sent = self.fernandez_huerta_score()
         pos_props, cat_props = self.pos_proportions()
-        pos_props_labels = list(pos_props.keys())
-        pos_props = list(pos_props.values())
-        cat_props_labels = list(cat_props.keys())
-        cat_props = list(cat_props.values())
 
-        features = [
-            num_tokens,
-            no_sw_len,
-            avg_sent_length,
-            a_level_token_prop,
-            a_level_type_prop,
-            num_connectives,
-            logical_operator_density,
-            pronoun_density,
-            ttr,
-            avg_word_freq,
-            fh_score,
-            syls_per_sent,
-        ]
-        features.extend(pos_props)
-        features.extend(cat_props)
+        features = {
+            "total_tokens": num_tokens,
+            "total_tokens_w/o_stopwords": no_sw_len,
+            "avg_sent_length": avg_sent_length,
+            "proportion_of_A_level_tokens": a_level_token_prop,
+            "proportion_of_A_level_types": a_level_type_prop,
+            "num_connectives": num_connectives,
+            "logical_operator_density": logical_operator_density,
+            "pronoun_density": pronoun_density,
+            "type_token_ratio": ttr,
+            "avg_rank_of_lemmas_in_freq_list": avg_word_freq,
+            "fernandez_huerta_score": fh_score,
+            "syllables_per_sentence": syls_per_sent,
+        }
+        features.update(pos_props)
+        features.update(cat_props)
 
-        labels = [
-            "total_tokens",
-            "total_tokens_w/o_stopwords",
-            "avg_sent_length",
-            "proportion_of_a_level_tokens",
-            "proportion_of_a_level_types",
-            "num_connectives",
-            "logical_operator_density",
-            "pronoun_density",
-            "ttr",
-            "avg_rank_of_lemmas_in_freq_list",
-            "fernandez_huerta_score",
-            "syllables_per_sentence",
-        ]
-        labels.extend(pos_props_labels)
-        labels.extend(cat_props_labels)
-
-        return features, labels
+        return features
