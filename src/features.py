@@ -1,3 +1,11 @@
+"""
+NOTE:
+Feature extraction at the sentence level is not consistent yet. Only document
+level feature extraction works, and except for the full_spacy() function all
+other functions are currently only configured for fully flattened lists.
+"""
+
+
 import os
 import re
 import json
