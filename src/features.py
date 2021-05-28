@@ -30,7 +30,7 @@ class feature_pipeline:
     def __init__(
         self,
         text="",
-        flatten=True,
+        flat=True,
         class_mode="document",
         freq_list_type="df",
         full_spacy=False,
@@ -40,7 +40,7 @@ class feature_pipeline:
         setup functions (eg., load spaCy pipeline, build frequency lists, etc.)
 
         text: (str) the text (story, poem, paragraph, chapter, etc.) to process
-        flatten: (bool) flag to flatten lists of tokens/lemmas/etc.
+        flat: (bool) flag to flatten lists of tokens/lemmas/etc.
         class_mode: (str) whether to generate features at the document level or
                     the sentence level
         freq_list_type: (str) whether the frequency list is a list object or a
@@ -56,7 +56,7 @@ class feature_pipeline:
         ], "Classification can only be done at the document level or the sentence level! ('document' or 'sentence' allowed)"
 
         self.text = text
-        self.flatten = flatten
+        self.flat = flat
         self.class_mode = class_mode
         self.nlp = spacy.load("es_core_news_md")
         if freq_list_type == "df":
@@ -133,7 +133,7 @@ class feature_pipeline:
 
     def get_tokens(self, text=None):
         """
-        Return the tokens from a raw text. If the attribute self.flatten is True
+        Return the tokens from a raw text. If the attribute self.flat is True
         the function returns a flat list of tokens, otherwise the tokens are
         arranged by sentences.
 
@@ -145,7 +145,7 @@ class feature_pipeline:
             text = self.text
 
         self.tokens = []
-        if self.flatten:
+        if self.flat:
             for token in self.nlp(text):
                 self.tokens.append(token.text)
         else:
@@ -158,7 +158,7 @@ class feature_pipeline:
 
     def get_lemmas(self, text=None):
         """
-        Return the lemmas from a raw text. If the attribute self.flatten is True
+        Return the lemmas from a raw text. If the attribute self.flat is True
         the function returns a flat list of lemmas, otherwise the lemmas are
         arranged by sentences.
 
@@ -170,7 +170,7 @@ class feature_pipeline:
             text = self.text
 
         self.lemmas = []
-        if self.flatten:
+        if self.flat:
             for token in self.nlp(text):
                 self.lemmas.append(token.lemma_)
         else:
@@ -183,7 +183,7 @@ class feature_pipeline:
 
     def get_pos_tags(self, text=None):
         """
-        Return the POS tags from a raw text. If the attribute self.flatten is True
+        Return the POS tags from a raw text. If the attribute self.flat is True
         the function returns a flat list of tags, otherwise the tags are
         arranged by sentences.
 
@@ -195,7 +195,7 @@ class feature_pipeline:
             text = self.text
 
         self.pos_tags = []
-        if self.flatten:
+        if self.flat:
             for token in self.nlp(text):
                 self.pos_tags.append(token.pos_)
         else:
@@ -209,7 +209,7 @@ class feature_pipeline:
     def get_morphology(self, text=None):
         """
         Return the morphologized tags from a raw text. If the attribute
-        self.flatten is True the function returns a flat list of morphologized
+        self.flat is True the function returns a flat list of morphologized
         tags, otherwise the morphologized tags are arranged by sentences.
 
         text: (str) a raw text
@@ -220,7 +220,7 @@ class feature_pipeline:
             text = self.text
 
         self.morphs = []
-        if self.flatten:
+        if self.flat:
             for token in self.nlp(text):
                 self.morphs.append(token.tag_)
         else:
@@ -234,7 +234,7 @@ class feature_pipeline:
     def get_dependency_parses(self, text=None):
         """
         Return the dependency parses from a raw text. If the attribute
-        self.flatten is True the function returns a flat list of dependency
+        self.flat is True the function returns a flat list of dependency
         parses, otherwise the dependency parses are arranged by sentences.
 
         text: (str) a raw text
@@ -245,7 +245,7 @@ class feature_pipeline:
             text = self.text
 
         self.parses = []
-        if self.flatten:
+        if self.flat:
             for token in self.nlp(text):
                 self.parses.append(token.dep_)
         else:
