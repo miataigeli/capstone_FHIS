@@ -72,6 +72,7 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.noun_chunks = []
 
         if text:
             _ = self.preprocess()
@@ -240,6 +241,30 @@ class feature_pipeline:
                 self.parses.append([token.dep_ for token in sent])
         return self.parses
 
+    def get_noun_chunks(self, text=None):
+        """
+        Returns noun phrases from a raw text. If the attribute self.flat is True
+        the function returns a flat list of noun chunks, otherwise the noun
+        chunks are arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str] / list[list[str]]) list of noun chunks in the text
+        """
+        if text is None:
+            text = self.text
+
+        self.noun_chunks = []
+        doc = self.nlp(text)
+        if self.flat:
+            self.noun_chunks = [chunk.text for chunk in doc.noun_chunks]
+        else:
+            for sent in doc.sents:
+                sent_doc = self.nlp(sent.text)
+                sent_npc = [chunk.text for chunk in sent_doc.noun_chunks]
+                self.noun_chunks.append(sent_npc)
+        return self.noun_chunks
+
     def full_spacy(self, text=None):
         """
         !!! NOTE: Only run this method if you absolutely NEED to extract all
@@ -264,6 +289,8 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.noun_chunks = []
+        self.get_noun_chunks()
         doc = self.nlp(text)
         if self.flat:
             for token in doc:
