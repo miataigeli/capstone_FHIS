@@ -16,8 +16,11 @@ https://docs.google.com/document/d/1Mg-asupAc0O1Wt1tHzqfUjte3-arZJNWQmZ4lMGxouI/
 - Rule-based model pipeline:
 https://deepnote.com/project/Rule-based-model-nzjIn5ikQ92RjVJy8KtfHQ/%2Fnotebook.ipynb
 
-- week3 meeting slides:
+- week 3 meeting slides:
 https://docs.google.com/presentation/d/1z4xeELRTpL9YEELpwaOhhyfFBEK1c8T_y-3gEkA4bPY/edit?usp=sharing
 
 - week 3 plan & checklist:
 https://docs.google.com/document/d/1Vv3uyCzB6MOOQcuEm2EEWuALlRdvwyAjwXRr0jHt4rs/edit?usp=sharing
+
+- week 4 meeting slides:
+https://docs.google.com/presentation/d/1pqVRlSDgN49m8TBwr19gB8dSEUsePPJrKFQb1t-F5MI/edit?usp=sharing
