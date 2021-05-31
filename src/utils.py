@@ -33,8 +33,6 @@ def read_corpus(path="../corpus/"):
                 doc_list = json.load(f)
                 for d in doc_list:
                     level = d["level"]
-                    if level == "A2/B1":
-                        level = "B1"
                     corpus[level].append(d)
     return corpus
 
