@@ -127,8 +127,7 @@ class feature_pipeline:
             text = self.text
 
         self.sentences = []
-        for sent in self.nlp(text).sents:
-            self.sentences.append(sent.text)
+        self.sentences = [sent.text for sent in self.nlp(text).sents]
         return self.sentences
 
     def get_tokens(self, text=None):
@@ -145,15 +144,12 @@ class feature_pipeline:
             text = self.text
 
         self.tokens = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.tokens.append(token.text)
+            self.tokens = [token.text for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_tokens = []
-                for token in sent:
-                    sent_tokens.append(token.text)
-                self.tokens.append(sent_tokens)
+            for sent in doc.sents:
+                self.tokens.append([token.text for token in sent])
         return self.tokens
 
     def get_lemmas(self, text=None):
@@ -170,15 +166,12 @@ class feature_pipeline:
             text = self.text
 
         self.lemmas = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.lemmas.append(token.lemma_)
+            self.lemmas = [token.lemma_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_lemmas = []
-                for token in sent:
-                    sent_lemmas.append(token.lemma_)
-                self.lemmas.append(sent_lemmas)
+            for sent in doc.sents:
+                self.lemmas.append([token.lemma_ for token in sent])
         return self.lemmas
 
     def get_pos_tags(self, text=None):
@@ -195,15 +188,12 @@ class feature_pipeline:
             text = self.text
 
         self.pos_tags = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.pos_tags.append(token.pos_)
+            self.pos_tags = [token.pos_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_tags = []
-                for token in sent:
-                    sent_tags.append(token.pos_)
-                self.pos_tags.append(sent_tags)
+            for sent in doc.sents:
+                self.pos_tags.append([token.pos_ for token in sent])
         return self.pos_tags
 
     def get_morphology(self, text=None):
@@ -220,15 +210,12 @@ class feature_pipeline:
             text = self.text
 
         self.morphs = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.morphs.append(token.tag_)
+            self.morphs = [token.tag_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_morphs = []
-                for token in sent:
-                    sent_morphs.append(token.tag_)
-                self.morphs.append(sent_morphs)
+            for sent in doc.sents:
+                self.morphs.append([token.tag_ for token in sent])
         return self.morphs
 
     def get_dependency_parses(self, text=None):
@@ -245,15 +232,12 @@ class feature_pipeline:
             text = self.text
 
         self.parses = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.parses.append(token.dep_)
+            self.parses = [token.dep_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_parses = []
-                for token in sent:
-                    sent_parses.append(token.dep_)
-                self.parses.append(sent_parses)
+            for sent in doc.sents:
+                self.parses.append([token.dep_ for token in sent])
         return self.parses
 
     def full_spacy(self, text=None):
@@ -261,7 +245,7 @@ class feature_pipeline:
         !!! NOTE: Only run this method if you absolutely NEED to extract all
         of the spaCy features. It is typically more efficient to instead run
         only the `get_` methods of those spaCy features that you require. !!!
-        
+
         Run the given text through the pretrained spaCy pipeline to extract
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
