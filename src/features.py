@@ -72,6 +72,7 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.npc = []
 
         if text:
             _ = self.preprocess()
@@ -256,6 +257,33 @@ class feature_pipeline:
                 self.parses.append(sent_parses)
         return self.parses
 
+    def get_npc(self, text = None):
+        """
+        returns noun phrases from a raw text. If the attribute self.flat is True, 
+        the function returns a flat list of noun chunks, otherwise the noun chunks are arranged 
+        by sentences. 
+
+        text: (str) a raw text 
+
+        return: (list[str] / list[list[str]]) list of noun chunks in the text 
+        """
+        
+        if text is None:
+            text = self.text
+            
+        self.npc = []
+        doc = self.nlp(text)
+        if self.flat:
+            self.npc = [chunk.text for chunk in doc.noun_chunks]
+        else:
+            for sent in doc.sents:
+                sent_doc = self.nlp(sent.text)
+                sent_npc = [chunk.text for chunk in sent_doc.noun_chunks]
+                self.npc.append(sent_npc)
+          
+        return self.npc
+        
+        
     def full_spacy(self, text=None):
         """
         Run the given text through the pretrained spaCy pipeline to extract
@@ -295,7 +323,7 @@ class feature_pipeline:
             self.pos_tags.append(sent_tags)
             self.morphs.append(sent_morphs)
             self.parses.append(sent_parses)
-            self.sents.append(sent.text)
+            #self.sents.append(sent.text)
 
     def frequency_list_10k(self):
         """
