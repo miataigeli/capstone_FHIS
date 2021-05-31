@@ -1,8 +1,8 @@
 """
 NOTE:
 Feature extraction at the sentence level is not consistent yet. Only document
-level feature extraction works, and except for the full_spacy() function all
-other functions are currently only configured for fully flattened lists.
+level feature extraction works, and most feature extraction functions are
+currently only configured to work for fully flattened lists.
 """
 
 
@@ -258,6 +258,10 @@ class feature_pipeline:
 
     def full_spacy(self, text=None):
         """
+        !!! NOTE: Only run this method if you absolutely NEED to extract all
+        of the spaCy features. It is typically more efficient to instead run
+        only the `get_` methods of those spaCy features that you require. !!!
+        
         Run the given text through the pretrained spaCy pipeline to extract
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
@@ -277,25 +281,35 @@ class feature_pipeline:
         self.morphs = []
         self.parses = []
         doc = self.nlp(text)
-        for sent in doc.sents:
-            sent_tokens = []
-            sent_lemmas = []
-            sent_tags = []
-            sent_morphs = []
-            sent_parses = []
-            for token in sent:
-                sent_tokens.append(token.text)
-                sent_lemmas.append(token.lemma_)
-                sent_tags.append(token.pos_)
-                sent_morphs.append(token.tag_)
-                sent_parses.append(token.dep_)
-            self.sentences.append(sent.text)
-            self.tokens.append(sent_tokens)
-            self.lemmas.append(sent_lemmas)
-            self.pos_tags.append(sent_tags)
-            self.morphs.append(sent_morphs)
-            self.parses.append(sent_parses)
-            self.sents.append(sent.text)
+        if self.flat:
+            for token in doc:
+                self.tokens.append(token.text)
+                self.lemmas.append(token.lemma_)
+                self.pos_tags.append(token.pos_)
+                self.morphs.append(token.tag_)
+                self.parses.append(token.dep_)
+            for sent in doc.sents:
+                self.sentences.append(sent.text)
+        else:
+            for sent in doc.sents:
+                sent_tokens = []
+                sent_lemmas = []
+                sent_tags = []
+                sent_morphs = []
+                sent_parses = []
+                for token in sent:
+                    sent_tokens.append(token.text)
+                    sent_lemmas.append(token.lemma_)
+                    sent_tags.append(token.pos_)
+                    sent_morphs.append(token.tag_)
+                    sent_parses.append(token.dep_)
+                self.sentences.append(sent.text)
+                self.tokens.append(sent_tokens)
+                self.lemmas.append(sent_lemmas)
+                self.pos_tags.append(sent_tags)
+                self.morphs.append(sent_morphs)
+                self.parses.append(sent_parses)
+                self.sents.append(sent.text)
 
     def frequency_list_10k(self):
         """
