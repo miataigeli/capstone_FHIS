@@ -72,7 +72,7 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
-        self.npc = []
+        self.noun_chunks = []
 
         if text:
             _ = self.preprocess()
@@ -257,7 +257,7 @@ class feature_pipeline:
                 self.parses.append(sent_parses)
         return self.parses
 
-    def get_npc(self, text = None):
+    def get_noun_chunks(self, text = None):
         """
         returns noun phrases from a raw text. If the attribute self.flat is True, 
         the function returns a flat list of noun chunks, otherwise the noun chunks are arranged 
@@ -271,17 +271,17 @@ class feature_pipeline:
         if text is None:
             text = self.text
             
-        self.npc = []
+        self.noun_chunks = []
         doc = self.nlp(text)
         if self.flat:
-            self.npc = [chunk.text for chunk in doc.noun_chunks]
+            self.noun_chunks = [chunk.text for chunk in doc.noun_chunks]
         else:
             for sent in doc.sents:
                 sent_doc = self.nlp(sent.text)
-                sent_npc = [chunk.text for chunk in sent_doc.noun_chunks]
-                self.npc.append(sent_npc)
+                sent_noun_chunks = [chunk.text for chunk in sent_doc.noun_chunks]
+                self.noun_chunks.append(sent_noun_chunks)
           
-        return self.npc
+        return self.noun_chunks
         
         
     def full_spacy(self, text=None):
