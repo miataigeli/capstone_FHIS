@@ -61,6 +61,7 @@ class feature_pipeline:
         self.flat = flat
         self.class_mode = class_mode
         self.nlp = spacy.load("es_core_news_md")
+        self.wncr = None
         if freq_list_type == "df":
             self.freq_list = self.frequency_list_10k()
             self.word_ranks = self.word_ranks_from_df
@@ -80,10 +81,6 @@ class feature_pipeline:
             _ = self.preprocess()
         if full_spacy:
             self.full_spacy()
-
-        # Initialize Spanish WordNet
-        result_root = "../wordnet_spa/"
-        self.wncr = WordNetCorpusReader(result_root, None)
 
     def flatten(self, list_of_sents):
         """
@@ -828,6 +825,16 @@ class feature_pipeline:
 
         if pos_list is None:
             pos_list = self.pos_tags
+        
+        """
+        Initialize Spanish WordNet
+        !!! Must have Spanish WordNet extracted into the given directory !!!
+        Download and extract this file:
+        https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
+        """
+        if not self.wncr:
+            result_root = "../wordnet_spa/"
+            self.wncr = WordNetCorpusReader(result_root, None)
 
         top_synset = self.wncr.synset("entidad.n.01")  # Top synset
         sent_nouns, sent_levels = [], []
@@ -879,6 +886,16 @@ class feature_pipeline:
 
         if pos_list is None:
             pos_list = self.pos_tags
+        
+        """
+        Initialize Spanish WordNet
+        !!! Must have Spanish WordNet extracted into the given directory !!!
+        Download and extract this file:
+        https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
+        """
+        if not self.wncr:
+            result_root = "../wordnet_spa/"
+            self.wncr = WordNetCorpusReader(result_root, None)
 
         sent_senses = []
         sent_cont_tokens, sent_cont_senses = [], []
