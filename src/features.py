@@ -129,6 +129,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.sentences = []
         self.sentences = [sent.text for sent in self.nlp(text).sents]
@@ -146,6 +148,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.tokens = []
         doc = self.nlp(text)
@@ -168,6 +172,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.lemmas = []
         doc = self.nlp(text)
@@ -190,6 +196,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.pos_tags = []
         doc = self.nlp(text)
@@ -212,6 +220,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.morphs = []
         doc = self.nlp(text)
@@ -234,6 +244,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.parses = []
         doc = self.nlp(text)
@@ -256,6 +268,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.noun_chunks = []
         doc = self.nlp(text)
@@ -285,6 +299,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
+            if not self.text:
+                text = self.preprocess(text)
 
         self.sentences = []
         self.tokens = []
@@ -964,8 +980,8 @@ class feature_pipeline:
 
         if text is None:
             text = self.text
-        else:
-            _ = self.preprocess(text)
+            if not self.text:
+                text = self.preprocess(text)
 
         if self.class_mode == "document":
             _ = self.get_sentences()
