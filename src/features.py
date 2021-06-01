@@ -22,8 +22,6 @@ from urllib.request import urlopen
 from statistics import mean
 from utils import A1
 
-nltk.download("omw")
-
 
 class feature_pipeline:
     """
@@ -84,7 +82,7 @@ class feature_pipeline:
             self.full_spacy()
 
         # Initialize Spanish WordNet
-        result_root = "../wn-mcr-transform/wordnet_spa/"
+        result_root = "../wordnet_spa/"
         self.wncr = WordNetCorpusReader(result_root, None)
 
     def flatten(self, list_of_sents):
@@ -890,7 +888,7 @@ class feature_pipeline:
 
         for i_token, token in enumerate(token_list):
             token = token.lower()
-            synsets = wncr.synsets(token)
+            synsets = self.wncr.synsets(token)
             # All words
             if len(synsets) > 0:
                 num_senses += len(synsets)
