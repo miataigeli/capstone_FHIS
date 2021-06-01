@@ -84,6 +84,7 @@ class feature_pipeline:
 
     def flatten(self, list_of_sents):
         """
+        Utility Function:
         Flatten a list of lists of tokens into just a list of tokens.
 
         list_of_sents: (list[list[str]]) a tokenized text arranged by sentences
@@ -129,8 +130,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.sentences = []
         self.sentences = [sent.text for sent in self.nlp(text).sents]
@@ -148,8 +149,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.tokens = []
         doc = self.nlp(text)
@@ -172,8 +173,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.lemmas = []
         doc = self.nlp(text)
@@ -196,8 +197,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.pos_tags = []
         doc = self.nlp(text)
@@ -220,8 +221,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.morphs = []
         doc = self.nlp(text)
@@ -244,8 +245,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.parses = []
         doc = self.nlp(text)
@@ -268,8 +269,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.noun_chunks = []
         doc = self.nlp(text)
@@ -299,8 +300,8 @@ class feature_pipeline:
         """
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         self.sentences = []
         self.tokens = []
@@ -980,8 +981,8 @@ class feature_pipeline:
 
         if text is None:
             text = self.text
-            if not self.text:
-                text = self.preprocess(text)
+        else:
+            text = self.preprocess(text)
 
         if self.class_mode == "document":
             _ = self.get_sentences()
