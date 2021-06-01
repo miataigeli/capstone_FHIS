@@ -1,8 +1,8 @@
 """
 NOTE:
 Feature extraction at the sentence level is not consistent yet. Only document
-level feature extraction works, and except for the full_spacy() function all
-other functions are currently only configured for fully flattened lists.
+level feature extraction works, and most feature extraction functions are
+currently only configured to work for fully flattened lists.
 """
 
 
@@ -12,6 +12,8 @@ import json
 import time
 import pylabeador
 import spacy
+import nltk
+from nltk.corpus.reader.wordnet import WordNetCorpusReader
 from spacy.lang.es.stop_words import STOP_WORDS
 from collections import defaultdict, Counter
 from bs4 import BeautifulSoup
@@ -59,6 +61,7 @@ class feature_pipeline:
         self.flat = flat
         self.class_mode = class_mode
         self.nlp = spacy.load("es_core_news_md")
+        self.wncr = None
         if freq_list_type == "df":
             self.freq_list = self.frequency_list_10k()
             self.word_ranks = self.word_ranks_from_df
@@ -72,6 +75,7 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.noun_chunks = []
 
         if text:
             _ = self.preprocess()
@@ -127,8 +131,7 @@ class feature_pipeline:
             text = self.text
 
         self.sentences = []
-        for sent in self.nlp(text).sents:
-            self.sentences.append(sent.text)
+        self.sentences = [sent.text for sent in self.nlp(text).sents]
         return self.sentences
 
     def get_tokens(self, text=None):
@@ -145,15 +148,12 @@ class feature_pipeline:
             text = self.text
 
         self.tokens = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.tokens.append(token.text)
+            self.tokens = [token.text for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_tokens = []
-                for token in sent:
-                    sent_tokens.append(token.text)
-                self.tokens.append(sent_tokens)
+            for sent in doc.sents:
+                self.tokens.append([token.text for token in sent])
         return self.tokens
 
     def get_lemmas(self, text=None):
@@ -170,15 +170,12 @@ class feature_pipeline:
             text = self.text
 
         self.lemmas = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.lemmas.append(token.lemma_)
+            self.lemmas = [token.lemma_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_lemmas = []
-                for token in sent:
-                    sent_lemmas.append(token.lemma_)
-                self.lemmas.append(sent_lemmas)
+            for sent in doc.sents:
+                self.lemmas.append([token.lemma_ for token in sent])
         return self.lemmas
 
     def get_pos_tags(self, text=None):
@@ -195,15 +192,12 @@ class feature_pipeline:
             text = self.text
 
         self.pos_tags = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.pos_tags.append(token.pos_)
+            self.pos_tags = [token.pos_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_tags = []
-                for token in sent:
-                    sent_tags.append(token.pos_)
-                self.pos_tags.append(sent_tags)
+            for sent in doc.sents:
+                self.pos_tags.append([token.pos_ for token in sent])
         return self.pos_tags
 
     def get_morphology(self, text=None):
@@ -220,15 +214,12 @@ class feature_pipeline:
             text = self.text
 
         self.morphs = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.morphs.append(token.tag_)
+            self.morphs = [token.tag_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_morphs = []
-                for token in sent:
-                    sent_morphs.append(token.tag_)
-                self.morphs.append(sent_morphs)
+            for sent in doc.sents:
+                self.morphs.append([token.tag_ for token in sent])
         return self.morphs
 
     def get_dependency_parses(self, text=None):
@@ -245,19 +236,44 @@ class feature_pipeline:
             text = self.text
 
         self.parses = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.parses.append(token.dep_)
+            self.parses = [token.dep_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_parses = []
-                for token in sent:
-                    sent_parses.append(token.dep_)
-                self.parses.append(sent_parses)
+            for sent in doc.sents:
+                self.parses.append([token.dep_ for token in sent])
         return self.parses
+
+    def get_noun_chunks(self, text=None):
+        """
+        Returns noun phrases from a raw text. If the attribute self.flat is True
+        the function returns a flat list of noun chunks, otherwise the noun
+        chunks are arranged by sentences.
+
+        text: (str) a raw text
+
+        return: (list[str] / list[list[str]]) list of noun chunks in the text
+        """
+        if text is None:
+            text = self.text
+
+        self.noun_chunks = []
+        doc = self.nlp(text)
+        if self.flat:
+            self.noun_chunks = [chunk.text for chunk in doc.noun_chunks]
+        else:
+            for sent in doc.sents:
+                sent_doc = self.nlp(sent.text)
+                sent_npc = [chunk.text for chunk in sent_doc.noun_chunks]
+                self.noun_chunks.append(sent_npc)
+        return self.noun_chunks
 
     def full_spacy(self, text=None):
         """
+        !!! NOTE: Only run this method if you absolutely NEED to extract all
+        of the spaCy features. It is typically more efficient to instead run
+        only the `get_` methods of those spaCy features that you require. !!!
+
         Run the given text through the pretrained spaCy pipeline to extract
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
@@ -276,26 +292,38 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.noun_chunks = []
+        self.get_noun_chunks()
         doc = self.nlp(text)
-        for sent in doc.sents:
-            sent_tokens = []
-            sent_lemmas = []
-            sent_tags = []
-            sent_morphs = []
-            sent_parses = []
-            for token in sent:
-                sent_tokens.append(token.text)
-                sent_lemmas.append(token.lemma_)
-                sent_tags.append(token.pos_)
-                sent_morphs.append(token.tag_)
-                sent_parses.append(token.dep_)
-            self.sentences.append(sent.text)
-            self.tokens.append(sent_tokens)
-            self.lemmas.append(sent_lemmas)
-            self.pos_tags.append(sent_tags)
-            self.morphs.append(sent_morphs)
-            self.parses.append(sent_parses)
-            self.sents.append(sent.text)
+        if self.flat:
+            for token in doc:
+                self.tokens.append(token.text)
+                self.lemmas.append(token.lemma_)
+                self.pos_tags.append(token.pos_)
+                self.morphs.append(token.tag_)
+                self.parses.append(token.dep_)
+            for sent in doc.sents:
+                self.sentences.append(sent.text)
+        else:
+            for sent in doc.sents:
+                sent_tokens = []
+                sent_lemmas = []
+                sent_tags = []
+                sent_morphs = []
+                sent_parses = []
+                for token in sent:
+                    sent_tokens.append(token.text)
+                    sent_lemmas.append(token.lemma_)
+                    sent_tags.append(token.pos_)
+                    sent_morphs.append(token.tag_)
+                    sent_parses.append(token.dep_)
+                self.sentences.append(sent.text)
+                self.tokens.append(sent_tokens)
+                self.lemmas.append(sent_lemmas)
+                self.pos_tags.append(sent_tags)
+                self.morphs.append(sent_morphs)
+                self.parses.append(sent_parses)
+                self.sents.append(sent.text)
 
     def frequency_list_10k(self):
         """
@@ -780,6 +808,119 @@ class feature_pipeline:
 
         return fh_score, syls_per_sent
 
+    def degree_of_abstraction(self, token_list=None, pos_list=None):
+        """
+        This function measures the degree of abstraction of a text by measuring
+        the distance of its nouns to the top level in the wordnet.
+
+        token_list: (list[str]) the tokenized text
+        pos_list: (list[str]) the POS tags of the tokenized text
+
+        return:
+            the average degree of abstraction (the higher, less abstract),
+            the min degree of abstraction in the text
+        """
+        if token_list is None:
+            token_list = self.tokens
+
+        if pos_list is None:
+            pos_list = self.pos_tags
+        
+        """
+        Initialize Spanish WordNet
+        !!! Must have Spanish WordNet extracted into the given directory !!!
+        Download and extract this file:
+        https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
+        """
+        if not self.wncr:
+            result_root = "../wordnet_spa/"
+            self.wncr = WordNetCorpusReader(result_root, None)
+
+        top_synset = self.wncr.synset("entidad.n.01")  # Top synset
+        sent_nouns, sent_levels = [], []
+        num_levels, num_nouns = 0.0, 0
+
+        for i_token, token in enumerate(token_list):
+            # calculate levels for each sense of the token
+            token_levels, num_senses = 0.0, 0
+            tag = pos_list[i_token]
+            token = token.lower()
+            synsets = self.wncr.synsets(token)
+            if len(synsets) > 0 and tag == "NOUN":
+                for synset in synsets:
+                    if synset.name().split(".")[1] == "n":  # only process noun
+                        try:
+                            levels = 1 / synset.path_similarity(top_synset)
+                            token_levels += levels
+                            num_senses += 1
+                        except:
+                            pass
+                if num_senses > 0:
+                    num_nouns += 1
+                    sent_nouns.append(token)
+                    sent_levels.append(token_levels / num_senses)
+                    # average level over the senses
+                    num_levels += token_levels / num_senses
+
+        if num_nouns == 0:
+            return 1000, 1000  # no abstraction
+        else:
+            # first returns the average number of levels in the text,
+            # second returns the minimum num of levels in the text
+            return num_levels / num_nouns, min(sent_levels)
+
+    def polysemy_ambiguation(self, token_list=None, pos_list=None):
+        """
+        This function measures degree of ambiguation of a text by counting the
+        number of senses of each content word in the text.
+
+        token_list: (list[str]) the tokenized text
+        pos_list: (list[str]) the POS tags of the tokenized text
+
+        return:
+            the mean degree of ambiguation over all tokens (the higher, more ambiguous),
+            the mean degree of ambiguation over all content tokens
+        """
+        if token_list is None:
+            token_list = self.tokens
+
+        if pos_list is None:
+            pos_list = self.pos_tags
+        
+        """
+        Initialize Spanish WordNet
+        !!! Must have Spanish WordNet extracted into the given directory !!!
+        Download and extract this file:
+        https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
+        """
+        if not self.wncr:
+            result_root = "../wordnet_spa/"
+            self.wncr = WordNetCorpusReader(result_root, None)
+
+        sent_senses = []
+        sent_cont_tokens, sent_cont_senses = [], []
+        num_senses, num_cont_senses = 0, 0
+
+        CONTENT_POS = {"VERB", "NOUN", "PROPN", "ADP", "ADJ", "ADV"}
+
+        for i_token, token in enumerate(token_list):
+            token = token.lower()
+            synsets = self.wncr.synsets(token)
+            # All words
+            if len(synsets) > 0:
+                num_senses += len(synsets)
+                sent_senses.append(len(synsets))
+            # Only content words
+            if pos_list[i_token] in CONTENT_POS and len(synsets) > 0:
+                num_cont_senses += len(synsets)
+                sent_cont_tokens.append(token)
+                sent_cont_senses.append(len(synsets))
+
+        if sent_senses == []:
+            return 0, 0
+
+        return mean(sent_senses), mean(sent_cont_senses)
+
     def feature_extractor(self, text=None):
         """
         Perform preprocessing and extract all the features from the text
@@ -809,6 +950,8 @@ class feature_pipeline:
         ttr = self.ttr()
         avg_word_freq = self.avg_word_freq()
         fh_score, syls_per_sent = self.fernandez_huerta_score()
+        avg_abstraction, min_abstraction = self.degree_of_abstraction()
+        avg_ambiguation, avg_content_ambiguation = self.polysemy_ambiguation()
         pos_props, cat_props = self.pos_proportions()
 
         features = {
@@ -824,6 +967,10 @@ class feature_pipeline:
             "avg_rank_of_lemmas_in_freq_list": avg_word_freq,
             "fernandez_huerta_score": fh_score,
             "syllables_per_sentence": syls_per_sent,
+            "avg_degree_of_abstraction": avg_abstraction,
+            "min_degree_of_abstraction": min_abstraction,
+            "avg_ambiguation_all_words": avg_ambiguation,
+            "avg_ambiguation_content_words": avg_content_ambiguation,
         }
         features.update(pos_props)
         features.update(cat_props)
