@@ -323,7 +323,7 @@ class feature_pipeline:
                 self.pos_tags.append(sent_tags)
                 self.morphs.append(sent_morphs)
                 self.parses.append(sent_parses)
-                self.sents.append(sent.text)
+                self.sentences.append(sent.text)
 
     def frequency_list_10k(self):
         """
