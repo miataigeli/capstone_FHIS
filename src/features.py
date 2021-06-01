@@ -405,6 +405,8 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         if freq_list is None:
             freq_list = self.freq_list
@@ -431,6 +433,8 @@ class feature_pipeline:
         """
         if lemma_list is None:
             lemma_list = self.lemmas
+            if not self.lemmas:
+                lemma_list = self.get_lemmas()
 
         if df is None:
             df = self.freq_list
@@ -468,6 +472,8 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         return len(token_list)
 
@@ -481,6 +487,8 @@ class feature_pipeline:
         """
         if sentences is None:
             sentences = self.sentences
+            if not self.sentences:
+                sentences = self.get_sentences()
 
         tokenizer = self.nlp.tokenizer
         return mean([len(tokenizer(sent)) for sent in sentences])
@@ -495,6 +503,8 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         types = set(token_list)
         return len(types) / len(token_list)
@@ -515,6 +525,8 @@ class feature_pipeline:
 
         if pos_list is None:
             pos_list = self.pos_tags
+            if not self.pos_tags:
+                pos_list = self.get_pos_tags()
 
         CONTENT_POS = {"VERB", "NOUN", "PROPN", "ADP", "ADJ", "ADV"}
         FUNCTION_POS = {
@@ -585,6 +597,8 @@ class feature_pipeline:
         """
         if pos_list is None:
             pos_list = self.pos_tags
+            if not self.pos_tags:
+                pos_list = self.get_pos_tags()
 
         total_prons = 0
         for pos in pos_list:
@@ -603,6 +617,8 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         LOGICAL_OPS = {"si", "y", "o", "u", "no"}  # if, and, or, not
 
@@ -723,9 +739,13 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         if pos_list is None:
             pos_list = self.pos_tags
+            if not self.pos_tags:
+                pos_list = self.get_pos_tags()
 
         a_vocab = A1().vocab
         no_sw_length = 0
@@ -769,9 +789,13 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         if sentences is None:
             sentences = self.sentences
+            if not self.sentences:
+                sentences = self.get_sentences()
 
         num_sents = len(sentences)
         num_tokens = len(token_list)
@@ -822,9 +846,13 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         if pos_list is None:
             pos_list = self.pos_tags
+            if not self.pos_tags:
+                pos_list = self.get_pos_tags()
         
         """
         Initialize Spanish WordNet
@@ -883,9 +911,13 @@ class feature_pipeline:
         """
         if token_list is None:
             token_list = self.tokens
+            if not self.tokens:
+                token_list = self.get_tokens()
 
         if pos_list is None:
             pos_list = self.pos_tags
+            if not self.pos_tags:
+                pos_list = self.get_pos_tags()
         
         """
         Initialize Spanish WordNet
