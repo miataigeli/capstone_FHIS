@@ -26,4 +26,4 @@ https://docs.google.com/document/d/1Vv3uyCzB6MOOQcuEm2EEWuALlRdvwyAjwXRr0jHt4rs/
 https://docs.google.com/presentation/d/1pqVRlSDgN49m8TBwr19gB8dSEUsePPJrKFQb1t-F5MI/edit?usp=sharing
 
 - final report deepnote:
-- https://deepnote.com/project/FHISfinalreport-h43rEkRpSC6hbV4fAf0g3Q/%2Frequirements.ipynb
+https://deepnote.com/project/FHISfinalreport-h43rEkRpSC6hbV4fAf0g3Q/%2Frequirements.ipynb
