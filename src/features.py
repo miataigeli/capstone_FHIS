@@ -1,8 +1,8 @@
 """
 NOTE:
 Feature extraction at the sentence level is not consistent yet. Only document
-level feature extraction works, and most feature extraction functions are
-currently only configured to work for fully flattened lists.
+level feature extraction works, and feature extraction functions are currently
+only configured to work for fully flattened lists.
 """
 
 
@@ -62,11 +62,10 @@ class feature_pipeline:
         self.class_mode = class_mode
         self.nlp = spacy.load("es_core_news_md")
         self.wncr = None
+        self.freq_list = None
         if freq_list_type == "df":
-            self.freq_list = self.frequency_list_10k()
             self.word_ranks = self.word_ranks_from_df
         else:
-            self.freq_list = self.frequency_list_50k()
             self.word_ranks = self.word_ranks_from_list
 
         self.sentences = []
@@ -84,6 +83,7 @@ class feature_pipeline:
 
     def flatten(self, list_of_sents):
         """
+        Utility Function:
         Flatten a list of lists of tokens into just a list of tokens.
 
         list_of_sents: (list[list[str]]) a tokenized text arranged by sentences
@@ -123,12 +123,11 @@ class feature_pipeline:
         """
         Return the sentences from a raw text
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) list of sentences in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.sentences = []
         self.sentences = [sent.text for sent in self.nlp(text).sents]
@@ -140,12 +139,11 @@ class feature_pipeline:
         the function returns a flat list of tokens, otherwise the tokens are
         arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of tokens in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.tokens = []
         doc = self.nlp(text)
@@ -162,12 +160,11 @@ class feature_pipeline:
         the function returns a flat list of lemmas, otherwise the lemmas are
         arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of lemmas in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.lemmas = []
         doc = self.nlp(text)
@@ -184,12 +181,11 @@ class feature_pipeline:
         the function returns a flat list of tags, otherwise the tags are
         arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of POS tags in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.pos_tags = []
         doc = self.nlp(text)
@@ -206,12 +202,11 @@ class feature_pipeline:
         self.flat is True the function returns a flat list of morphologized
         tags, otherwise the morphologized tags are arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of tags in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.morphs = []
         doc = self.nlp(text)
@@ -228,12 +223,11 @@ class feature_pipeline:
         self.flat is True the function returns a flat list of dependency
         parses, otherwise the dependency parses are arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of parses in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.parses = []
         doc = self.nlp(text)
@@ -250,12 +244,11 @@ class feature_pipeline:
         the function returns a flat list of noun chunks, otherwise the noun
         chunks are arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str] / list[list[str]]) list of noun chunks in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.noun_chunks = []
         doc = self.nlp(text)
@@ -283,8 +276,7 @@ class feature_pipeline:
         (no return values, the processed items are saved to lists that are
         attributes of the text_processor object)
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.sentences = []
         self.tokens = []
@@ -373,7 +365,7 @@ class feature_pipeline:
                 freq_list.append(line.strip().split(" ")[0])
         return freq_list
 
-    def freq_lookup_from_list(self, word, freq_list=None):
+    def freq_lookup_from_list(self, word, freq_list):
         """
         Given a word to look up in an ordered frequency list, return the position
         of that word in the list (1-indexed). If the word is not present return 0.
@@ -383,30 +375,33 @@ class feature_pipeline:
 
         return: (int) the index of the word if present in the list
         """
-        if freq_list is None:
-            freq_list = self.freq_list
-
         try:
             idx = freq_list.index(word) + 1
         except:
             idx = 0
         return idx
 
-    def word_ranks_from_list(self, token_list=None, freq_list=None):
+    def word_ranks_from_list(self, text=None, token_list=None, freq_list=None):
         """
-        Given a tokenized text in the form of a lists of tokens and a frequency
-        list to search through, return a list of integers, where the integers
-        correspond to the ranks of the words in a frequency list.
+        Given an unprocessed text, or a tokenized text in the form of a list of
+        tokens, and a frequency list to search through, return a list of integers
+        where the integers correspond to the ranks of the words in a frequency list.
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
         freq_list: (list[str]) the ordered list of words to search through
 
         return: (list[int]) the ranks of each of the tokens in the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         if freq_list is None:
+            if self.freq_list is None:
+                self.freq_list = self.frequency_list_10k()
             freq_list = self.freq_list
 
         assert isinstance(
@@ -418,21 +413,28 @@ class feature_pipeline:
             ranked_tokens.append(freq_lookup_from_list(token, freq_list))
         return ranked_tokens
 
-    def word_ranks_from_df(self, lemma_list=None, df=None):
+    def word_ranks_from_df(self, text=None, lemma_list=None, df=None):
         """
-        Given a lemmatized text in the form of a lists of lemmas and a DataFrame
-        frequency list to search through, return a list of integers, where the
-        integers correspond to the ranks of the words in a frequency list.
+        Given an unprocessed text, or a lemmatized text in the form of a list of
+        lemmas, and a DataFrame frequency list to search through, return a list
+        of integers, where the integers correspond to the ranks of the words in
+        a frequency list.
 
-        lemma_list: (list[str]) the lemmatized text
+        text: (str) an unprocessed text (not necessary if lemma_list is given)
+        lemma_list: (list[str]) the lemmatized text (not necessary if text is given)
         df: (pandas.DataFrame) DataFrame containing the lemmas to search through
 
         return: (list[int]) the ranks of each of the lemmatized tokens
         """
-        if lemma_list is None:
-            lemma_list = self.lemmas
+        if text:
+            text = self.preprocess(text)
+            lemma_list = self.get_lemmas()
+
+        lemma_list = self.lemmas if self.lemmas else self.get_lemmas()
 
         if df is None:
+            if self.freq_list is None:
+                self.freq_list = self.frequency_list_10k()
             df = self.freq_list
 
         assert isinstance(
@@ -458,63 +460,78 @@ class feature_pipeline:
         ranked_text = self.word_ranks()
         return sum(ranked_text) / len(ranked_text)
 
-    def num_tokens(self, token_list=None):
+    def num_tokens(self, text=None, token_list=None):
         """
         Return the number of tokens in a list of tokens (tokenized text)
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
 
         return: (int) the number of tokens
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         return len(token_list)
 
-    def avg_sent_length(self, sentences=None):
+    def avg_sent_length(self, text=None, sentences=None):
         """
         Return the average number of tokens per sentence in a text
 
-        sentences: (list[str]) a text split into a list of sentences
+        text: (str) an unprocessed text (not necessary if sentences is given)
+        sentences: (list[str]) a text split into a list of sentences (not necessary if text is given)
 
         return: (float) the average number of tokens per sentence
         """
-        if sentences is None:
-            sentences = self.sentences
+        if text:
+            text = self.preprocess(text)
+            sentences = self.get_sentences()
+
+        sentences = self.sentences if self.sentences else self.get_sentences()
 
         tokenizer = self.nlp.tokenizer
         return mean([len(tokenizer(sent)) for sent in sentences])
 
-    def ttr(self, token_list=None):
+    def ttr(self, text=None, token_list=None):
         """
         Return the type-token ratio (TTR) for a text given a list of tokens
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
 
         return: (float) the type-token ratio
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         types = set(token_list)
         return len(types) / len(token_list)
 
-    def pos_proportions(self, pos_list=None):
+    def pos_proportions(self, text=None, pos_list=None):
         """
         Given the list of POS tags of a text, extract the proportions of each
         POS tag in the text as well as the proportions of content words and
         function words in the text.
 
-        pos_list: (list[str]) the POS tags of the text
+        text: (str) an unprocessed text (not necessary if pos_list is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
             pos_props: (dict{float}) dict of proportions of POS tags in the text
             cat_props: (dict{float}) dict of proportions of content and function
                        words in the text
         """
+        if text:
+            text = self.preprocess(text)
+            pos_list = self.get_pos_tags()
 
-        if pos_list is None:
-            pos_list = self.pos_tags
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
 
         CONTENT_POS = {"VERB", "NOUN", "PROPN", "ADP", "ADJ", "ADV"}
         FUNCTION_POS = {
@@ -574,17 +591,21 @@ class feature_pipeline:
 
         return pos_props, cat_props
 
-    def pronoun_density(self, pos_list=None):
+    def pronoun_density(self, text=None, pos_list=None):
         """
         Return the density of pronouns in a text, calculated as the proportion
         of the number of pronouns and the number of non-pronouns.
 
-        pos_list: (list[str]) the POS tags of the text
+        text: (str) an unprocessed text (not necessary if pos_list is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return: (float) the pronoun density of the text
         """
-        if pos_list is None:
-            pos_list = self.pos_tags
+        if text:
+            text = self.preprocess(text)
+            pos_list = self.get_pos_tags()
+
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
 
         total_prons = 0
         for pos in pos_list:
@@ -592,17 +613,21 @@ class feature_pipeline:
                 total_prons += 1
         return total_prons / (len(pos_list) - total_prons)
 
-    def logical_operators(self, token_list=None):
+    def logical_operators(self, text=None, token_list=None):
         """
         Return the density of logical operators in a text, calculated as the
         proportion of the number of logical operators and the number of non-operators.
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
 
         return: (float) the logical operator density of the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         LOGICAL_OPS = {"si", "y", "o", "u", "no"}  # if, and, or, not
 
@@ -616,12 +641,11 @@ class feature_pipeline:
         """
         Return the number of connective phrases in a text.
 
-        text: (str) the raw text
+        text: (str) a text
 
         return: (int) the number of connectives in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         CONNECTIVES = {
             "por eso",
@@ -707,25 +731,28 @@ class feature_pipeline:
 
         return conn_count
 
-    def a_level_vocab_features(self, token_list=None, pos_list=None):
+    def a_level_vocab_features(self, text=None, token_list=None, pos_list=None):
         """
         Given a tokenized text in the form of a lists of tokens and the
         corresponding list of POS tags, extract the percentage of A-level word
         tokens and types after removing whitespaces and stopwords.
 
-        token_list: (list[str]) the tokenized text
-        pos_list: (list[str]) the POS tags of the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list and pos_list are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
             no_sw_length: (int) length of the text with stopwords removed
             a_vocab_percent: (float) percentage of A-level word tokens in the text
             a_vocab_percent_set: (float) percentage of A-level word types in the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            pos_list = self.get_pos_tags()
 
-        if pos_list is None:
-            pos_list = self.pos_tags
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
 
         a_vocab = A1().vocab
         no_sw_length = 0
@@ -753,7 +780,7 @@ class feature_pipeline:
 
         return no_sw_length, a_vocab_percent, a_vocab_percent_set
 
-    def fernandez_huerta_score(self, token_list=None, sentences=None):
+    def fernandez_huerta_score(self, text=None, token_list=None, sentences=None):
         """
         This function calculates Fernandez-Huerta score (Spanish equivalent of
         Flesch score) and the average number of syllables per sentence for a
@@ -761,17 +788,20 @@ class feature_pipeline:
 
         Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5831059/#:~:text=The%20Fernandez%2DHuerta%20Formula%20(Fern%C3%A1ndez,formulae%20(Flesch%2C%201948).&text=The%20output%20is%20an%20index,representing%20a%20more%20difficult%20text
 
-        token_list: (list[str]) the tokenized text
-        sentences: (list[str]) the list of sentences in the text
+        text: (str) an unprocessed text (not necessary if token_list and sentences are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        sentences: (list[str]) a text split into a list of sentences (not necessary if text is given)
 
         fh_score: (float) the calculated Fernandez-Huerta score
         syls_per_sent: (float) the average number of syllables per sentence
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            sentences = self.get_sentences()
 
-        if sentences is None:
-            sentences = self.sentences
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        sentences = self.sentences if self.sentences else self.get_sentences()
 
         num_sents = len(sentences)
         num_tokens = len(token_list)
@@ -808,24 +838,27 @@ class feature_pipeline:
 
         return fh_score, syls_per_sent
 
-    def degree_of_abstraction(self, token_list=None, pos_list=None):
+    def degree_of_abstraction(self, text=None, token_list=None, pos_list=None):
         """
         This function measures the degree of abstraction of a text by measuring
         the distance of its nouns to the top level in the wordnet.
 
-        token_list: (list[str]) the tokenized text
-        pos_list: (list[str]) the POS tags of the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list and pos_list are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
             the average degree of abstraction (the higher, less abstract),
             the min degree of abstraction in the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            pos_list = self.get_pos_tags()
 
-        if pos_list is None:
-            pos_list = self.pos_tags
-        
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
+
         """
         Initialize Spanish WordNet
         !!! Must have Spanish WordNet extracted into the given directory !!!
@@ -869,24 +902,27 @@ class feature_pipeline:
             # second returns the minimum num of levels in the text
             return num_levels / num_nouns, min(sent_levels)
 
-    def polysemy_ambiguation(self, token_list=None, pos_list=None):
+    def polysemy_ambiguation(self, text=None, token_list=None, pos_list=None):
         """
         This function measures degree of ambiguation of a text by counting the
         number of senses of each content word in the text.
 
-        token_list: (list[str]) the tokenized text
-        pos_list: (list[str]) the POS tags of the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list and pos_list are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
             the mean degree of ambiguation over all tokens (the higher, more ambiguous),
             the mean degree of ambiguation over all content tokens
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            pos_list = self.get_pos_tags()
 
-        if pos_list is None:
-            pos_list = self.pos_tags
-        
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
+
         """
         Initialize Spanish WordNet
         !!! Must have Spanish WordNet extracted into the given directory !!!
@@ -929,11 +965,7 @@ class feature_pipeline:
 
         return: (dict) the features extracted from the text
         """
-
-        if text is None:
-            text = self.text
-        else:
-            _ = self.preprocess(text)
+        text = self.preprocess(text) if text else self.text
 
         if self.class_mode == "document":
             _ = self.get_sentences()
