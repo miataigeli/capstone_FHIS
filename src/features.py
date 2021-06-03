@@ -62,11 +62,10 @@ class feature_pipeline:
         self.class_mode = class_mode
         self.nlp = spacy.load("es_core_news_md")
         self.wncr = None
+        self.freq_list = None
         if freq_list_type == "df":
-            self.freq_list = self.frequency_list_10k()
             self.word_ranks = self.word_ranks_from_df
         else:
-            self.freq_list = self.frequency_list_50k()
             self.word_ranks = self.word_ranks_from_list
 
         self.sentences = []
@@ -366,7 +365,7 @@ class feature_pipeline:
                 freq_list.append(line.strip().split(" ")[0])
         return freq_list
 
-    def freq_lookup_from_list(self, word, freq_list=None):
+    def freq_lookup_from_list(self, word, freq_list):
         """
         Given a word to look up in an ordered frequency list, return the position
         of that word in the list (1-indexed). If the word is not present return 0.
@@ -376,9 +375,6 @@ class feature_pipeline:
 
         return: (int) the index of the word if present in the list
         """
-        if freq_list is None:
-            freq_list = self.freq_list
-
         try:
             idx = freq_list.index(word) + 1
         except:
@@ -404,6 +400,8 @@ class feature_pipeline:
         token_list = self.tokens if self.tokens else self.get_tokens()
 
         if freq_list is None:
+            if self.freq_list is None:
+                self.freq_list = self.frequency_list_10k()
             freq_list = self.freq_list
 
         assert isinstance(
@@ -435,6 +433,8 @@ class feature_pipeline:
         lemma_list = self.lemmas if self.lemmas else self.get_lemmas()
 
         if df is None:
+            if self.freq_list is None:
+                self.freq_list = self.frequency_list_10k()
             df = self.freq_list
 
         assert isinstance(
