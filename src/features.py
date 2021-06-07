@@ -848,8 +848,8 @@ class feature_pipeline:
         pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
-            the average degree of abstraction (the higher, less abstract),
-            the min degree of abstraction in the text
+            (float) the average degree of abstraction (the higher, less abstract),
+            (float) the min degree of abstraction in the text
         """
         if text:
             text = self.preprocess(text)
@@ -912,8 +912,8 @@ class feature_pipeline:
         pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
-            the mean degree of ambiguation over all tokens (the higher, more ambiguous),
-            the mean degree of ambiguation over all content tokens
+            (float) the mean degree of ambiguation over all tokens (the higher, more ambiguous),
+            (float) the mean degree of ambiguation over all content tokens
         """
         if text:
             text = self.preprocess(text)
@@ -957,6 +957,36 @@ class feature_pipeline:
 
         return mean(sent_senses), mean(sent_cont_senses)
 
+    def density_noun_chunks(self, text=None, noun_chunks=None):
+        """
+        This function calculates the mean number of modifiers of noun phrases in
+        the given text (either a text string or a list of noun phrase chunks).
+
+        text: (str) an unprocessed text (not necessary if noun_chunks is given)
+        noun_chunks: (list[str]) the noun phrase chunks in the text (not necessary if text is given)
+
+        return: (float) the mean number of noun phrases modifiers in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            noun_chunks = self.get_noun_chunks()
+
+        noun_chunks = self.noun_chunks if self.noun_chunks else self.get_noun_chunks()
+
+        try:
+            len_noun_chunks = 0
+            if len(noun_chunks) > 0:
+                len_noun_chunks = (
+                    mean([len(chunk.strip().split()) for chunk in noun_chunks]) - 1
+                )
+            else:
+                len_noun_chunks = 0
+
+            return len_noun_chunks
+
+        except:
+            return 0
+
     def feature_extractor(self, text=None):
         """
         Perform preprocessing and extract all the features from the text
@@ -972,6 +1002,7 @@ class feature_pipeline:
             _ = self.get_tokens()
             _ = self.get_lemmas()
             _ = self.get_pos_tags()
+            _ = self.get_morphology()
 
         num_tokens = self.num_tokens()
         avg_sent_length = self.avg_sent_length()
@@ -984,6 +1015,7 @@ class feature_pipeline:
         fh_score, syls_per_sent = self.fernandez_huerta_score()
         avg_abstraction, min_abstraction = self.degree_of_abstraction()
         avg_ambiguation, avg_content_ambiguation = self.polysemy_ambiguation()
+        np_density = self.density_noun_chunks()
         pos_props, cat_props = self.pos_proportions()
 
         features = {
@@ -1003,6 +1035,7 @@ class feature_pipeline:
             "min_degree_of_abstraction": min_abstraction,
             "avg_ambiguation_all_words": avg_ambiguation,
             "avg_ambiguation_content_words": avg_content_ambiguation,
+            "noun_phrase_density": np_density,
         }
         features.update(pos_props)
         features.update(cat_props)
