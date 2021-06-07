@@ -19,6 +19,7 @@ from collections import defaultdict, Counter
 from bs4 import BeautifulSoup
 import pandas as pd
 from urllib.request import urlopen
+from pathlib import Path
 from statistics import mean
 from stanza.server import CoreNLPClient
 from treelib import Node, Tree
@@ -75,6 +76,8 @@ class feature_pipeline:
             assert (
                 dep_parse_classpath != ""
             ), "dep_parse_classpath must be explicitly specified!"
+            
+            dep_parse_classpath = Path(dep_parse_classpath)
             assert os.path.exists(
                 dep_parse_classpath
             ), "the specified dep_parse_classpath does not exist on your system!"
