@@ -20,6 +20,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from urllib.request import urlopen
 from statistics import mean
+from stanza.server import CoreNLPClient
+from treelib import Node, Tree
 from utils import A1
 
 
@@ -36,6 +38,8 @@ class feature_pipeline:
         class_mode="document",
         freq_list_type="df",
         full_spacy=False,
+        dep_parse_flag=False,
+        dep_parse_classpath="",
     ):
         """
         Initialize object attritubtes from parameters and run pre-processing
@@ -50,6 +54,11 @@ class feature_pipeline:
         full_spacy: (bool) flag to specify whether to extract sentences, tokens,
                     lemmas, POS tags, morphology tags, and dependency parses of
                     a given text by default
+        dep_parse_flag: (bool) flag to specify whether to perform dependency tree
+                        parsing using CoreNLP or not (False by default)
+        dep_parse_classpath: (str) if dependency parsing using CoreNLP is to be
+                             done, a path to the stanza_corenlp directory on the
+                             system must be provided
         """
 
         assert class_mode.lower() in [
@@ -60,6 +69,24 @@ class feature_pipeline:
         self.text = text
         self.flat = flat
         self.class_mode = class_mode
+        self.dep_parse_flag = dep_parse_flag
+
+        if self.dep_parse_flag:
+            assert (
+                dep_parse_classpath != ""
+            ), "dep_parse_classpath must be explicitly specified!"
+            assert os.path.exists(
+                dep_parse_classpath
+            ), "the specified dep_parse_classpath does not exist on your system!"
+
+            self.corenlp_client = CoreNLPClient(
+                properties="es",
+                classpath=dep_parse_classpath,
+                annotators=["depparse"],
+                timeout=30000,
+                memory="5G",
+            )
+
         self.nlp = spacy.load("es_core_news_md")
         self.wncr = None
         self.freq_list = None
@@ -987,6 +1014,100 @@ class feature_pipeline:
         except:
             return 0
 
+    def dependency_tree(self, sent):
+        """
+        This function returns the depth of sentence using dependency parsing.
+        Assumptions:
+         1. The input sent is a CoreNLP_pb2.Sentence data structure.
+         2. The dependency parsing information in sent (from CoreNLP) is correct.
+            (hence, dependency parsing is out of scope for testing)
+        Note: If sent has no edges, this function returns an empty tree.
+              Therefore, a one-word sentence will return an empty tree.
+
+        sent: (CoreNLP_pb2.Sentence) sentence for which the dependency tree is built
+
+        return: (int) depth of the tree
+        """
+        tree_list = [Tree()]
+
+        for edge in sent.basicDependencies.edge:
+            source = edge.source  # source of the edge
+            target = edge.target  # target of the edge
+
+            source_tree_idx = -1
+            target_tree_idx = -1
+            # find a tree which contains source and call it source_tree
+            for i, tree in enumerate(tree_list):
+                # find a tree which contains target and call it target_tree
+                if tree.get_node(source):
+                    source_tree_idx = i
+                if tree.get_node(target):
+                    target_tree_idx = i
+
+            # if no source tree, no target tree; then, create a new tree
+            if source_tree_idx < 0 and target_tree_idx < 0:
+                new_tree = Tree()
+                new_tree.create_node(source, source)
+                new_tree.create_node(target, target, parent=source)
+                tree_list.append(new_tree)
+
+            # if source_tree exists and no target_tree, add a target node
+            elif target_tree_idx < 0:
+                tree = tree_list[source_tree_idx]
+                tree.create_node(target, target, parent=source)
+
+            # if target_tree exists and no source_tree,
+            #  add the source node as the root of the tree
+            elif source_tree_idx < 0:
+                new_tree = Tree()
+                new_tree.create_node(source, source)
+                sub_tree = tree_list[target_tree_idx]
+                new_tree.paste(source, sub_tree)
+                tree_list[target_tree_idx] = new_tree
+
+            # if both source_tree and target_tree exist, connect these trees
+            else:
+                assert source_tree_idx != target_tree_idx
+                source_tree = tree_list[source_tree_idx]
+                target_tree = tree_list[target_tree_idx]
+
+                assert target_tree.root == target
+                source_tree.paste(source, target_tree)
+                tree_list[source_tree_idx] = source_tree
+                tree_list[target_tree_idx] = Tree()
+
+        # get the tree depth for each tree in the list
+        tree_depth_list = [tree.depth() for tree in tree_list]
+
+        # the tree with max depth is the final tree
+        return max(tree_depth_list), tree_list[np.argmax(tree_depth_list)]
+
+    def depth_dep_parse(self, text=None):
+        """
+        Given a text as a string this function calculates the average depth of
+        the sentences in the text using the dependency parse trees from CoreNLP.
+        This serves as a measure of the complexity of the sentences in the text.
+
+        Assumes that CoreNLPClient is already running.
+
+        text: (str) a text
+
+        return: (float) the average depth of the sentences in the text
+        """
+        text = self.preprocess(text) if text else self.text
+
+        spanish_ann = self.corenlp_client.annotate(text)
+
+        avg_depth = 0
+        for sent in spanish_ann.sentence:
+            depth, _ = dependency_tree(sent)
+            avg_depth += depth
+
+        if len(spanish_ann.sentence) == 0:
+            return 0
+        else:
+            return avg_depth / len(spanish_ann.sentence)
+
     def feature_extractor(self, text=None):
         """
         Perform preprocessing and extract all the features from the text
@@ -1002,7 +1123,7 @@ class feature_pipeline:
             _ = self.get_tokens()
             _ = self.get_lemmas()
             _ = self.get_pos_tags()
-            _ = self.get_morphology()
+            _ = self.get_noun_chunks()
 
         num_tokens = self.num_tokens()
         avg_sent_length = self.avg_sent_length()
@@ -1016,6 +1137,8 @@ class feature_pipeline:
         avg_abstraction, min_abstraction = self.degree_of_abstraction()
         avg_ambiguation, avg_content_ambiguation = self.polysemy_ambiguation()
         np_density = self.density_noun_chunks()
+        if self.dep_parse_flag:
+            avg_text_depth = self.depth_dep_parse()
         pos_props, cat_props = self.pos_proportions()
 
         features = {
@@ -1037,6 +1160,8 @@ class feature_pipeline:
             "avg_ambiguation_content_words": avg_content_ambiguation,
             "noun_phrase_density": np_density,
         }
+        if self.dep_parse_flag:
+            features.update({"avg_dep_tree_depth": avg_text_depth})
         features.update(pos_props)
         features.update(cat_props)
 
