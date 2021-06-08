@@ -1118,6 +1118,39 @@ class feature_pipeline:
         else:
             return avg_depth / len(spanish_ann.sentence)
 
+    def verb_tense(self, text=None, morphs=None):
+        """
+        This function calculates the distribution of the verb tenses in the text,
+        given either a text string or a list of morphology tags for the text.
+        There are four possible verb tenses: Past, Present, Future, Imp.
+
+        text: (str) an unprocessed text (not necessary if morphs is given)
+        morphs: (list[str]) the morphology tags of the text (not necessary if text is given)
+
+        return: (dict{float}) dict of proportions of verb tenses in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            morphs = self.get_morphology()
+
+        morphs = self.morphs if self.morphs else self.get_morphology()
+
+        regex = r"Tense=([^\|]+)\|"
+        morph_verbs = [s for s in morphs if "Tense" in s]
+        verb_tense_dict = {"Fut": 0, "Imp": 0, "Past": 0, "Pres": 0}
+
+        for s in morph_verbs:
+            match = re.search(regex, s)
+            if match:
+                verb_tense_dict[match.group(1)] += 1
+
+        verb_tense_dist_dict = {}
+        total = sum(verb_tense_dict.values())
+        for tense in verb_tense_dict.keys():
+            verb_tense_dist_dict[tense] = verb_tense_dict[tense] / total
+
+        return verb_tense_dist_dict
+
     def feature_extractor(self, text=None):
         """
         Perform preprocessing and extract all the features from the text
@@ -1133,6 +1166,7 @@ class feature_pipeline:
             _ = self.get_tokens()
             _ = self.get_lemmas()
             _ = self.get_pos_tags()
+            _ = self.get_morphology()
             _ = self.get_noun_chunks()
 
         num_tokens = self.num_tokens()
@@ -1149,6 +1183,7 @@ class feature_pipeline:
         np_density = self.density_noun_chunks()
         if self.dep_parse_flag:
             avg_text_depth = self.depth_dep_parse()
+        tense_props = self.verb_tense()
         pos_props, cat_props = self.pos_proportions()
 
         features = {
@@ -1172,6 +1207,8 @@ class feature_pipeline:
         }
         if self.dep_parse_flag:
             features.update({"avg_parse_tree_depth": avg_text_depth})
+        
+        features.update(tense_props)
         features.update(pos_props)
         features.update(cat_props)
 
