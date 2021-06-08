@@ -75,6 +75,7 @@ LOLA:... ¡Hoy!
 
 AMBAS: ¡Aaah!
 
+
 PABLO: ¡Hola nenas!
 
 LOLA: Pablo.
@@ -154,6 +155,7 @@ LOLA: Oh, entra.
 
 SAM: ¡Estupendo!
 
+
 SAM:
 ¡Hola mamá! ¡Estoy en España! Y me presenté en español.
 “Me llamo Sam. Soy americano.”
@@ -164,6 +166,7 @@ Es americano y no habla bien el español...
 ¡Hombres!
 
 SAM: Lola y Ana, su compañera, estaban muy impresionadas.
+
 
 SAM: Mis pequeñas coches...
 
@@ -212,6 +215,7 @@ ANA: Y por supuesto esto es la tele...
 LOLA: Ponte cómodo, necesito ir al baño.
 ¡Psst Ana! ¡Al cuarto de baño! ¡Rápido!
 
+
 LOLA: ¡Ay Dios Mío! ¿Qué vamos a hacer? ¡Juega con cochecitos!
 
 ANA:SAM: No es un americano... sexi.
@@ -227,6 +231,7 @@ LOLA:AMBAS: Y es amable.
 ANA:LOLA: ¡Su ropa está fuera (pasada) de moda!
 
 ¡Qué se vaya!
+
 
 PABLO: Hola. ¿Quién eres?
 
@@ -279,6 +284,7 @@ LOLA:SAM: Sí, Pablo. ¡Enséñale un poco de español a Sam!
 
 ¡Síí! Le voy a enseñar un poco de español a Sam...
 
+
 SAM:
 ¿Y sabes como se dice “house” en español?
 ¡Es “museo”! ¡Increíble! ¿No?
@@ -293,6 +299,7 @@ ANA:
 Nuria,
 Sabes que Sam juega con cochecitos, y piensa que vive en un museo.
 ¡De verdad!
+
 
 PABLO: Vale. Esto es el horno.
 
@@ -327,6 +334,7 @@ SAM: Yeah!
 PABLO: ¡Imposible! ¡Venga!
 
 SAM: Sí. ¡Mira!
+
 
 LOLA: ¿El azul o el verde?
 
@@ -407,6 +415,7 @@ Sure.
 
 AMBAS: ¡Brad Pitt!!!
 
+
 PABLO: ¿Sam, éste eres tú?
 
 SAM: Eeee... sí... y mis…mis padres...
@@ -434,6 +443,7 @@ PABLO: ¿La gente te quiere por tu dinero?
 No se lo digas a las chicas.
 
 SAM: OK, psht! Don’t tell the girls!
+
 
 LOLA: ¿Sabes... quizás se podría quedar?
 
