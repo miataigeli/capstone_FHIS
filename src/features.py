@@ -42,7 +42,7 @@ class feature_pipeline:
         full_spacy=False,
         dep_parse_flag=False,
         dep_parse_classpath="",
-        result_root="",
+        result_root = ""
     ):
         """
         Initialize object attritubtes from parameters and run pre-processing
@@ -62,8 +62,7 @@ class feature_pipeline:
         dep_parse_classpath: (str) if dependency parsing using CoreNLP is to be
                              done, a path to the stanza_corenlp directory on the
                              system must be provided
-        result_root: (str) path for wordnet_spa. If nothing is provided, it is
-                     set to "../wordnet_spa/"
+        result_root: (str) path for wordnet_spa. If nothing is provided, it is set to "../wordnet_spa/"
         """
 
         assert class_mode.lower() in [
@@ -75,17 +74,18 @@ class feature_pipeline:
         self.flat = flat
         self.class_mode = class_mode
         self.dep_parse_flag = dep_parse_flag
-        self.result_root = "../wordnet_spa" if not result_root else result_root
+        self.result_root = result_root
+        
 
+        if dep_parse_classpath.endswith('/*'):
+            str_dep_parse_classpath  = dep_parse_classpath
+            dep_parse_classpath = dep_parse_classpath[:-2]
+            
         if self.dep_parse_flag:
             assert (
                 dep_parse_classpath != ""
             ), "dep_parse_classpath must be explicitly specified!"
-
-            if dep_parse_classpath.endswith("/*"):
-                str_dep_parse_classpath = dep_parse_classpath
-                dep_parse_classpath = dep_parse_classpath[:-2]
-
+            
             dep_parse_classpath = Path(dep_parse_classpath)
             assert os.path.exists(
                 dep_parse_classpath
@@ -905,6 +905,9 @@ class feature_pipeline:
         https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
         """
         if not self.wncr:
+            if self.result_root == "":
+                self.result_root = "../wordnet_spa/"
+                
             self.wncr = WordNetCorpusReader(self.result_root, None)
 
         top_synset = self.wncr.synset("entidad.n.01")  # Top synset
@@ -968,6 +971,9 @@ class feature_pipeline:
         https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
         """
         if not self.wncr:
+            if self.result_root == "":
+                self.result_root = "../wordnet_spa/"
+                
             self.wncr = WordNetCorpusReader(self.result_root, None)
 
         sent_senses = []
@@ -1110,7 +1116,7 @@ class feature_pipeline:
 
         avg_depth = 0
         for sent in spanish_ann.sentence:
-            depth, _ = self.dependency_tree(sent)
+            depth, _ = self.dependency_tree(sent)   
             avg_depth += depth
 
         if len(spanish_ann.sentence) == 0:
@@ -1171,7 +1177,7 @@ class feature_pipeline:
             "noun_phrase_density": np_density,
         }
         if self.dep_parse_flag:
-            features.update({"avg_parse_tree_depth": avg_text_depth})
+            features.update({"avg_dep_tree_depth": avg_text_depth})
         features.update(pos_props)
         features.update(cat_props)
 
