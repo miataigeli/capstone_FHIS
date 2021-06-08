@@ -1,7 +1,3 @@
-
-03 Sam aprende a ligar
-Transcripts
-Episode 3: Sam aprende a ligar
 Ésta es la historia de Lola y Ana que comparten un piso en España
 Tienen una visita, Sam, de América…
 Que…no habla bien el español…
@@ -9,7 +5,6 @@ Que…no tiene estilo…
 A las chicas le gusta Sam porque es…
 ¡Y Pablo descubre que Sam es muy rico!
 ¡Prepárate para el próximo episodio de Extra!
-SCENE 1
 ANA: Me llamo Ana.
 Tengo diecinueve años y adoro todos los animales.
 Comparto el piso con mi amiga Lola.
@@ -48,7 +43,6 @@ LOLA: ¡Vale! ¡Está bien!
 ¡Y brazos arriba!
 Un, dos, tres, cuatro, cinco, seis, siete, ocho…
 Brazos delante. Un, dos, tres, cuatro, cinco, seis, siete, ocho …
-SCENE 2
 LOLA/ ANA/SAM: Uno, dos, tres, cuatro, cinco, seis, siete, ocho …
 LOLA: ¡Venga! ¡Más rápido! ¡Más rápido!
 SAM: Oh please, Lola!
@@ -125,7 +119,6 @@ PABLO: ¡Ningún problema!
 SAM: ¿Hm … Pablo?
 ¿Qué es un taxidermista?
 PABLO: Oh. Es un … eh … Va, no importa …
-INTERSTITIAL 1
 SAM:
 ¿Mamá,
 se puede ligar por Internet en casa?
@@ -140,7 +133,6 @@ PABLO para JOSE:
 Chico, yo también podría ligar por Internet. ¡Muy fácil!
 SAM:
 Sí mamá, voy a tener cuidado.
-SCENE 3
 PABLO: Vale Sam.
 ¡Pregunta número uno! ¿Como consiguen los hombres novias?
 SAM: ¿Novias?
@@ -168,9 +160,7 @@ SAM: ¿Qué?
 PABLO: ¡Agua para las rosas!
 ¡El pulverizador … pss pss! ¡En el cuarto de baño!
 SAM: ¡Ah! ¡Pss pss! OK.
-SCENE 6
 SAM: Agua … rosas … ¡Ah! Agua de rosas.
-SCENE 7
 PABLO: ¡Perfecto!
 SAM: ¡Perfecto!
 Fría, muy caliente …
@@ -188,7 +178,6 @@ PABLO: ¡Olé! Pero te tienes que cambiar de aftershave.
 SAM: ¿Eh?
 PABLO: Nada. No importa. ¡Vámonos, vamos a celebrar nuestra buena suerte!
 SAM: OK.
-SCENE 8
 LOLA: ¡Baj! ¿Qué es ese olor?
 ANA: Huele igual que una perfumería.
 ¡Ahhhh! ¡Mi planta! ¡Mi pobre planta!
@@ -227,7 +216,6 @@ LOLA: ¿Pero … ellos no lo saben, no?
 ANA: No.
 ¡No! ¡No lo saben!
 LOLA: Tengo un plan …Vamos al Café Internet.
-SCENE 9
 SAM: I can’t wait!
 PABLO: ¡Uay! ¡Pobre ordenador!
 ¡Seguro que tenemos montones de mensajes!
@@ -256,7 +244,6 @@ Mira, son…siete, ocho, nueve …
 ¿Qué te vas a poner?
 SAM: ¿Hmmm … pero Pablo, qué pasa con Lola y Ana?
 PABLO: ¡Ah! Eso no es problema.
-INTERSTITIAL 2
 SAM:
 Hola, hoy he ayudado en las tareas domésticas.
 He regado las plantas y he hecho la colada.
@@ -274,7 +261,6 @@ Con dos bailarinas. ¡Uay! ¡Así de fácil!
 SAM:
 ¿Ligar por Internet?
 ¡Ay madre! No he pensado en ello.
-SCENE 11
 SAM: Entonces Pablo, ¿qué digo?
 PABLO: ¡Oh es fácil, relájate!
 SAM: ¡Ah sí! Pablito y sus cien novias.
@@ -291,7 +277,6 @@ SAM: ¿Cuatro?
 ¿Uno?
 ¿None?
 AMBOS: ¡Aaaaah!
-SCENE 12
 PABLO: ¿Hola?
 VOZ SEXI: ¿Hooola? ¿Sam? ¿Pablo? ¡Somos nosotras!
 PABLO: Subid.
@@ -351,6 +336,4 @@ En el próximo episodio de Extra …
 Sam quiere encontrar un trabajo.
 Lola y Ana reciben una bonita sorpresa.
 ¿Y adivina quién viene a cenar?
-No te lo pierdas.
-
-
+No te lo pierdas.

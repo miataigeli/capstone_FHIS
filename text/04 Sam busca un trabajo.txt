@@ -1,7 +1,3 @@
-
-05 Sam busca un trabajo
-Transcripts
-Episode 4: Sam consigue un trabajo
 Ésta es la historia de Lola y Ana que comparten un piso en España
 Tienen una visita, Sam, de América.
 Que no habla bien el español …
@@ -10,7 +6,6 @@ Que no habla bien el español …
 ¿A Lola le gusta Sam?
 ¿Y a quién le gusta Pablo?
 ¡No te olvides del próximo episodio de Extra!
-SCENE 1
 PABLO: Trabajo: doble. Stuntman.
 Eh … Calificaciones … hmm, hmmm …
 Me gustan las motocicletas.
@@ -81,7 +76,6 @@ SAM: ¿Camarero?
 PABLO: ¡Sí! Camarero.
 SAM: Oh! A waiter. Me?
 PABLO: ¡Sí! No te preocupes. Yo te enseñaré.
-INTERSITIAL 1
 SAM:
 ¿Mamá, adivina?
 ¡Tengo un trabajo!
@@ -132,7 +126,6 @@ LOLA: ¡Vale… Pero nada de bromitas!
 Voy a mandarle un email a Sebastián.
 PABLO: ¡No te preocupes Lola! Nosotros nos encargamos. Todo está bajo
 control.
-SCENE 2
 PABLO: ¿Tiene usted una mesa?
 SAM: Sí, tengo una mesa … Hhmmm …
 ¿Prefiere ésta…o ésa?
@@ -172,7 +165,6 @@ a mí?
 LOLA: Ohh … le envié un email hablándole de tí.
 SAM: Great!
 PABLO: Yeah, great.
-INTERSTITIAL 2
 SAM:
 Esta noche el jefe de Lola viene a hablarle de su nuevo trabajo.
 Pablo y yo vamos a servir la cena.
@@ -188,7 +180,6 @@ Bueno, Sam y yo vamos a servirle una buena cena a Lola y su Pulpo.
 ¡Jejejeje!
 SAM:
 Sí, nunca he trabajado de camarero, pero Pablo me ha enseñado bien.
-SCENE 3
 PABLO: ¡Uay! ¡Caliente!
 LOLA: ¿Sí Pablo?
 PABLO: Eh … ¡La sopa! Caliente.
@@ -228,7 +219,6 @@ No te ofendas Pablo. ¡Jajaja!
 ANA: Entonces Sebastián, por qué no hablamos del trabajo de Lola.
 SEBASTIAN: Ay Lola, tu Mirada … tu mirada podría encender un volcán.
 PABLO: ¡Qué imbécil!
-SCENE 4
 SEBASTIAN: …así que a los veinte, tenía cincuenta personas trabajando para
 mí …
 LOLA: Fascinante …
@@ -250,13 +240,11 @@ ANA: ¿Puedo hablar contigo un momento?
 LOLA: Por supuesto. Eh … perdona Sebastián.
 SEBASTIAN: Sí sí sí …
 ANA: Perdona. Vamos a retocar. ¿Vale?
-SCENE 5
 ANA: ¿Por qué Sebastián nos ha comprado estos vestidos?
 LOLA: Porque trabajo muy bien.
 ANA: No. Porque es un …
 LOLA: ¡Ahh! ¿Un pulpo? ¡AAhhh!
 ANA: ¡Exacto!
-SCENE 6
 SEBASTIAN: ¿Dónde estaba? A sí.
 Hablemos de tí y de mí, Lola. Tus ojos son como dos lagos …
 PABLO: Ojalá te ahogaras en ellos.
@@ -326,6 +314,4 @@ En la segunda serie de Extra …
 ¿Ligará Ana con Pablo?
 ¿Ligará Sam con Lola?
 ¿O ligará Pablo con la dueña? ¿Quién sabe?
-No te lo pierdas. ¡Hasta la vista!
-
-
+No te lo pierdas. ¡Hasta la vista!

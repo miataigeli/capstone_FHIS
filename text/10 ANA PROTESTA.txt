@@ -1,12 +1,9 @@
-
-10 ANA PROTESTA
 Ésta es la historia de Lola y Ana quienes comparten un piso en Barcelona.
 Y sus vecinos, Pablo y Sam, de Norteamérica.
 Lola trabaja para Canal 9. Y también Sam.
 Ana sólo quiere salvar a los animales.
 Y Pablo … Bien … Pablo es … Pablo.
 ¡No se mueva! ¡Extra! ¡Ya empieza!
-SCENE 1
 ANA:
 ¡Pablo!
 ¡Soy yo, Ana!
@@ -28,7 +25,6 @@ PABLO:
 Vale, vale.
 ANA:
 Buenas noches, Pablo. ¡Ven, Teté! ¡De prisa!
-SCENE 2
 ANA:
 Sí, a las 3 en punto. Díselo a los demás. ¡Hasta luego!
 ¿Hola, Simón? Soy Ana. ¡Ya está!
@@ -110,7 +106,6 @@ ANA:
 ¿Pablo?
 ANA:
 Vale. Están bien.
-SCENE 3
 ANA:
 ¡Ya voy!
 ¡Teté! Venga. Están listos. Oh, voy a escribirle una nota a Pablo.
@@ -128,7 +123,6 @@ hippies están a punto de manifestarse delante de una compañía de
 cosméticos.
 ¿Es que no se da cuenta que el día de hoy es muy importante para mí?
 _________________________
-SCENE 4
 LUCRECIA:
 Ah, Sam. ¡Por fin!
 Vale. Quiero que vayas directamente a la compañía de cosméticos Garrier.
@@ -180,7 +174,6 @@ LOLA:
 ¿Sí?
 LUCRECIA:
 Tráeme un café, negro, sin azúcar.
-SCENE 5
 PABLO:
 ¡Lola! ¡Que estoy casado!
 ¿Cobayas azules? ¡Qué pasada!
@@ -204,7 +197,6 @@ Bien, ¿y éstos, todos son tus amiguitos? ¡Vaya! ¡Sois ocho!
 Umm, bien, y tenéis hambre. El tío Pablo os va a dar algo rico de comer.
 Esperad.
 ¡Anda! ¡Han cortado! ¡La pareja de moda de Hollywood!
-SCENE 6
 SAM:
 No puedo oírte, Lucrecia.
 LUCRECIA:
@@ -302,7 +294,6 @@ Y vi a Sam y a Ana en la tele. ¡Muy divertido!
 Ana se enfadó mucho con Sam porque le seguía
 preguntando por los cobayas. Están a salvo conmigo, ¡por supuesto!
 _________________________
-SCENE 7
 LOLA:
 Lola DiCaprio, la señora Lola DiCaprio.
 ¡Leonardo y Lola DiCaprio!
@@ -402,7 +393,6 @@ ANA:
 Bueno, ¡tenemos que encontrar a esos cobayas!
 PABLO:
 ¡Sííí! ¡Ahora mismo! ¡Sí! ¡Sí!
-SCENE 8
 ANA:
 Y van … siete. Sólo nos falta un cobaya.
 PABLO:
@@ -426,6 +416,4 @@ Lola encuentra a su príncipe y Pablo encuentra a su princesa.
 ¡Extra! ¡No te le pierdas!
 Nos gustaría señalar que ningún animal ha sido maltratado durante la
 realización de este programa.
-En estos momentos están disfrutando de unas bonitas vacaciones en Ibiza.
-
-
+En estos momentos están disfrutando de unas bonitas vacaciones en Ibiza.

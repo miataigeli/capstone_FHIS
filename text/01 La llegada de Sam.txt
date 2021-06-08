@@ -1,5 +1,3 @@
-Episodio 1 : La llegada de Sam
-
 Ésta es la historia de Lola y Ana, que comparten un piso en España.
 Tienen un vecino, Pablo.
 A Pablo le gusta Lola…
@@ -76,8 +74,6 @@ ANA: Oh – 19 de Febrero
 LOLA:... ¡Hoy!
 
 AMBAS: ¡Aaah!
-
-SCENE 2
 
 PABLO: ¡Hola nenas!
 
@@ -158,8 +154,6 @@ LOLA: Oh, entra.
 
 SAM: ¡Estupendo!
 
-INTERTITIAL 1
-
 SAM:
 ¡Hola mamá! ¡Estoy en España! Y me presenté en español.
 “Me llamo Sam. Soy americano.”
@@ -170,8 +164,6 @@ Es americano y no habla bien el español...
 ¡Hombres!
 
 SAM: Lola y Ana, su compañera, estaban muy impresionadas.
-
-SCENE 3
 
 SAM: Mis pequeñas coches...
 
@@ -220,8 +212,6 @@ ANA: Y por supuesto esto es la tele...
 LOLA: Ponte cómodo, necesito ir al baño.
 ¡Psst Ana! ¡Al cuarto de baño! ¡Rápido!
 
-SCENE 4
-
 LOLA: ¡Ay Dios Mío! ¿Qué vamos a hacer? ¡Juega con cochecitos!
 
 ANA:SAM: No es un americano... sexi.
@@ -237,8 +227,6 @@ LOLA:AMBAS: Y es amable.
 ANA:LOLA: ¡Su ropa está fuera (pasada) de moda!
 
 ¡Qué se vaya!
-
-SCENE 5
 
 PABLO: Hola. ¿Quién eres?
 
@@ -291,8 +279,6 @@ LOLA:SAM: Sí, Pablo. ¡Enséñale un poco de español a Sam!
 
 ¡Síí! Le voy a enseñar un poco de español a Sam...
 
-INTERSTITIAL 2
-
 SAM:
 ¿Y sabes como se dice “house” en español?
 ¡Es “museo”! ¡Increíble! ¿No?
@@ -307,8 +293,6 @@ ANA:
 Nuria,
 Sabes que Sam juega con cochecitos, y piensa que vive en un museo.
 ¡De verdad!
-
-SCENE 6
 
 PABLO: Vale. Esto es el horno.
 
@@ -343,8 +327,6 @@ SAM: Yeah!
 PABLO: ¡Imposible! ¡Venga!
 
 SAM: Sí. ¡Mira!
-
-SCENE 7
 
 LOLA: ¿El azul o el verde?
 
@@ -425,8 +407,6 @@ Sure.
 
 AMBAS: ¡Brad Pitt!!!
 
-SCENE 8
-
 PABLO: ¿Sam, éste eres tú?
 
 SAM: Eeee... sí... y mis…mis padres...
@@ -454,8 +434,6 @@ PABLO: ¿La gente te quiere por tu dinero?
 No se lo digas a las chicas.
 
 SAM: OK, psht! Don’t tell the girls!
-
-SCENE 9
 
 LOLA: ¿Sabes... quizás se podría quedar?
 
@@ -520,13 +498,3 @@ Lola, Ana y Pablo van de compras para Sam.
 Sam va de compras para Ana y Lola.
 ¿Pero qué pasa cuando Sam va de compras para él?
 ¡No te lo pierdas!
-
-
-
-
-
-
-
-
-
-40

@@ -1,11 +1,8 @@
-
-11 Tiempo de vacaciones
 Ésta es la historia de Lola y Ana quienes comparten un piso en Barcelona.
 Y sus vecinos, Pablo y Sam, de Norteamérica.
 Lola necesita unas vacaciones. Sam necesita unas vacaciones.
 Y Ana también. Y Pablo, ¿las necesita?
 ¡No se mueva! ¡Extra! ¡Ya empieza!
-SCENE 1
 PABLO:
 ¿Quién sería tu amor de verano ideal?
    a. Britney Spears
@@ -44,7 +41,6 @@ ANA:
 Ah … ¡Hola, Sam!
 ¡Ooh! ¡Lola se va a enfadar!
 Bueno, quizás una nueva moda.
-SCENE 2
 LOLA:
 ¡¿Sí?! Sí, ¿puede hacer la entrevista el jueves? ¿No? ¿Y qué tal el
 viernes?
@@ -62,7 +58,6 @@ No, Madonna no …
 Sí. Sí. Prometido.
 , Lucrecia, sí.
 Necesito unas vacaciones.
-SCENE 3
 PABLO:
 ¡Venga! Pon Nueva York.
 ANA:
@@ -150,7 +145,6 @@ De Pablo:
 Ahora voy a poder probar mis frases para ligar con las nenas inglesas. ¡No
 van a poder resistirme!
 _________________________
-SCENE 4
 PABLO:
 Vale, Sam. Veo a una inglesa guapa. ¿Cómo digo … ?
 "Hola, soy español. ¿Me puedes dar la dirección de tu piso?"
@@ -185,7 +179,6 @@ SAM:
 No.
 PABLO:
 No, ¡tú no! Es para ligar, ¡tonto!
-SCENE 5
 LOLA:
 ¿Sam? ¿Estás ahí?
 SAM:
@@ -200,8 +193,7 @@ Ponlas aquí.
 ANA:
 ¡Qué pasada Lola! ¿Qué llevas ahí?
 LOLA:
-Nada … 6 camisetas, 3 vaqueros, 3 jerseys, 2 faldas, 4 pares de pantalones,
-2 trajes de noche, 3 pares de zapatillas de deporte, 4 pares de botas, 2
+Nada … 6 camisetas, 3 vaqueros, 3 jerseys, 2 faldas, 4 pares de pantalones, trajes de noche, 3 pares de zapatillas de deporte, 4 pares de botas, 2
 pares de zapatos, 3 cepillos de dientes, 2 bolsas de aseo, 5 cinturones, 2
 chaquetas, 2 sprays de gel para el pelo y un vestido largo.
 ANA:
@@ -253,7 +245,6 @@ Todo lo que necesitas para viajar son tus billetes, tu dinero y tu
 pasaporte, Pablo.
 PABLO:
 Síí, síí, muy gracioso.
-SCENE 6
 ANA:
 ¡Anda! ¡Mira esto! ¡Es fabuloso!
 SAM:
@@ -305,8 +296,7 @@ LOLA:
 ¿Para cuándo?
 SAM:
 When for?
-WAITRESS:
-5 o'clock.
+WAITRESS: o'clock.
 LOLA:
 ¡Las cinco! ¡Pero si son las tres!
 SAM:
@@ -349,7 +339,6 @@ Sam:
 Mom, hi. I just had to call you. I'm in this English tearoom … the Jubilee
 Tearooms. Are the waitresses polite? … Kind of …
 _________________________
-SCENE 7
 WAITRESS:
 Right, what would you like to drink?
 ¿Qué desearía beber?
@@ -534,6 +523,4 @@ WAITRESS:
 La próxima semana en Extra …
 ¡España juega contra Norteamérica en la Copa del mundo!
 Pablo recibe una llamada y Lola tiene problemas con su peinado.
-¡Extra! ¡No to le pierdas!
-
-
+¡Extra! ¡No to le pierdas!

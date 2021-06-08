@@ -1,12 +1,9 @@
-
-13 Boda en el aire
 Ésta es la historia de Lola y Ana quienes comparten un piso en Barcelona.
 Y sus vecinos, Pablo y Sam, de Norteamérica.
 Sam y Ana quieren casarse.
 Lola quiere casarse.
 Y Pablo, ¡quiere irse lo más pronto posible!
 ¡No se mueva! ¡Extra! ¡Ya empieza!
-SCENE 1
 ANA:
 Boda y animales. La boda para ti y tus amiguitos.
 Oh Sam, ¡es perfecto! ¡Es perfecto!
@@ -68,7 +65,6 @@ SAM:
 OK, don't worry, no la dejaré. OK.
 ANA:
 Vale.
-SCENE 2
 LUCRECIA:
 Pareces feliz.
 LUCRECIA:
@@ -113,7 +109,6 @@ Olvídate de lo que dice. ¡Que se quite* la chaqueta! Mira … comprueba esto.
 * se saque
 LUCRECIA:
 “Barcelona en llamas”. ¡Disfruta!
-SCENE 3
 PABLO:
 Hola, Lola.
 LOLA:
@@ -163,7 +158,6 @@ No tengo suerte con los hombres … Lucrecia cree que tendría que pensar en
 Pablo … Está super sexy en “Barcelona en llamas”. En fin, mañana le voy a
 hacer una entrevista para Canal 9.
 _________________________
-SCENE 4
 SEÑOR:
 De parte de la Señora Scott: invitaciones de boda.
 De parte de la Señora Scott: trajes de boda.
@@ -184,7 +178,6 @@ ANA:
 ¡Oh, no!
 LOLA:
 Pero ¡vas a ser la Señora Scott!
-SCENE 5
 PABLO:
 Sam, ¿piensas que Lola está enferma?
 SAM:
@@ -252,7 +245,6 @@ ANA:
 ¿Y después?
 LOLA:
 Espera y verás …
-SCENE 6
 PABLO:
 ¿Hay algo bueno en casarse?
 SAM:
@@ -295,7 +287,6 @@ SAM:
 PABLO:
 ¡De verdad! Mañana por la noche tenemos que practicar la despedida de
 soltero. Pensemos …
-SCENE 7
 LOLA:
 Hola. Bueno, estoy aquí con el Sr. Pablo Aranda García o "Juan
 Robacorazones" en la producción “Barcelona en llamas”.
@@ -440,7 +431,6 @@ Sam.
 De Lola :
 … pero sabes … Pablo es muy guapo, sobre todo vestido de bombero.
 _________________________
-SCENE 8
 PABLO:
 ¡Hola, Sam!
 SAM:
@@ -576,6 +566,4 @@ Sabes … me parece que podría haber boda …
 ¿Y comerán perdices?
 Manda un correo electrónico a Channel 4 para pedir nuevas series y te
 informaremos.
-¡Extra! ¡¡Qué aventura!
-
-
+¡Extra! ¡¡Qué aventura!

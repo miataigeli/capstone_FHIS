@@ -1,11 +1,8 @@
-
-9 Trabajos para los chicos
 Ésta es la historia de Lola y Ana quienes comparten un piso en Barcelona, y
 sus vecinos, Pablo y Sam, de Norteamérica.
 A Sam le gusta Ana. A Ana le gusta Sam.
 A Pablo le gusta Lola. Y … y bien, a Lola no le gusta Pablo.
 ¡No se mueva! ¡Extra! ¡Ya empieza!
-SCENE 1
 PABLO:
 Ser o no ser … ésa es la cuestión …
 PABLO:
@@ -143,7 +140,6 @@ Seguro que tenéis CNN. Venga, tenemos trabajo.
 PABLO:
 ¡¿Lola?!
 ¡Lola! ¿Dónde están todos?
-SCENE 2
 PABLO:
 ¡Ah! Aquí estáis.
 LOLA:
@@ -248,7 +244,6 @@ He descubierto a Shakespeare. ¡Me encanta!
 Y estoy enseñando a Sam cómo ser reportero.
 ¡Con mi ayuda, le darán el trabajo!
 _________________________
-SCENE 3
 LOLA:
 ¿Ha recibido mi fax?
 ¿Ha recibido mi email, entonces?
@@ -290,7 +285,6 @@ Y … entonces, ¿el trabajo es mío?
 LOLA:
 Pero bueno, ¡¿qué te crees?! ¡Hasta luego, Sam!
 ¡La nueva editora llegará pronto!
-SCENE 4
 PABLO:
 [text message] ¡Hola, Pablo! Estoy demasiado enfadada para hablar. Lola
 Hola.
@@ -348,7 +342,6 @@ PABLO:
 Llamo ahora mismo.
 ¡No! Primero tengo que aprenderme el texto. Ser o no ser. ¡Ésa es la
 cuestión! Qué es más elevado para el espíritu …
-SCENE 5
 LUCRECIA:
 Hola, Lola.
 LOLA:
@@ -418,7 +411,6 @@ De Ana:
 ¡Encontramos un papel perfecto para Pablo! "Hamlet" de William Shakespeare!
 ¡Está muy contento!
 _________________________
-SCENE 6
 ANA:
 No importa Sam, pichoncito. Seguro que hubieras sido un reportero
 excelente.
@@ -495,6 +487,4 @@ La semana que viene en Extra …
 Ana se va a una manifestación.
 Lola tiene una cita con … Leonardo DiCaprio …
 Y, ¿qué tiene Pablo en la caja?
-¡No te lo pierdas!
-
-
+¡No te lo pierdas!

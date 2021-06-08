@@ -1,11 +1,8 @@
-
-12 Fanáticos del fútbol
 Ésta es la historia de Lola y Ana quienes comparten un piso en Barcelona.
 Y sus vecinos, Pablo y Sam, de Norteamérica.
 A Sam le gusta Ana. A Lola le gusta Toby.
 Y a Pablo le gustan las nenas, las motocicletas ¡y la pizza!
 ¡No se mueva! ¡Extra! Ya empieza …
-SCENE 1
 PABLO:
 ¡Ya casi está!
 Así, muy bien.
@@ -152,7 +149,6 @@ La buena noticia es: tengo una audición para "Barcelona en llamas".
 La mala noticia es: es esta tarde en Tarragona. ¡Así que me voy a perder la
 semifinal! ¡Es una tragedia!
 _________________________
-SCENE 2
 LOLA:
 ¡No me lo puedo creer! ¡Mi pelo es un desastre y Toby llega esta noche!
 ¡Es una catástrofe!
@@ -193,7 +189,6 @@ ANA:
 Síí. Y Sam, no puedes parecer triste.
 Venga, intenta sonreír … por Ana.
 Mira, así.
-SCENE 3
 PABLO:
 ¿Hola? ¿Y … ?
 ANA:
@@ -224,7 +219,6 @@ PABLO:
 ¡Hasta luego!
 ANA/LOLA:
 Hasta luego.
-SCENE 4
 PABLO:
 Hola, Sam.
 SAM:
@@ -262,7 +256,6 @@ PABLO:
 ganarle a España?!
 SAM:
 Pablo, ¿por qué no ves el partido?
-SCENE 5
 LOLA:
 ¡Sam!
 Necesito tu ayuda. ¡Enséñame inglés!
@@ -309,7 +302,6 @@ De Ana:
 Hoy Lola tiene el pelo horrible. ¡Y está preocupada porque Toby llega esta
 noche! Pero … no entiendo … creo que todavía le gusta Sam.
 _________________________
-SCENE 6
 SAM:
 ¿Ana?
 ¿Ana?
@@ -381,7 +373,6 @@ PABLO:
 Al contrario amigo inglés. Prepárate para el combate.
 TOBY:
 What are you going to do? Fry me?
-SCENE 7
 ANA:
 Pablo, puedes decirle a Sam que me pase las patatas fritas.
 PABLO:
@@ -447,6 +438,4 @@ La próxima semana en Extra …
 Se respira romance. Sam y Ana planean su boda.
 Y a Pablo le espera una sorpresa.
 ¿Y adivina quién viene de Norteamérica?
-¡Extra! ¡No to le pierdas!
-
-
+¡Extra! ¡No to le pierdas!

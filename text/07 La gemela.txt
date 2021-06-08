@@ -1,386 +1,368 @@
-
-07 La gemela
-
-7
 La gemela
-SCENE 1
-|LOLA:   |¡No puedo creer que ya vuelvas de Argentina! ¿Recibiste las fotos?|
-|CRISTINA|¡Qué ganas tengo de verte!                                        |
-|:       |¡Sí, gracias, recibí las fotos! – ¡Tus amigos parecen simpáticos! |
-|        |¿Les hablaste de mí?                                              |
-|LOLA:   |Saben que tengo una hermana … ¡pero no saben que tengo una gemela!|
-|CRISTINA|Te veo el 16 de junio, mi avión llega a las tres. Cogeré un taxi  |
-|:       |en el aeropuerto. Te quiero, Cristi. Besos.                       |
+LOLA:   ¡No puedo creer que ya vuelvas de Argentina! ¿Recibiste las fotos?
+CRISTINA¡Qué ganas tengo de verte!                                        
+:       ¡Sí, gracias, recibí las fotos! – ¡Tus amigos parecen simpáticos! 
+        ¿Les hablaste de mí?                                              
+LOLA:   Saben que tengo una hermana … ¡pero no saben que tengo una gemela!
+CRISTINATe veo el 16 de junio, mi avión llega a las tres. Cogeré un taxi  
+:       en el aeropuerto. Te quiero, Cristi. Besos.                       
 
 
-SCENE 2
-|SAM:  |No Mom … I’m not in a bar … I’m exercising! What did I have for      |
-|      |breakfast? Erm … galletas con leche. It’s what the Spanish eat! Mom …|
-|      |Ok, I promise yes … Mom, love you too! Bye!                          |
-|AMBOS:|¡Madres!                                                             |
-|SAM:  |¡Ella cree que yo tengo 10 años!                                     |
-|LOLA: |Sí, mi madre también me trata como a una niña...                     |
-|      |Disculpa …                                                           |
-|      |¡Hola! ¡… hola mamá!                                                 |
-|SAM:  |Voy a buscar mis pesas.                                              |
-|LOLA: |¡Sí, mamá! No me he olvidado que llega hoy …                         |
+SAM:  No Mom … I’m not in a bar … I’m exercising! What did I have for      
+      breakfast? Erm … galletas con leche. It’s what the Spanish eat! Mom …
+      Ok, I promise yes … Mom, love you too! Bye!                          
+AMBOS:¡Madres!                                                             
+SAM:  ¡Ella cree que yo tengo 10 años!                                     
+LOLA: Sí, mi madre también me trata como a una niña...                     
+      Disculpa …                                                           
+      ¡Hola! ¡… hola mamá!                                                 
+SAM:  Voy a buscar mis pesas.                                              
+LOLA: ¡Sí, mamá! No me he olvidado que llega hoy …                         
 
 
-SCENE 3
-|SAM:  |Hola, Pablo – Vengo a buscar mis pesas …                  |
-|PABLO:|¡Ah! ¡señor Scott! ¡Desnúdese y acuéstese!                |
-|SAM:  |¿Perdona, Pablo?                                          |
-|PABLO:|Oh, llámeme doctor Aranda García …                        |
-|SAM:  |¿Doctor Aranda García?                                    |
-|PABLO:|¡Sam! Quiero ser médico en la serie de la tele: “Fiebre en|
-|      |el hospital” – ¡Necesito practicar!                       |
-|      |Además, ¡a las chicas les encanta la bata blanca!         |
-|SAM:  |Oh.                                                       |
-|PABLO:|¿Dónde le duele?                                          |
-|SAM:  |¿Dónde me duele?                                          |
-|PABLO:|Sí, es usted mi paciente – ¡Tiene que dolerle algo!       |
-|SAM:  |Okay, ooooooh mi brazo.                                   |
-|PABLO:|¿El brazo o la pierna?                                    |
-|      |Brazo, pierna, pierna, brazo …                            |
-|SAM:  |El brazo, no, el pierna.                                  |
-|PABLO:|La pierna.                                                |
-|SAM:  |La pierna.                                                |
-|PABLO:|Muy bien. Cruce las piernas.                              |
-|      |Ahora – esto no le va a doler… mucho.                     |
-|SAM:  |¡Ay!                                                      |
-|PABLO:|¡¡Aaaah!!                                                 |
-|SAM:  |Oh I’m sorry man! I couldn’t help it!                     |
-|PABLO:|No, no, tiene usted los reflejos muy bien.                |
-|      |Ahora diga “Ah”.                                          |
-|SAM:  |Ah.                                                       |
-|PABLO:|Ohhhhh.                                                   |
-|SAM:  |Ohhhhhhh?                                                 |
-|PABLO:|Lo que me suponía … ha desayunado galletas.               |
-|SAM:  |Oh.                                                       |
-|PABLO:|Ahora voy a tomarle la temperatura.                       |
-|      |Dios mío … Dios mío …                                     |
-|      |Tiene usted la temperatura muy alta – voy a tener que     |
-|      |ponerle una inyección.                                    |
-|SAM:  |¿Una inyección?                                           |
-|PABLO:|¡Sí! ¡Una inyección!                                      |
-|SAM:  |No, gracias Pablo. ¡Me voy! ¡Uuy! ¡Mi espalda!            |
-|PABLO:|¡No se preocupe! ¡Yo puedo ayudarla! ¡Soy médico!         |
+SAM:  Hola, Pablo – Vengo a buscar mis pesas …                  
+PABLO:¡Ah! ¡señor Scott! ¡Desnúdese y acuéstese!                
+SAM:  ¿Perdona, Pablo?                                          
+PABLO:Oh, llámeme doctor Aranda García …                        
+SAM:  ¿Doctor Aranda García?                                    
+PABLO:¡Sam! Quiero ser médico en la serie de la tele: “Fiebre en
+      el hospital” – ¡Necesito practicar!                       
+      Además, ¡a las chicas les encanta la bata blanca!         
+SAM:  Oh.                                                       
+PABLO:¿Dónde le duele?                                          
+SAM:  ¿Dónde me duele?                                          
+PABLO:Sí, es usted mi paciente – ¡Tiene que dolerle algo!       
+SAM:  Okay, ooooooh mi brazo.                                   
+PABLO:¿El brazo o la pierna?                                    
+      Brazo, pierna, pierna, brazo …                            
+SAM:  El brazo, no, el pierna.                                  
+PABLO:La pierna.                                                
+SAM:  La pierna.                                                
+PABLO:Muy bien. Cruce las piernas.                              
+      Ahora – esto no le va a doler… mucho.                     
+SAM:  ¡Ay!                                                      
+PABLO:¡¡Aaaah!!                                                 
+SAM:  Oh I’m sorry man! I couldn’t help it!                     
+PABLO:No, no, tiene usted los reflejos muy bien.                
+      Ahora diga “Ah”.                                          
+SAM:  Ah.                                                       
+PABLO:Ohhhhh.                                                   
+SAM:  Ohhhhhhh?                                                 
+PABLO:Lo que me suponía … ha desayunado galletas.               
+SAM:  Oh.                                                       
+PABLO:Ahora voy a tomarle la temperatura.                       
+      Dios mío … Dios mío …                                     
+      Tiene usted la temperatura muy alta – voy a tener que     
+      ponerle una inyección.                                    
+SAM:  ¿Una inyección?                                           
+PABLO:¡Sí! ¡Una inyección!                                      
+SAM:  No, gracias Pablo. ¡Me voy! ¡Uuy! ¡Mi espalda!            
+PABLO:¡No se preocupe! ¡Yo puedo ayudarla! ¡Soy médico!         
 
 
-SCENE 4
-|LOLA:   |¡Está abierto!                                                    |
-|        |¡Cristina! !¡Pasa! ¡Pasa! … ¡Llegas temprano!                     |
-|CRISTINA|¡Ay, Lola, cariño! ¡Qué alegría verte!                            |
-|:       |                                                                  |
-|LOLA:   |¡Sí, lo mismo digo, Cristina!                                     |
-|        |¿Qué tal el vuelo?                                                |
-|CRISTINA|Bien. ¡Pero han perdido mi equipaje! ¡Increíble!                  |
-|:       |                                                                  |
-|LOLA:   |¡Las compañías aéreas son un desastre! … Pero cuéntame, Cristina, |
-|        |¿por qué te fuiste de Argentina?                                  |
-|CRISTINA|Porque se me acabó el dinero. Y ya sabes … lo que quiero ahora es |
-|:       |viajar … ¡especialmente a América!                                |
-|LOLA:   |¡Ay, Cristina! ¡Cómo eres! ¡Nunca cambias!                        |
-|CRISTINA|Y lo que nos divertíamos …                                        |
-|:       |                                                                  |
-|LOLA:   |Sííí … en la escuela …                                            |
-|CRISTINA|¡No fui yo, señorita, fue Lola!                                   |
-|:       |                                                                  |
-|LOLA:   |¡No fui yo, señorita, fue Cristina!                               |
-|SACHA:  |Y compartíamos todo.                                              |
-|CRISTINA|Así es.                                                           |
-|:       |                                                                  |
+LOLA:   ¡Está abierto!                                                    
+        ¡Cristina! !¡Pasa! ¡Pasa! … ¡Llegas temprano!                     
+CRISTINA¡Ay, Lola, cariño! ¡Qué alegría verte!                            
+:                                                                         
+LOLA:   ¡Sí, lo mismo digo, Cristina!                                     
+        ¿Qué tal el vuelo?                                                
+CRISTINABien. ¡Pero han perdido mi equipaje! ¡Increíble!                  
+:                                                                         
+LOLA:   ¡Las compañías aéreas son un desastre! … Pero cuéntame, Cristina, 
+        ¿por qué te fuiste de Argentina?                                  
+CRISTINAPorque se me acabó el dinero. Y ya sabes … lo que quiero ahora es 
+:       viajar … ¡especialmente a América!                                
+LOLA:   ¡Ay, Cristina! ¡Cómo eres! ¡Nunca cambias!                        
+CRISTINAY lo que nos divertíamos …                                        
+:                                                                         
+LOLA:   Sííí … en la escuela …                                            
+CRISTINA¡No fui yo, señorita, fue Lola!                                   
+:                                                                         
+LOLA:   ¡No fui yo, señorita, fue Cristina!                               
+SACHA:  Y compartíamos todo.                                              
+CRISTINAAsí es.                                                           
+:                                                                         
 
 
 BOYFRIEND CARTOON
-|CRISTINA|¡Me quiere!   |
-|:       |              |
-|LOLA:   |¡No! ¡Me      |
-|        |quiere a mí!  |
-|CRISTINA|¡A mí!        |
-|:       |              |
-|LOLA:   |¡A mí!        |
+CRISTINA¡Me quiere!   
+:                     
+LOLA:   ¡No! ¡Me      
+        quiere a mí!  
+CRISTINA¡A mí!        
+:                     
+LOLA:   ¡A mí!        
 
 
-SCENE 4 CONTINUED
-|CRISTINA|¡Lola! ¿Puedes dejarme   |
-|:       |algo de ropa?            |
-|LOLA:   |Sí, ¿esto, por ejemplo?  |
-|        |¡He comprado dos por el  |
-|        |precio de uno!           |
+CRISTINA¡Lola! ¿Puedes dejarme   
+:       algo de ropa?            
+LOLA:   Sí, ¿esto, por ejemplo?  
+        ¡He comprado dos por el  
+        precio de uno!           
 
 
-SCENE 5
-|CRISTINA|Sí, ésta me queda muy bien.v                         |
-|:       |                                                     |
-|LOLA:   |¡Qué bien, Cristina!                                 |
-|SAM:    |¡Disculpa! No puedo hacer ejercicio. ¡Me duele la    |
-|        |espalda!                                             |
-|CRISTINA|¡Sam! ¡Qué musculoso que estás!                      |
-|:       |                                                     |
-|SAM:    |Eh, gracias … ¿Cómo está tu madre?                   |
-|CRISTINA|¿Mamá? Oh, creo que está bien.                       |
-|:       |                                                     |
-|SAM:    |¿Has hablado con ella?                               |
-|CRISTINA|¡Ah, sí! Hablamos a menudo – es como una amiga. ¡Ella|
-|:       |me entiende de verdad!                               |
-|SAM:    |Pero pensé que …                                     |
-|PABLO:  |¡Está bien! ¡Ya estoy aquí! ¿Dónde está la           |
-|        |emergencia?                                          |
-|CRISTINA|¡Pablo … el actor! ¡Y hoy eres … médico!             |
-|:       |                                                     |
-|PABLO:  |¡Sííí! ¿Cómo lo has adivinado?                       |
-|CRISTINA|Ah, ¡qué bien interpretas! ¡Me encantan los médicos! |
-|:       |Ah, disculpad …¡Hola, mamá! Sí, muy bien, gracias    |
-|        |mamá.                                                |
-|PABLO:  |¡Está clarísimo! ¡A las mujeres les encantan los     |
-|        |médicos! ¡Lola no puede resistirme!                  |
-|SAM:    |¿De verdad?                                          |
-|PABLO:  |Pues sí. ¡Está clarísimo! …                          |
-|CRISTINA|Hasta pronto, mamá – te quiero mucho. ¡Adiós!        |
-|:       |Bien, doctor, ¿dónde estábamos? Creo que tengo       |
-|        |fiebre.                                              |
-|PABLO:  |Señorita, creo que puedo ayudarla. ¿Dónde le duele?  |
-|ANA:    |Hola, Pablo.                                         |
-|CRISTINA|¡Ana, cariño!                                        |
-|:       |¿Cómo estás? ¿Cómo está Luis? ¡Estás guapísima hoy!  |
-|ANA:    |Ah, gracias.                                         |
-|CRISTINA|¿A que Pablo está genial de médico?                  |
-|:       |                                                     |
-|ANA:    |Eeeh, sí, genial …                                   |
-|CRISTINA|Disculpadme – voy a ducharme.                        |
-|:       |                                                     |
+CRISTINASí, ésta me queda muy bien.v                         
+:                                                            
+LOLA:   ¡Qué bien, Cristina!                                 
+SAM:    ¡Disculpa! No puedo hacer ejercicio. ¡Me duele la    
+        espalda!                                             
+CRISTINA¡Sam! ¡Qué musculoso que estás!                      
+:                                                            
+SAM:    Eh, gracias … ¿Cómo está tu madre?                   
+CRISTINA¿Mamá? Oh, creo que está bien.                       
+:                                                            
+SAM:    ¿Has hablado con ella?                               
+CRISTINA¡Ah, sí! Hablamos a menudo – es como una amiga. ¡Ella
+:       me entiende de verdad!                               
+SAM:    Pero pensé que …                                     
+PABLO:  ¡Está bien! ¡Ya estoy aquí! ¿Dónde está la           
+        emergencia?                                          
+CRISTINA¡Pablo … el actor! ¡Y hoy eres … médico!             
+:                                                            
+PABLO:  ¡Sííí! ¿Cómo lo has adivinado?                       
+CRISTINAAh, ¡qué bien interpretas! ¡Me encantan los médicos! 
+:       Ah, disculpad …¡Hola, mamá! Sí, muy bien, gracias    
+        mamá.                                                
+PABLO:  ¡Está clarísimo! ¡A las mujeres les encantan los     
+        médicos! ¡Lola no puede resistirme!                  
+SAM:    ¿De verdad?                                          
+PABLO:  Pues sí. ¡Está clarísimo! …                          
+CRISTINAHasta pronto, mamá – te quiero mucho. ¡Adiós!        
+:       Bien, doctor, ¿dónde estábamos? Creo que tengo       
+        fiebre.                                              
+PABLO:  Señorita, creo que puedo ayudarla. ¿Dónde le duele?  
+ANA:    Hola, Pablo.                                         
+CRISTINA¡Ana, cariño!                                        
+:       ¿Cómo estás? ¿Cómo está Luis? ¡Estás guapísima hoy!  
+ANA:    Ah, gracias.                                         
+CRISTINA¿A que Pablo está genial de médico?                  
+:                                                            
+ANA:    Eeeh, sí, genial …                                   
+CRISTINADisculpadme – voy a ducharme.                        
+:                                                            
 
 
-INTERSTITIAL
-|SAM:     |Yes Mom – I have washed behind my ears.                           |
-|DE: LOLA |¡Adivina! Mi hermana gemela, Cristina, llegó de Argentina.        |
-|PARA:    |Perdió su equipaje, así que usa mi ropa.                          |
-|MANU     |                                                                  |
-|DE: PABLO|¡Ya está! ¡Ya lo tengo! ¡A las mujeres les encantan los médicos!  |
-|PARA:    |Hoy he ensayado un papel de médico y Lola no pudo resistirme.     |
-|PEPE     |                                                                  |
-|SAM:     |Yes, I have changed my socks this morning …                       |
+SAM:     Yes Mom – I have washed behind my ears.                           
+DE: LOLA ¡Adivina! Mi hermana gemela, Cristina, llegó de Argentina.        
+PARA:    Perdió su equipaje, así que usa mi ropa.                          
+MANU                                                                       
+DE: PABLO¡Ya está! ¡Ya lo tengo! ¡A las mujeres les encantan los médicos!  
+PARA:    Hoy he ensayado un papel de médico y Lola no pudo resistirme.     
+PEPE                                                                       
+SAM:     Yes, I have changed my socks this morning …                       
 
 
-SCENE 6
-|SAM:    |Lola está muy rara.                                                |
-|PABLO:  |No, no, para nada.                                                 |
-|ANA:    |¡Venga, Sam!                                                       |
-|SAM:    |Bueno, acaba de decir que su madre es su mejor amiga …             |
-|ANA:    |¿Y?                                                                |
-|SAM:    |Pero hace una hora dijo que su madre la trataba como a una niña.v  |
-|PABLO:  |Me pregunto cómo era Lola de niña …                                |
-|SAM:    |Me pregunto cómo era Ana …                                         |
-|ANA:    |Me pregunto cómo era Pablo …                                       |
-|PABLO:  |Ya sé cómo era Sam …                                               |
-|        |‘One day my son, all this will be yours’                           |
-|PABLO:  |En fin, tengo que seguir ensayando de doctor Aranda García, sobre  |
-|        |todo porque a Lola le gustan tanto los médicos.                    |
-|ANA:    |A Pablo sólo le gusta Lola, Lola, Lola …                           |
-|SAM:    |¡Está bien, Ana!                                                   |
-|LOLA:   |¿Molesto?                                                          |
-|SAM:    |Yes …                                                              |
-|ANA:    |No … no …                                                          |
-|LOLA:   |¡Disculpad! Ana, por cierto, ese color no te va.                   |
-|SAM:    |¿Ves? Está muy rara. ¿Está celosa?                                 |
-|ANA:    |¿Pero, por qué? Pablo nunca me hace caso … Y está guapísimo de     |
-|        |médico.                                                            |
-|SAM:    |Sííí.                                                              |
-|CRISTINA|¡Qué dulce!                                                        |
-|:       |                                                                   |
-|ANA:    |Pero pensé que …                                                   |
-|CRISTINA|¡Vuestras caras! ¿Así que vosotros dos salís …?                    |
-|:       |                                                                   |
-|SAM:    |Sííí …                                                             |
-|ANA:    |¡No!                                                               |
-|CRISTINA|¡Ah! Se os ve bien juntos.                                         |
-|:       |¿Puedo?                                                            |
-|SAM:    |Tienes hambre …                                                    |
-|CRISTINA|Siempre tengo hambre … ¡Y ahora, el momento de la danza de los     |
-|:       |delfines!                                                          |
-|ANA:    |¿La danza de los delfines?                                         |
-|CRISTINA|Sí, por cierto Ana, ¡ese color te queda muy bien!                  |
-|:       |Mi CD…                                                             |
-|ANA:    |¿La danza de los delfines?                                         |
-|SAM:    |¡Me parece muy bien!                                               |
-|ANA:    |Oh Sam, ¡eres tan dulce!                                           |
-|        |¡Ay! ¡Estoy horrible! ¡Ahhh! ¿Me vio Pablo así?                    |
-|CRISTINA|Ah – aquí está…                                                    |
-|:       |Entonces, Sam, ¿sales con Ana?                                     |
-|SAM:    |Pues…                                                              |
-|CRISTINA|Venga, cuéntamelo Sam. ¡No pasa nada!                              |
-|:       |                                                                   |
-|SAM:    |¿De verdad?                                                        |
-|CRISTINA|De verdad …                                                        |
-|:       |                                                                   |
-|SAM:    |Bien, vale. Me gusta mucho Ana …                                   |
-|CRISTINA|¡Invítala al cine!                                                 |
-|:       |                                                                   |
-|SAM:    |¿Qué?                                                              |
-|CRISTINA|¡Invítala al cine!                                                 |
-|:       |                                                                   |
-|SAM:    |¿Tú crees? Vale.                                                   |
-|CRISTINA|Hoy, Sam, en el aeropuerto, compré esta revista …                  |
-|:       |                                                                   |
-|SAM:    |¿En el aeropuerto?                                                 |
-|CRISTINA|¿Eres tú? Eres tú, ¿a que sí?                                      |
-|:       |                                                                   |
-|SAM:    |Eeeh …                                                             |
-|CRISTINA|Las cinco familias más ricas de América …                          |
-|:       |No. 4 la familia Scott.                                            |
-|        |Así que, Sam, eres un joven americano muy rico.                    |
-|        |¿Es un secreto?                                                    |
-|SAM:    |Sí, por favor, no se lo digas a Ana.                               |
-|CRISTINA|¡Tranquilo! ¡Guardaré el secreto!                                  |
-|:       |                                                                   |
-|SAM:    |Gracias. ¡Lola está encantadora hoy!                               |
-|PABLO:  |¿De verdad? ¡Genial!... ¡Hola!                                     |
-|CRISTINA|Oooh, Pablo, ¡hola! Pablo, cariño … o doctor Aranda García –       |
-|:       |¿puedes ayudarme?                                                  |
-|PABLO:  |Claro …                                                            |
-|CRISTINA|¿Podrías mover la bici? ¡No tengo espacio!                         |
-|:       |                                                                   |
-|PABLO:  |¡Sí!                                                               |
-|CRISTINA|Pablo, ¡qué fuerte estás! ¡Muchas gracias! Así está mucho mejor.   |
-|:       |                                                                   |
-|PABLO:  |Necesito una Coca-Cola. ¿Quieres una?                              |
-|CRISTINA|¡No, gracias!                                                      |
-|:       |                                                                   |
-|PABLO:  |Ah, ¿ya has terminado? Podríamos jugar a algo diferente …          |
-|LOLA:   |¡Ni lo sueñes!                                                     |
-|        |¿Por qué se ha movido mi bici?                                     |
-|PABLO:  |Pues … porque …                                                    |
-|LOLA:   |Pues ponla donde estaba…¡si puedes!                                |
-|SAM:    |Doctor Scott a su servicio. Ana …                                  |
-|ANA:    |Hello.                                                             |
-|LOLA:   |¡Hello, Doctor Scott! ¡Sam, estás impresionante! ¡Me encantan los  |
-|        |médicos!                                                           |
+SAM:    Lola está muy rara.                                                
+PABLO:  No, no, para nada.                                                 
+ANA:    ¡Venga, Sam!                                                       
+SAM:    Bueno, acaba de decir que su madre es su mejor amiga …             
+ANA:    ¿Y?                                                                
+SAM:    Pero hace una hora dijo que su madre la trataba como a una niña.v  
+PABLO:  Me pregunto cómo era Lola de niña …                                
+SAM:    Me pregunto cómo era Ana …                                         
+ANA:    Me pregunto cómo era Pablo …                                       
+PABLO:  Ya sé cómo era Sam …                                               
+        ‘One day my son, all this will be yours’                           
+PABLO:  En fin, tengo que seguir ensayando de doctor Aranda García, sobre  
+        todo porque a Lola le gustan tanto los médicos.                    
+ANA:    A Pablo sólo le gusta Lola, Lola, Lola …                           
+SAM:    ¡Está bien, Ana!                                                   
+LOLA:   ¿Molesto?                                                          
+SAM:    Yes …                                                              
+ANA:    No … no …                                                          
+LOLA:   ¡Disculpad! Ana, por cierto, ese color no te va.                   
+SAM:    ¿Ves? Está muy rara. ¿Está celosa?                                 
+ANA:    ¿Pero, por qué? Pablo nunca me hace caso … Y está guapísimo de     
+        médico.                                                            
+SAM:    Sííí.                                                              
+CRISTINA¡Qué dulce!                                                        
+:                                                                          
+ANA:    Pero pensé que …                                                   
+CRISTINA¡Vuestras caras! ¿Así que vosotros dos salís …?                    
+:                                                                          
+SAM:    Sííí …                                                             
+ANA:    ¡No!                                                               
+CRISTINA¡Ah! Se os ve bien juntos.                                         
+:       ¿Puedo?                                                            
+SAM:    Tienes hambre …                                                    
+CRISTINASiempre tengo hambre … ¡Y ahora, el momento de la danza de los     
+:       delfines!                                                          
+ANA:    ¿La danza de los delfines?                                         
+CRISTINASí, por cierto Ana, ¡ese color te queda muy bien!                  
+:       Mi CD…                                                             
+ANA:    ¿La danza de los delfines?                                         
+SAM:    ¡Me parece muy bien!                                               
+ANA:    Oh Sam, ¡eres tan dulce!                                           
+        ¡Ay! ¡Estoy horrible! ¡Ahhh! ¿Me vio Pablo así?                    
+CRISTINAAh – aquí está…                                                    
+:       Entonces, Sam, ¿sales con Ana?                                     
+SAM:    Pues…                                                              
+CRISTINAVenga, cuéntamelo Sam. ¡No pasa nada!                              
+:                                                                          
+SAM:    ¿De verdad?                                                        
+CRISTINADe verdad …                                                        
+:                                                                          
+SAM:    Bien, vale. Me gusta mucho Ana …                                   
+CRISTINA¡Invítala al cine!                                                 
+:                                                                          
+SAM:    ¿Qué?                                                              
+CRISTINA¡Invítala al cine!                                                 
+:                                                                          
+SAM:    ¿Tú crees? Vale.                                                   
+CRISTINAHoy, Sam, en el aeropuerto, compré esta revista …                  
+:                                                                          
+SAM:    ¿En el aeropuerto?                                                 
+CRISTINA¿Eres tú? Eres tú, ¿a que sí?                                      
+:                                                                          
+SAM:    Eeeh …                                                             
+CRISTINALas cinco familias más ricas de América …                          
+:       No. 4 la familia Scott.                                            
+        Así que, Sam, eres un joven americano muy rico.                    
+        ¿Es un secreto?                                                    
+SAM:    Sí, por favor, no se lo digas a Ana.                               
+CRISTINA¡Tranquilo! ¡Guardaré el secreto!                                  
+:                                                                          
+SAM:    Gracias. ¡Lola está encantadora hoy!                               
+PABLO:  ¿De verdad? ¡Genial!... ¡Hola!                                     
+CRISTINAOooh, Pablo, ¡hola! Pablo, cariño … o doctor Aranda García –       
+:       ¿puedes ayudarme?                                                  
+PABLO:  Claro …                                                            
+CRISTINA¿Podrías mover la bici? ¡No tengo espacio!                         
+:                                                                          
+PABLO:  ¡Sí!                                                               
+CRISTINAPablo, ¡qué fuerte estás! ¡Muchas gracias! Así está mucho mejor.   
+:                                                                          
+PABLO:  Necesito una Coca-Cola. ¿Quieres una?                              
+CRISTINA¡No, gracias!                                                      
+:                                                                          
+PABLO:  Ah, ¿ya has terminado? Podríamos jugar a algo diferente …          
+LOLA:   ¡Ni lo sueñes!                                                     
+        ¿Por qué se ha movido mi bici?                                     
+PABLO:  Pues … porque …                                                    
+LOLA:   Pues ponla donde estaba…¡si puedes!                                
+SAM:    Doctor Scott a su servicio. Ana …                                  
+ANA:    Hello.                                                             
+LOLA:   ¡Hello, Doctor Scott! ¡Sam, estás impresionante! ¡Me encantan los  
+        médicos!                                                           
 
 
-INTERSTITIAL
-|SAM:      |Mom, can you stop giving our photographs to magazines please?    |
-|DE: ANA   |¡Estoy harta! ¡A Pablo sólo le gusta Lola! ¡Lola! ¡Lola!         |
-|PARA:     |Pero Sam me consuela … ¡es tan simpático! ¡Y Lola! Pues está muy |
-|NURIA     |rara.                                                            |
-|          |Primero me dijo: “ese color no te va”. Y luego, dos minutos      |
-|          |después, dijo: “el azul te sienta muy bien”.                     |
-|          |Como dos personas diferentes.                                    |
-|DE: PABLO |Primero me llamó “cielo” y me pidió que moviera su bicicleta.    |
-|PARA: PEPE|Luego, un minuto más tarde, me dijo de ponerla dónde estaba.     |
-|          |¡Mujeres!                                                        |
-|SAM:      |Mom, would I make a good doctor?                                 |
+SAM:      Mom, can you stop giving our photographs to magazines please?    
+DE: ANA   ¡Estoy harta! ¡A Pablo sólo le gusta Lola! ¡Lola! ¡Lola!         
+PARA:     Pero Sam me consuela … ¡es tan simpático! ¡Y Lola! Pues está muy 
+NURIA     rara.                                                            
+          Primero me dijo: “ese color no te va”. Y luego, dos minutos      
+          después, dijo: “el azul te sienta muy bien”.                     
+          Como dos personas diferentes.                                    
+DE: PABLO Primero me llamó “cielo” y me pidió que moviera su bicicleta.    
+PARA: PEPELuego, un minuto más tarde, me dijo de ponerla dónde estaba.     
+          ¡Mujeres!                                                        
+SAM:      Mom, would I make a good doctor?                                 
 
 
-SCENE 7
-|SAM:         |¡Hola, Ana!                                          |
-|ANA:         |Oh. ¡Hola, Sam! … Sam … piensa en una carta …        |
-|SAM:         |Eeeh … Vale, el as de espadas ...                    |
-|ANA:         |¡No! ¡No me lo digas …!                              |
-|SAM:         |¡Vale!                                               |
-|ANA:         |¡Escoge una carta!                                   |
-|             |¡Mírala!                                             |
-|             |Entonces, ¿es el as de copas?                        |
-|SAM:         |No …                                                 |
-|ANA:         |¡Porras! ¡No funciona!                               |
-|SAM:         |Eeemm ¿Ana?                                          |
-|ANA:         |Sííí, Sam.                                           |
-|SAM:         |¿Puedo pedirte algo?                                 |
-|ANA:         |Sí, Sam.                                             |
-|SAM:         |Pues … Pues,                                         |
-|             |¿tegustaríaveniralcineconmigomañanaporlanoche?       |
-|ANA:         |¿Perdona?                                            |
-|SAM:         |¿Te gustaría venir al cine conmigo mañana por la     |
-|             |noche?                                               |
-|ANA:         |Síí, me gustaría …                                   |
-|SAM:         |Sí. ¡Hasta luego!                                    |
-|ANA:         |¿Y qué pasa con Lola?                                |
-|SAM:         |¿Lola?                                               |
-|ANA:         |Sí, a Lola también le gustaría.                      |
-|SAM:         |No. Está bien. Ya se lo dije. Le parece bien.        |
-|ANA:         |Oh. ¿De verdad? Vale – mañana por la noche.          |
-|CRISTINA:    |¿Habló Sam contigo?v                                 |
-|ANA:         |¿Para ir al cine? ¡Sí! ¿Quieres venir?               |
-|CRISTINA:    |¡Por supuesto que no! ¡Que lo paséis bien!           |
-|ANA:         |No sé qué película vamos a ver.                      |
-|LOLA:        |¿Cuándo?                                             |
-|ANA:         |Cuando vaya con Sam por supuesto.                    |
-|LOLA:        |¿Qué? ¿Que vas al cine con Sam?                      |
-|             |¡No me lo puedo creer!                               |
-|CRISTINA:    |¡Tengo mucha hambre!                                 |
-|             |Mmmm ¡Mis galletas favoritas! Mmmm. ¡Y ponen unas    |
-|             |películas buenísimas ahora!                          |
-|ANA:         |Eeeh ... sííí ...                                    |
-|LOLA:        |¡El cine es una porquería!                           |
-|             |¡Aaay! ¡Qué hambre!                                  |
-|             |¡Aarj! ¡Qué asco de galletas!                        |
-|CRISTINA:    |Tengo que llamar al aeropuerto …                     |
-|ANA:         |Ah!                                                  |
-|CRISTINA:    |¿Qué pasa Ana?                                       |
-|ANA:         |¿Qué es esto? No entiendo nada.                      |
-|CRISTINA:    |¿De qué?                                             |
-|ANA:         |Si estás aquí …                                      |
-|CRISTINA:    |Sí, Ana …                                            |
-|ANA:         |¿Quién está en el cuarto de baño?                    |
-|LOLA:        |¡AAAH! ¿Qué estás haciendo Ana?                      |
-|ANA:         |Pero … tú … tú …                                     |
-|LOLA/CRISTINA|¡Somos gemelas!                                      |
-|:            |                                                     |
-|ANA:         |Lola, no lo sabía. ¡Sois gemelas!                    |
-|             |Ahora entiendo …                                     |
-|             |¿Sam te preguntó lo del cine, Cristina?              |
-|CRISTINA:    |Sí                                                   |
-|ANA:         |Pero no te preguntó a ti, Lola …                     |
-|             |Porque pensó que tú eras tú. Y Sam y Pablo no saben  |
-|             |que sois gemelas.                                    |
-|LOLA:        |¡No! Pienso que no …                                 |
-|ANA:         |Ahora entiendo muchas cosas.                         |
-|             |Y dime, ¿qué doctor prefieres?                       |
-|CRISTINA:    |Oooh, el doctor Aranda García!                       |
-|LOLA:        |¡Oh, no! ¡El doctor Scott!                           |
-|             |¿Sabes? Quizás podríamos divertirnos un poco …       |
-|ANA:         |Siento un poco de magia …                            |
+SAM:         ¡Hola, Ana!                                          
+ANA:         Oh. ¡Hola, Sam! … Sam … piensa en una carta …        
+SAM:         Eeeh … Vale, el as de espadas ...                    
+ANA:         ¡No! ¡No me lo digas …!                              
+SAM:         ¡Vale!                                               
+ANA:         ¡Escoge una carta!                                   
+             ¡Mírala!                                             
+             Entonces, ¿es el as de copas?                        
+SAM:         No …                                                 
+ANA:         ¡Porras! ¡No funciona!                               
+SAM:         Eeemm ¿Ana?                                          
+ANA:         Sííí, Sam.                                           
+SAM:         ¿Puedo pedirte algo?                                 
+ANA:         Sí, Sam.                                             
+SAM:         Pues … Pues,                                         
+             ¿tegustaríaveniralcineconmigomañanaporlanoche?       
+ANA:         ¿Perdona?                                            
+SAM:         ¿Te gustaría venir al cine conmigo mañana por la     
+             noche?                                               
+ANA:         Síí, me gustaría …                                   
+SAM:         Sí. ¡Hasta luego!                                    
+ANA:         ¿Y qué pasa con Lola?                                
+SAM:         ¿Lola?                                               
+ANA:         Sí, a Lola también le gustaría.                      
+SAM:         No. Está bien. Ya se lo dije. Le parece bien.        
+ANA:         Oh. ¿De verdad? Vale – mañana por la noche.          
+CRISTINA:    ¿Habló Sam contigo?v                                 
+ANA:         ¿Para ir al cine? ¡Sí! ¿Quieres venir?               
+CRISTINA:    ¡Por supuesto que no! ¡Que lo paséis bien!           
+ANA:         No sé qué película vamos a ver.                      
+LOLA:        ¿Cuándo?                                             
+ANA:         Cuando vaya con Sam por supuesto.                    
+LOLA:        ¿Qué? ¿Que vas al cine con Sam?                      
+             ¡No me lo puedo creer!                               
+CRISTINA:    ¡Tengo mucha hambre!                                 
+             Mmmm ¡Mis galletas favoritas! Mmmm. ¡Y ponen unas    
+             películas buenísimas ahora!                          
+ANA:         Eeeh ... sííí ...                                    
+LOLA:        ¡El cine es una porquería!                           
+             ¡Aaay! ¡Qué hambre!                                  
+             ¡Aarj! ¡Qué asco de galletas!                        
+CRISTINA:    Tengo que llamar al aeropuerto …                     
+ANA:         Ah!                                                  
+CRISTINA:    ¿Qué pasa Ana?                                       
+ANA:         ¿Qué es esto? No entiendo nada.                      
+CRISTINA:    ¿De qué?                                             
+ANA:         Si estás aquí …                                      
+CRISTINA:    Sí, Ana …                                            
+ANA:         ¿Quién está en el cuarto de baño?                    
+LOLA:        ¡AAAH! ¿Qué estás haciendo Ana?                      
+ANA:         Pero … tú … tú …                                     
+LOLA/CRISTINA¡Somos gemelas!                                      
+:                                                                 
+ANA:         Lola, no lo sabía. ¡Sois gemelas!                    
+             Ahora entiendo …                                     
+             ¿Sam te preguntó lo del cine, Cristina?              
+CRISTINA:    Sí                                                   
+ANA:         Pero no te preguntó a ti, Lola …                     
+             Porque pensó que tú eras tú. Y Sam y Pablo no saben  
+             que sois gemelas.                                    
+LOLA:        ¡No! Pienso que no …                                 
+ANA:         Ahora entiendo muchas cosas.                         
+             Y dime, ¿qué doctor prefieres?                       
+CRISTINA:    Oooh, el doctor Aranda García!                       
+LOLA:        ¡Oh, no! ¡El doctor Scott!                           
+             ¿Sabes? Quizás podríamos divertirnos un poco …       
+ANA:         Siento un poco de magia …                            
 
 
-SCENE 8
-|ANA:  |¡Sam, Pablo!                                              |
-|PABLO:|¿Qué pasa aquí?                                           |
-|ANA:  |¡Justo a tiempo para mi nuevo truco!                      |
-|SAM:  |¡No puedo esperar!                                        |
-|ANA:  |¡Sentaos! Hoy señores y señoras … señores … voy a hacer   |
-|      |desaparecer a mi bella asistenta.                         |
-|      |¡Entra, Lola!                                             |
-|      |Ahora Lola – métete ahí.                                  |
-|      |Voy a hacer desaparecer a Lola de esta caja … y hacerla   |
-|      |aparecer en ésta.                                         |
-|PABLO:|Esto tengo que verlo.                                     |
-|ANA:  |Un golpecito de mi varita mágica …                        |
-|      |¡Abracadabra!                                             |
-|      |¡Por lo tanto, la primera caja está vacía! Lola! ¡Lo has  |
-|      |hecho muy rápido hoy!                                     |
-|LOLA: |Sí, muy rápido.                                           |
-|ANA:  |Ahora voy a comprobar que la otra caja está vacía.        |
-|SAM:  |Eh, se cambió de caja.                                    |
-|ANA:  |Sí, ¡veamos! Ahora señores, ¡apuestas por favor! ¿En qué  |
-|      |caja está Lola?                                           |
-|PABLO:|¡En la izquierda!                                         |
-|SAM:  |¡No … no! ¡A la derecha!                                  |
-|ANA:  |¡Veamos! ¡Música por favor!                               |
-|      |¡Aplausos para Lola y Cristina!                           |
-|      |¿Qué pasa con la audiencia [el público]? Hello, is there a|
-|      |doctor in the house?                                      |
+ANA:  ¡Sam, Pablo!                                              
+PABLO:¿Qué pasa aquí?                                           
+ANA:  ¡Justo a tiempo para mi nuevo truco!                      
+SAM:  ¡No puedo esperar!                                        
+ANA:  ¡Sentaos! Hoy señores y señoras … señores … voy a hacer   
+      desaparecer a mi bella asistenta.                         
+      ¡Entra, Lola!                                             
+      Ahora Lola – métete ahí.                                  
+      Voy a hacer desaparecer a Lola de esta caja … y hacerla   
+      aparecer en ésta.                                         
+PABLO:Esto tengo que verlo.                                     
+ANA:  Un golpecito de mi varita mágica …                        
+      ¡Abracadabra!                                             
+      ¡Por lo tanto, la primera caja está vacía! Lola! ¡Lo has  
+      hecho muy rápido hoy!                                     
+LOLA: Sí, muy rápido.                                           
+ANA:  Ahora voy a comprobar que la otra caja está vacía.        
+SAM:  Eh, se cambió de caja.                                    
+ANA:  Sí, ¡veamos! Ahora señores, ¡apuestas por favor! ¿En qué  
+      caja está Lola?                                           
+PABLO:¡En la izquierda!                                         
+SAM:  ¡No … no! ¡A la derecha!                                  
+ANA:  ¡Veamos! ¡Música por favor!                               
+      ¡Aplausos para Lola y Cristina!                           
+      ¿Qué pasa con la audiencia [el público]? Hello, is there a
+      doctor in the house?                                      
 
 
-SCENE 9
-|LOLA:|¡Adiós, Cristina!                  |
-|     |¡Ay! –Te voy a echar de menos,     |
-|     |Cristina …                         |
-|     |¡Uy! Olvidó su revista…            |
-|     |¡No me lo puedo creer!             |
-|     |LAS CINCO FAMILIAS MÁS RICAS DE    |
-|     |AMÉRICA                            |
-|     |EN CUARTA POSICIÓN LA FAMILIA      |
-|     |SCOTT.                             |
-|LOLA:|¡Es Sam!                           |
-
-
+LOLA:¡Adiós, Cristina!                  
+     ¡Ay! –Te voy a echar de menos,     
+     Cristina …                         
+     ¡Uy! Olvidó su revista…            
+     ¡No me lo puedo creer!             
+     LAS CINCO FAMILIAS MÁS RICAS DE    
+     AMÉRICA                            
+     EN CUARTA POSICIÓN LA FAMILIA      
+     SCOTT.                             
+LOLA:¡Es Sam!
