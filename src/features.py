@@ -1146,6 +1146,11 @@ class feature_pipeline:
 
         verb_tense_dist_dict = {}
         total = sum(verb_tense_dict.values())
+        
+        # Check for zeroes to avoid zero division error
+        if not total:
+            return {"Fut": 0.0, "Imp": 0.0, "Past": 0.0, "Pres": 0.0}
+        
         for tense in verb_tense_dict.keys():
             verb_tense_dist_dict[tense] = verb_tense_dict[tense] / total
 
