@@ -1,0 +1,324 @@
+
+08. La prima de la Dueña
+|ANA:  |"Queridos inquilinos, mi prima, su dueña está de vacaciones esta      |
+|      |semana, ¡y ahora mando yo! ¡LAS MISMAS CONSIGNAS No se permiten       |
+|      |animales. No se permiten fiestas. Paca Montalbán."                    |
+|      |                                                                      |
+|      |¡Suena horrible! ¡Peor que la sargento!                               |
+|LOLA: |Hm … ¡Será posible!                                                   |
+|ANA:  |¿Crees que dirá: “No se permiten estanterías”?                        |
+|LOLA: |¡No puede! ¡Van a quedar guay!                                        |
+|      |Las estanterías … de madera natural de pino                           |
+|ANA:  |… con 6 ruedas …                                                      |
+|LOLA: |… ¡y hueco para la televisión!                                        |
+|ANA:  |¿Y por dónde empezamos?                                               |
+|LOLA: |¡Ana! ¡Muy fácil! Lo primero, leer siempre las instrucciones.         |
+|ANA:  |Tardaremos una semana.                                                |
+|LOLA: |Vale, vamos a tomar algo antes de empezar.                            |
+|      |¿Un zumo, Ana?                                                        |
+|ANA:  |Sí, por favor.                                                        |
+|LOLA: |“Os lo debo – Pablo”. No hay zumo. ¿Agua con gas?                     |
+|ANA:  |Vale.                                                                 |
+|LOLA: |“Os lo debo –Pablo”.                                                  |
+|      |¡Pablo!                                                               |
+|      |Os lo debo –Pablo                                                     |
+|      |¡Uuy!                                                                 |
+|      |¿Una Coca-Cola?                                                       |
+|ANA:  |Bien.                                                                 |
+|PABLO:|Ay, gracias, Lola. ¡La estaba buscando!                               |
+|LOLA: |¡Pablo!                                                               |
+|PABLO:|Perdona …                                                             |
+|LOLA: |AÑádela a la lista … y dile a Sam que te compre comida.               |
+|PABLO:|¿Hmmm?                                                                |
+|LOLA: |¿Reconoces a alguien?                                                 |
+|PABLO:|Eeeh … ¡guau!                                                         |
+|LOLA: |¿No sabías que Sam era rico?                                          |
+|PABLO:|Eee … no.                                                             |
+|LOLA: |Ya hablaremos.                                                        |
+|SAM:  |¡Guau! ¿Qué son todas esas cajas, Ana?                                |
+|ANA:  |Nuestras nuevas estanterías. Oh, gracias, Sam.                        |
+|SAM:  |Os ayudo a montarlas. ¿Dónde están las instrucciones?                 |
+|PABLO:|Sam – La regla de oro – ¡Nunca leas las instrucciones!                |
+|ANA:  |Oh, veo que tienes un mensaje de nuestra nueva dueÑa.                 |
+|LOLA: |¡Paca Montalbán!                                                      |
+|PABLO:|¡Síí! ¡“La Prima de la Sargento”! ¡Da miedo!                          |
+|ANA:  |Quizás podríamos llamarla “El escorpión”.                             |
+|LOLA: |¡La medusa!                                                           |
+|SAM:  |¡El pulpo!                                                            |
+|PABLO:|¿Qué os parece “El rinoceronte”?                                      |
+|      |¡La renta! ¡La renta!                                                 |
+
+
+INTERCOM
+|PABLO:|¡La renta! ¡O ataco! ¿Quién es? Soy     |
+|      |Pablo, del piso B …                     |
+|      |No. ¿Que quiere, el piso A? Pues éste es|
+|      |…                                       |
+|      |¿Sí? Sí, sí, éste es el piso A. Yo soy  |
+|      |Pablo del piso B.                       |
+|      |Sí, sí, ya sé que éste no es mi piso.   |
+|      |Disculpe.                               |
+|      |Vale, vale. Ahora mismo.                |
+|LOLA: |¿Y bien?                                |
+|PABLO:|La rinoceronte. ¡Quiere verme abajo     |
+|      |ahora mismo!                            |
+|SAM:  |Oh Pablo, bad luck man!                 |
+|ANA:  |¡Ay madre!                              |
+|LOLA: |Pregúntale si tiene zumo, pan y galletas|
+|      |para nosotros.                          |
+|ANA:  |Primero, abrir primero la caja A y sacar|
+|      |el estante número uno.                  |
+|LOLA: |¿Cuál es la caja A?                     |
+|SAM:  |Yo tengo la caja C.                     |
+|ANA:  |¡Y ésta es la caja D!                   |
+
+
+SCENE 2
+|SAM:  |Aaah – ¡Ya lo tengo! ¡Estante número 1! |
+|ANA:  |¡No! Ése es el estante número 2. Yo     |
+|      |tengo el estante número 1.              |
+|LOLA: |No – Éste es el estante número 1.       |
+|ANA:  |¡Ay! ¡Esto es una pesadilla!            |
+|SAM:  |Vale, Ana. Lee las instrucciones.       |
+|ANA:  |Colocar el estante número 1 en la pared.|
+|      |Eeh Sam, pienso que los libros se van a |
+|      |caer…                                   |
+|LOLA: |Y … ¿cómo está “La Prima”?              |
+|PABLO:|Oh, pues bien.                          |
+|SAM:  |Y el estante encima. ¿Lola?             |
+|LOLA: |¿Así, Sam?                              |
+|SAM:  |Sí.                                     |
+|LOLA: |¿Ya has montado estanterías antes?      |
+|SAM:  |¡Oh sí! ¡Muchas veces!                  |
+|LOLA: |¿O te las montan tus criados?           |
+|SAM:  |Oh …                                    |
+|PABLO:|¡No lo estás haciendo muy bien, Sam!    |
+|SAM:  |It’s ok! I can fix it!                  |
+|PABLO:|¡No, no, no! ¡Atrás! Observa al artista |
+|      |en acción.                              |
+|ANA:  |¡Muy bien Pablo!                        |
+|SAM:  |¡Guau!                                  |
+|LOLA: |Hmmm …                                  |
+|PABLO:|¡Cosa de niÑos!                         |
+|LOLA: |¡Muy bien! ¿Y esto dónde va …?          |
+|PABLO:|¡Ah! ¡Ya decía yo que faltaba algo!     |
+|PACA: |¡Hola! Soy Paca Montalbán, la nueva     |
+|      |dueÑa.                                  |
+
+
+INTERSTITIAL
+|SAM:   |Mom! I’m building some new shelves! It’s not that funny!            |
+|DE:    |De todos modos … ¡Adivina qué he descubierto! ¡La familia de Sam, la|
+|LOLA   |familia Scott, es la cuarta más rica de América! ¿Te lo puedes      |
+|PARA:  |creer? Creo que Pablo siempre lo ha sabido. Hmmm, ¡Pablo! ¡Ha estado|
+|MANU   |aquí de nuevo! Ha tomado prestados nuestra leche, agua, pan y       |
+|       |galletas.                                                           |
+|DE:    |Nuestra dueÑa, “La sargento”, está de vacaciones.                   |
+|PABLO  |Así que su prima vino a quedarse. ¡Superestricta! ¡Nada de animales!|
+|PARA:  |¡Nada de fiestas! De todos modos, me fui abajo para verla y … Pepe, |
+|PEPE   |¡vaya, vaya!                                                        |
+|SAM:   |Mom? Has Dad ever put a shelf up? Never? I thought so …             |
+
+
+SCENE 3
+|LOLA: |¡Hola! Soy Lola …             |
+|      |Y ésta es Ana …               |
+|ANA:  |¡Hola!                        |
+|LOLA: |Y éste es Sam, de América.    |
+|PACA: |¡Hola, Sam!                   |
+|LOLA  |Sam vive con Pablo en el piso |
+|      |de enfrente.                  |
+|PACA: |Pablo y yo ya nos conocemos,  |
+|      |¿verdad?                      |
+|PABLO:|Sí.                           |
+|PACA: |Tenemos que hablar de la renta|
+|      |… ¿en privado?                |
+
+
+SCENE 4
+|SAM:  |“Mide la distancia entre los estantes.” ¡Perfecto! Ana, coge esto.    |
+|      |Así es …                                                              |
+|      |¡Y ya está!                                                           |
+|ANA:  |Sam… ¿Crees que está bien?                                            |
+|SAM:  |Sí, creo que sí.                                                      |
+|ANA:  |¡Estos estantes están demasiado juntos!                               |
+|LOLA: |¡Sam! “Las cinco familias más ricas de América. Número cuatro, la     |
+|      |familia Scott”… Y ahí estás, Sam.                                     |
+|SAM:  |Por favor, no se lo digas a Ana.                                      |
+|LOLA: |¿Por qué no, Sam?                                                     |
+|SAM:  |Porque, Lola, porque … porque …                                       |
+|LOLA: |¿Sí, Sam?                                                             |
+|SAM:  |Estoy enamorado de Ana.                                               |
+|PABLO:|Pablo has entered the building!                                       |
+|LOLA: |¿Y adónde vas con esa pinta de John Travolta?.                        |
+|PACA: |¡Tiene una cita conmigo!                                              |
+|      |¡Hola, Pablo, cariÑo! ¡Estás divino!                                  |
+|LOLA: |Ya van tres esta semana …                                             |
+|PACA: |Cuatro … hemos salido a cenar, al teatro, al cine y ayer a bailar     |
+|      |salsa. ¿A que sí, cariÑito? ¡Soy la reina de la salsa!                |
+|PABLO:|¡Hoy toca karaoke!                                                    |
+|PACA: |¡Soy la reina del karaoke!                                            |
+|      |Let’s go!                                                             |
+|      |Bye children …                                                        |
+|LOLA: |¡Soy la reina del Karaoke! ¡Seguro que canta como una rana!           |
+|ANA:  |¡Pobre Pablo! Pero, si es feliz …                                     |
+|LOLA: |¡Lo será si le gustan las ranas!                                      |
+|ANA:  |Bueno, ¿dónde estábamos?                                              |
+|SAM:  |Vale, Ana … pienso que ya sé.                                         |
+
+
+SCENE 5
+|LOUIS:|WOOF!                                           |
+|ANA:  |Está bien, Luis. ¡Felices sueÑos!               |
+|PACA: |He llamado, pero la música está tan alta que no |
+|      |oís.                                            |
+|      |Pensé que podríamos hablar de mujer a mujer…    |
+|      |¡Oh! Consigna número dos: no se permiten bragas |
+|      |encima de los radiadores.                       |
+|ANA:  |¡Ya están secas! Ahora las quito! ¡Mira ya está!|
+|PACA: |Ni visitas … especialmente de chicos …          |
+|      |… especialmente de los chicos de enfrente …     |
+|      |… especialmente de Pablo. ¡Es mío!              |
+|      |¿Entendido?                                     |
+|ANA:  |Síí – Entendido.                                |
+|PACA: |Hasta luego.                                    |
+|      |Ah, por cierto, esa estantería no está derecha. |
+|      |¡Chao!                                          |
+|LOLA: |Pero, bueno, ¿quién se cree que es?             |
+|ANA:  |¿La prima de la dueÑa?                          |
+|LOLA: |¡Eso ya lo sé! ¡Pero Sam, no! ¡Pablo, no!       |
+|      |¡Cómo se atreve!                                |
+
+
+SCENE 6
+|SAM:  |¿Cómo está Paca?                              |
+|      |¿Problemas?                                   |
+|PABLO:|Oh, es muy agradable …                        |
+|SAM:  |¿Pero?                                        |
+|PABLO:|Pero su energía es demasiado. ¡Mira! ¡Mira!   |
+|      |¡Mira!                                        |
+|PACA: |¡Pablo! ¡Pablo!                               |
+|PABLO:|¡Oh, no puedo! ¡Mis piernas!                  |
+|PACA: |¡Vamos a bailar!                              |
+|PABLO:|Sam – ¡dile que se vaya!                      |
+|SAM:  |¿Que se vaya? ¿Cómo?                          |
+|PABLO:|¡Dile algo!                                   |
+|SAM:  |¿Qué le digo?                                 |
+|PABLO:|Dile ... que no estoy bien …                  |
+|      |que he comido un erizo ...                    |
+|      |que me fui al quinto pino …                   |
+|SAM:  |Vale … vale … ¡Hola!                          |
+|PACA: |No eres Pablo.                                |
+|SAM:  |Eeeh no. El erizo de Pablo se fue al quinto   |
+|      |pino.                                         |
+|PACA: |¿Qué?                                         |
+|SAM:  |Eeeeh … perdona. El erizo de Pablo está muy   |
+|      |mal. Pablo está muy triste.                   |
+|PACA: |Bueno, ¿y qué? ¡Que venga a bailar y se       |
+|      |sentirá mejor!                                |
+|SAM:  |Eeeeh … no puede bailar.                      |
+|PACA: |¿Por qué no?                                  |
+|SAM:  |Pablo ha pisado el erizo – sin zapatos – ¡muy |
+|      |doloroso!                                     |
+|PACA: |¡Qué lío!                                     |
+|SAM:  |Y no puede bailar.                            |
+|PACA: |Bueno. ¡Qué pena! ¿Qué le vamos hacer?        |
+|SAM:  |Sí. ¡Hasta luego!                             |
+|PACA: |Entonces, me acompaÑas tú.                    |
+|      |¡Venga! ¡Vamos a bailar!                      |
+
+
+INTERSTITIAL
+|SAM:|Hello Mom! I’m dead ... no, not from putting up the shelves ... from   |
+|    |dancing!                                                               |
+|ANA:|Sí, Sam todavía está montando la estantería. No sé por qué quiere      |
+|    |ayudar. Pero bueno, ¡eso me gusta! ¡Y el pobre Pablo! ¡Está muerto! ¡Ha|
+|    |tenido un montón de citas con Paca. ¡Y esta noche karaoke! Creo que a  |
+|    |Lola no le cae bien.                                                   |
+|SAM:|Who did I go dancing with? Paca. She’s the landlady’s neice.           |
+
+
+SCENE 7
+|ANA:  |Y fijar los tornillos ¡Casi terminado! ¡Ana, eres un genio!          |
+|      |Hola, Sam …                                                          |
+|SAM:  |Hi, Ana.                                                             |
+|ANA:  |¿Estás bien? ¿Qué pasó?                                              |
+|SAM:  |Paca y yo … ayer por la noche …                                      |
+|ANA:  |¿Sí?                                                                 |
+|SAM:  |Me hizo …                                                            |
+|ANA:  |¿Sí?                                                                 |
+|SAM:  |… ir a bailar.                                                       |
+|ANA:  |¡Oh!                                                                 |
+|SAM:  |Ana – ¡Ella baila como un rinoceronte!                               |
+|LOLA: |¿Qué pasa?                                                           |
+|ANA:  |Sam ha estado bailando con la prima de la dueÑa.                     |
+|SAM:  |¡La Rinoceronte!                                                     |
+|LOLA: |¡Tú también!                                                         |
+|SAM:  |¡Anda! ¡Muy bien, Ana! ¡Casi has terminado la estantería!            |
+|ANA:  |Sólo medir un poco …                                                 |
+|SAM:  |Venga – déjame ayudarte.                                             |
+|AMBAS:|¡Ay! ¡Perdona!                                                       |
+|SAM:  |Ay, perdona.                                                         |
+|ANA:  |Oh, está bien. Estas cosas pasan cuando … se trabaja juntos.         |
+|      |Ahora fijar el soporte metálico en la parte … de atrás. ¡Ay, Sam!    |
+|SAM:  |¡Guau!                                                               |
+|ANA:  |¡Sí, guau!                                                           |
+|PABLO:|¡Ayuda! ¡Socorro!                                                    |
+|SAM:  |¿Paca?                                                               |
+|PABLO:|Paca.                                                                |
+|PABLO:|¡Lola! ¡Socorro!                                                     |
+|LOLA: |¿Por qué?                                                            |
+|PABLO:|¡Paca! Fui a comprar cosas para vosotras.                            |
+|LOLA: |Estoy impresionada.                                                  |
+|PABLO:|Sí, pero Paca me vio, y me ha perseguido por la calle.               |
+|PACA: |¡Huhu! ¡Pablo!                                                       |
+|PABLO:|¡Ah, ahí está! ¡Es demasiado!                                        |
+|PACA: |Sé que estás ahí Pablo.                                              |
+|      |¡Lola! ¡Ana! ¡He dicho nada de chicos!                               |
+|LOLA: |¿Le digo que se vaya, Pablo?                                         |
+|PABLO:|Sí, ¿pero cómo?                                                      |
+|LOLA: |Se me ocurre algo. ¡Ana! ¡Haz pasar a la seÑorita Montalbán!         |
+|PACA: |¡Ah, estás ahí, Pablo! ¿Dónde te escondías, eh?                      |
+|      |¡Y Sam! ¡Eres un bailarín excelente!                                 |
+|      |Lola, ¡he dicho que no se permiten chicos!                           |
+|LOLA: |Sí, lo has dicho.                                                    |
+|PACA: |Sobre todo los chicos del piso de enfrente.                          |
+|LOLA: |Sí, lo has dicho.                                                    |
+|PACA: |Sobre todo …                                                         |
+|LOLA: |Sobre todo Pablo … ¡es mío!                                          |
+|      |Te lo debo, Lola.                                                    |
+|      |Me vuelves loca. ¡Oh, Pablo!                                         |
+|PACA: |¡Espera a que se lo cuente a mi prima! ¡Me voy!                      |
+|      |Ah, por cierto, tengo un telegrama para ti. Es de tu padre. Dice: “Am|
+|      |coming to Barcelona to meet the President. My jet arrives at the     |
+|      |airport at midday.                                                   |
+|      |Will phone. Father.”                                                 |
+|      |La verdad Sam, creo que tú me gustas más.                            |
+|ANA:  |Y yo no lo creo, Paca. ¡Fuera!                                       |
+|PACA: |¡Adiós!                                                              |
+|ANA:  |¡Oh! Y por favor, no des un portazo …                                |
+|PABLO:|¿Qué era eso?                                                        |
+|ANA:  |¿Tu padre tiene su propio avión para reunirse con el presidente?     |
+|PABLO:|Eeeh … gracias por la ayuda.                                         |
+|LOLA: |Está bien. Nadie me quita a mis amigos.                              |
+|PABLO:|¿Qué es eso? Creo que viene otra vez.                                |
+|LOLA: |¿De verdad?                                                          |
+|PABLO:|¡De verdad!                                                          |
+|LOLA: |Se me ocurre algo.                                                   |
+|SAM:  |Ana, te voy a comprar una nueva estantería a medida.                 |
+|ANA:  |¡Bueno! Pues, vamos a medir un poco entonces …                       |
+
+
+SCENE 8
+|SAM:  |¡Ah! ¡Pablo!                  |
+|PABLO:|¿Eh?                          |
+|SAM:  |Acabo de tener un sueÑo muy   |
+|      |extraÑo.                      |
+|PABLO:|¿Ay, sí?                      |
+|SAM:  |Sí … wait a minute… ¿o era un |
+|      |sueÑo …?                      |
+|PABLO:|Tu sueÑo - mi pesadilla.      |
+|      |Buenas noches, Sam.           |
+|SAM:  |Buenas noches, Pablo.         |
+
+
