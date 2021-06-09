@@ -33,3 +33,7 @@ https://docs.google.com/document/d/1KGs8CXezjxZpBWViPNAdFjfZqmBcu0_KdyldLc8SXoM/
 
 - week 5 meeting slides:
 https://docs.google.com/presentation/d/11NPbXNfUf7QnGsDWCLsO8e9JZ6-QYRnmsmyeFqaE7Z0/edit?usp=sharing
+
+- week 6 meeting slides:
+https://docs.google.com/presentation/d/1iUpPk-Bhfyh_tj5-lN6Gh1ihUqUSH62bNM4Y6GovcDk/edit?usp=sharing
+
