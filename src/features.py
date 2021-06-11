@@ -19,8 +19,12 @@ from collections import defaultdict, Counter
 from bs4 import BeautifulSoup
 import pandas as pd
 from urllib.request import urlopen
+from pathlib import Path
 from statistics import mean
+from stanza.server import CoreNLPClient
+from treelib import Node, Tree
 from utils import A1
+import numpy as np
 
 
 class feature_pipeline:
@@ -36,6 +40,9 @@ class feature_pipeline:
         class_mode="document",
         freq_list_type="df",
         full_spacy=False,
+        dep_parse_flag=False,
+        dep_parse_classpath="",
+        result_root="",
     ):
         """
         Initialize object attritubtes from parameters and run pre-processing
@@ -50,6 +57,13 @@ class feature_pipeline:
         full_spacy: (bool) flag to specify whether to extract sentences, tokens,
                     lemmas, POS tags, morphology tags, and dependency parses of
                     a given text by default
+        dep_parse_flag: (bool) flag to specify whether to perform dependency tree
+                        parsing using CoreNLP or not (False by default)
+        dep_parse_classpath: (str) if dependency parsing using CoreNLP is to be
+                             done, a path to the stanza_corenlp directory on the
+                             system must be provided
+        result_root: (str) path for wordnet_spa. If nothing is provided, it is
+                     set to "../wordnet_spa/"
         """
 
         assert class_mode.lower() in [
@@ -60,6 +74,31 @@ class feature_pipeline:
         self.text = text
         self.flat = flat
         self.class_mode = class_mode
+        self.dep_parse_flag = dep_parse_flag
+        self.result_root = "../wordnet_spa" if not result_root else result_root
+
+        if self.dep_parse_flag:
+            assert (
+                dep_parse_classpath != ""
+            ), "dep_parse_classpath must be explicitly specified!"
+
+            if dep_parse_classpath.endswith("/*"):
+                str_dep_parse_classpath = dep_parse_classpath
+                dep_parse_classpath = dep_parse_classpath[:-2]
+
+            dep_parse_classpath = Path(dep_parse_classpath)
+            assert os.path.exists(
+                dep_parse_classpath
+            ), "the specified dep_parse_classpath does not exist on your system!"
+
+            self.corenlp_client = CoreNLPClient(
+                properties="es",
+                classpath=str_dep_parse_classpath,
+                annotators=["depparse"],
+                timeout=30000,
+                memory="5G",
+            )
+
         self.nlp = spacy.load("es_core_news_md")
         self.wncr = None
         self.freq_list = None
@@ -848,8 +887,8 @@ class feature_pipeline:
         pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
-            the average degree of abstraction (the higher, less abstract),
-            the min degree of abstraction in the text
+            (float) the average degree of abstraction (the higher, less abstract),
+            (float) the min degree of abstraction in the text
         """
         if text:
             text = self.preprocess(text)
@@ -866,8 +905,7 @@ class feature_pipeline:
         https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
         """
         if not self.wncr:
-            result_root = "../wordnet_spa/"
-            self.wncr = WordNetCorpusReader(result_root, None)
+            self.wncr = WordNetCorpusReader(self.result_root, None)
 
         top_synset = self.wncr.synset("entidad.n.01")  # Top synset
         sent_nouns, sent_levels = [], []
@@ -912,8 +950,8 @@ class feature_pipeline:
         pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
-            the mean degree of ambiguation over all tokens (the higher, more ambiguous),
-            the mean degree of ambiguation over all content tokens
+            (float) the mean degree of ambiguation over all tokens (the higher, more ambiguous),
+            (float) the mean degree of ambiguation over all content tokens
         """
         if text:
             text = self.preprocess(text)
@@ -930,8 +968,7 @@ class feature_pipeline:
         https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
         """
         if not self.wncr:
-            result_root = "../wordnet_spa/"
-            self.wncr = WordNetCorpusReader(result_root, None)
+            self.wncr = WordNetCorpusReader(self.result_root, None)
 
         sent_senses = []
         sent_cont_tokens, sent_cont_senses = [], []
@@ -957,6 +994,168 @@ class feature_pipeline:
 
         return mean(sent_senses), mean(sent_cont_senses)
 
+    def density_noun_chunks(self, text=None, noun_chunks=None):
+        """
+        This function calculates the mean number of modifiers of noun phrases in
+        the given text (either a text string or a list of noun phrase chunks).
+
+        text: (str) an unprocessed text (not necessary if noun_chunks is given)
+        noun_chunks: (list[str]) the noun phrase chunks in the text (not necessary if text is given)
+
+        return: (float) the mean number of noun phrases modifiers in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            noun_chunks = self.get_noun_chunks()
+
+        noun_chunks = self.noun_chunks if self.noun_chunks else self.get_noun_chunks()
+
+        try:
+            len_noun_chunks = 0
+            if len(noun_chunks) > 0:
+                len_noun_chunks = (
+                    mean([len(chunk.strip().split()) for chunk in noun_chunks]) - 1
+                )
+            else:
+                len_noun_chunks = 0
+
+            return len_noun_chunks
+
+        except:
+            return 0
+
+    def dependency_tree(self, sent):
+        """
+        This function returns the depth of sentence using dependency parsing.
+        Assumptions:
+         1. The input sent is a CoreNLP_pb2.Sentence data structure.
+         2. The dependency parsing information in sent (from CoreNLP) is correct.
+            (hence, dependency parsing is out of scope for testing)
+        Note: If sent has no edges, this function returns an empty tree.
+              Therefore, a one-word sentence will return an empty tree.
+
+        sent: (CoreNLP_pb2.Sentence) sentence for which the dependency tree is built
+
+        return: (int) depth of the tree
+        """
+        tree_list = [Tree()]
+
+        for edge in sent.basicDependencies.edge:
+            source = edge.source  # source of the edge
+            target = edge.target  # target of the edge
+
+            source_tree_idx = -1
+            target_tree_idx = -1
+            # find a tree which contains source and call it source_tree
+            for i, tree in enumerate(tree_list):
+                # find a tree which contains target and call it target_tree
+                if tree.get_node(source):
+                    source_tree_idx = i
+                if tree.get_node(target):
+                    target_tree_idx = i
+
+            # if no source tree, no target tree; then, create a new tree
+            if source_tree_idx < 0 and target_tree_idx < 0:
+                new_tree = Tree()
+                new_tree.create_node(source, source)
+                new_tree.create_node(target, target, parent=source)
+                tree_list.append(new_tree)
+
+            # if source_tree exists and no target_tree, add a target node
+            elif target_tree_idx < 0:
+                tree = tree_list[source_tree_idx]
+                tree.create_node(target, target, parent=source)
+
+            # if target_tree exists and no source_tree,
+            #  add the source node as the root of the tree
+            elif source_tree_idx < 0:
+                new_tree = Tree()
+                new_tree.create_node(source, source)
+                sub_tree = tree_list[target_tree_idx]
+                new_tree.paste(source, sub_tree)
+                tree_list[target_tree_idx] = new_tree
+
+            # if both source_tree and target_tree exist, connect these trees
+            else:
+                assert source_tree_idx != target_tree_idx
+                source_tree = tree_list[source_tree_idx]
+                target_tree = tree_list[target_tree_idx]
+
+                assert target_tree.root == target
+                source_tree.paste(source, target_tree)
+                tree_list[source_tree_idx] = source_tree
+                tree_list[target_tree_idx] = Tree()
+
+        # get the tree depth for each tree in the list
+        tree_depth_list = [tree.depth() for tree in tree_list]
+
+        # the tree with max depth is the final tree
+        return max(tree_depth_list), tree_list[np.argmax(tree_depth_list)]
+
+    def depth_dep_parse(self, text=None):
+        """
+        Given a text as a string this function calculates the average depth of
+        the sentences in the text using the dependency parse trees from CoreNLP.
+        This serves as a measure of the complexity of the sentences in the text.
+
+        Assumes that CoreNLPClient is already running.
+
+        text: (str) a text
+
+        return: (float) the average depth of the sentences in the text
+        """
+        text = self.preprocess(text) if text else self.text
+
+        spanish_ann = self.corenlp_client.annotate(text)
+
+        avg_depth = 0
+        for sent in spanish_ann.sentence:
+            depth, _ = self.dependency_tree(sent)
+            avg_depth += depth
+
+        if len(spanish_ann.sentence) == 0:
+            return 0
+        else:
+            return avg_depth / len(spanish_ann.sentence)
+
+    def verb_tense(self, text=None, morphs=None):
+        """
+        This function calculates the distribution of the verb tenses in the text,
+        given either a text string or a list of morphology tags for the text.
+        There are four possible verb tenses: Past, Present, Future, Imp.
+
+        text: (str) an unprocessed text (not necessary if morphs is given)
+        morphs: (list[str]) the morphology tags of the text (not necessary if text is given)
+
+        return: (dict{float}) dict of proportions of verb tenses in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            morphs = self.get_morphology()
+
+        morphs = self.morphs if self.morphs else self.get_morphology()
+
+        regex = r"Tense=([^\|]+)\|"
+        morph_verbs = [s for s in morphs if "Tense" in s]
+        verb_tense_dict = {"Fut": 0, "Imp": 0, "Past": 0, "Pres": 0}
+
+        for s in morph_verbs:
+            match = re.search(regex, s)
+            if match:
+                verb_tense_dict[match.group(1)] += 1
+
+        verb_tense_dist_dict = {}
+        total = sum(verb_tense_dict.values())
+        
+        # Check for zeroes to avoid zero division error
+        if not total:
+            return {"Fut": 0.0, "Imp": 0.0, "Past": 0.0, "Pres": 0.0}
+        
+        for tense in verb_tense_dict.keys():
+            verb_tense_dist_dict[tense] = verb_tense_dict[tense] / total
+
+        return verb_tense_dist_dict
+
     def feature_extractor(self, text=None):
         """
         Perform preprocessing and extract all the features from the text
@@ -972,6 +1171,8 @@ class feature_pipeline:
             _ = self.get_tokens()
             _ = self.get_lemmas()
             _ = self.get_pos_tags()
+            _ = self.get_morphology()
+            _ = self.get_noun_chunks()
 
         num_tokens = self.num_tokens()
         avg_sent_length = self.avg_sent_length()
@@ -984,6 +1185,10 @@ class feature_pipeline:
         fh_score, syls_per_sent = self.fernandez_huerta_score()
         avg_abstraction, min_abstraction = self.degree_of_abstraction()
         avg_ambiguation, avg_content_ambiguation = self.polysemy_ambiguation()
+        np_density = self.density_noun_chunks()
+        if self.dep_parse_flag:
+            avg_text_depth = self.depth_dep_parse()
+        tense_props = self.verb_tense()
         pos_props, cat_props = self.pos_proportions()
 
         features = {
@@ -1003,7 +1208,12 @@ class feature_pipeline:
             "min_degree_of_abstraction": min_abstraction,
             "avg_ambiguation_all_words": avg_ambiguation,
             "avg_ambiguation_content_words": avg_content_ambiguation,
+            "noun_phrase_density": np_density,
         }
+        if self.dep_parse_flag:
+            features.update({"avg_parse_tree_depth": avg_text_depth})
+        
+        features.update(tense_props)
         features.update(pos_props)
         features.update(cat_props)
 

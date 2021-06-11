@@ -27,7 +27,7 @@ def read_corpus(path="../corpus/"):
     """
 
     corpus = defaultdict(list)
-    for file in os.listdir(path):
+    for file in sorted(os.listdir(path)):
         if "json" in file:
             with open(os.path.join(path, file), "r", encoding="utf-8") as f:
                 doc_list = json.load(f)
