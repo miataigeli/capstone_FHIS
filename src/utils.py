@@ -27,14 +27,12 @@ def read_corpus(path="../corpus/"):
     """
 
     corpus = defaultdict(list)
-    for file in os.listdir(path):
+    for file in sorted(os.listdir(path)):
         if "json" in file:
             with open(os.path.join(path, file), "r", encoding="utf-8") as f:
                 doc_list = json.load(f)
                 for d in doc_list:
                     level = d["level"]
-                    if level == "A2/B1":
-                        level = "B1"
                     corpus[level].append(d)
     return corpus
 

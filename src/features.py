@@ -1,8 +1,8 @@
 """
 NOTE:
 Feature extraction at the sentence level is not consistent yet. Only document
-level feature extraction works, and except for the full_spacy() function all
-other functions are currently only configured for fully flattened lists.
+level feature extraction works, and feature extraction functions are currently
+only configured to work for fully flattened lists.
 """
 
 
@@ -12,13 +12,19 @@ import json
 import time
 import pylabeador
 import spacy
+import nltk
+from nltk.corpus.reader.wordnet import WordNetCorpusReader
 from spacy.lang.es.stop_words import STOP_WORDS
 from collections import defaultdict, Counter
 from bs4 import BeautifulSoup
 import pandas as pd
 from urllib.request import urlopen
+from pathlib import Path
 from statistics import mean
+from stanza.server import CoreNLPClient
+from treelib import Node, Tree
 from utils import A1
+import numpy as np
 
 
 class feature_pipeline:
@@ -34,6 +40,9 @@ class feature_pipeline:
         class_mode="document",
         freq_list_type="df",
         full_spacy=False,
+        dep_parse_flag=False,
+        dep_parse_classpath="",
+        result_root="",
     ):
         """
         Initialize object attritubtes from parameters and run pre-processing
@@ -48,6 +57,13 @@ class feature_pipeline:
         full_spacy: (bool) flag to specify whether to extract sentences, tokens,
                     lemmas, POS tags, morphology tags, and dependency parses of
                     a given text by default
+        dep_parse_flag: (bool) flag to specify whether to perform dependency tree
+                        parsing using CoreNLP or not (False by default)
+        dep_parse_classpath: (str) if dependency parsing using CoreNLP is to be
+                             done, a path to the stanza_corenlp directory on the
+                             system must be provided
+        result_root: (str) path for wordnet_spa. If nothing is provided, it is
+                     set to "../wordnet_spa/"
         """
 
         assert class_mode.lower() in [
@@ -58,12 +74,37 @@ class feature_pipeline:
         self.text = text
         self.flat = flat
         self.class_mode = class_mode
+        self.dep_parse_flag = dep_parse_flag
+        self.result_root = "../wordnet_spa" if not result_root else result_root
+
+        if self.dep_parse_flag:
+            assert (
+                dep_parse_classpath != ""
+            ), "dep_parse_classpath must be explicitly specified!"
+
+            if dep_parse_classpath.endswith("/*"):
+                str_dep_parse_classpath = dep_parse_classpath
+                dep_parse_classpath = dep_parse_classpath[:-2]
+
+            dep_parse_classpath = Path(dep_parse_classpath)
+            assert os.path.exists(
+                dep_parse_classpath
+            ), "the specified dep_parse_classpath does not exist on your system!"
+
+            self.corenlp_client = CoreNLPClient(
+                properties="es",
+                classpath=str_dep_parse_classpath,
+                annotators=["depparse"],
+                timeout=30000,
+                memory="5G",
+            )
+
         self.nlp = spacy.load("es_core_news_md")
+        self.wncr = None
+        self.freq_list = None
         if freq_list_type == "df":
-            self.freq_list = self.frequency_list_10k()
             self.word_ranks = self.word_ranks_from_df
         else:
-            self.freq_list = self.frequency_list_50k()
             self.word_ranks = self.word_ranks_from_list
 
         self.sentences = []
@@ -72,6 +113,7 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.noun_chunks = []
 
         if text:
             _ = self.preprocess()
@@ -80,6 +122,7 @@ class feature_pipeline:
 
     def flatten(self, list_of_sents):
         """
+        Utility Function:
         Flatten a list of lists of tokens into just a list of tokens.
 
         list_of_sents: (list[list[str]]) a tokenized text arranged by sentences
@@ -119,16 +162,14 @@ class feature_pipeline:
         """
         Return the sentences from a raw text
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) list of sentences in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.sentences = []
-        for sent in self.nlp(text).sents:
-            self.sentences.append(sent.text)
+        self.sentences = [sent.text for sent in self.nlp(text).sents]
         return self.sentences
 
     def get_tokens(self, text=None):
@@ -137,23 +178,19 @@ class feature_pipeline:
         the function returns a flat list of tokens, otherwise the tokens are
         arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of tokens in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.tokens = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.tokens.append(token.text)
+            self.tokens = [token.text for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_tokens = []
-                for token in sent:
-                    sent_tokens.append(token.text)
-                self.tokens.append(sent_tokens)
+            for sent in doc.sents:
+                self.tokens.append([token.text for token in sent])
         return self.tokens
 
     def get_lemmas(self, text=None):
@@ -162,23 +199,19 @@ class feature_pipeline:
         the function returns a flat list of lemmas, otherwise the lemmas are
         arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of lemmas in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.lemmas = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.lemmas.append(token.lemma_)
+            self.lemmas = [token.lemma_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_lemmas = []
-                for token in sent:
-                    sent_lemmas.append(token.lemma_)
-                self.lemmas.append(sent_lemmas)
+            for sent in doc.sents:
+                self.lemmas.append([token.lemma_ for token in sent])
         return self.lemmas
 
     def get_pos_tags(self, text=None):
@@ -187,23 +220,19 @@ class feature_pipeline:
         the function returns a flat list of tags, otherwise the tags are
         arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of POS tags in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.pos_tags = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.pos_tags.append(token.pos_)
+            self.pos_tags = [token.pos_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_tags = []
-                for token in sent:
-                    sent_tags.append(token.pos_)
-                self.pos_tags.append(sent_tags)
+            for sent in doc.sents:
+                self.pos_tags.append([token.pos_ for token in sent])
         return self.pos_tags
 
     def get_morphology(self, text=None):
@@ -212,23 +241,19 @@ class feature_pipeline:
         self.flat is True the function returns a flat list of morphologized
         tags, otherwise the morphologized tags are arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of tags in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.morphs = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.morphs.append(token.tag_)
+            self.morphs = [token.tag_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_morphs = []
-                for token in sent:
-                    sent_morphs.append(token.tag_)
-                self.morphs.append(sent_morphs)
+            for sent in doc.sents:
+                self.morphs.append([token.tag_ for token in sent])
         return self.morphs
 
     def get_dependency_parses(self, text=None):
@@ -237,27 +262,50 @@ class feature_pipeline:
         self.flat is True the function returns a flat list of dependency
         parses, otherwise the dependency parses are arranged by sentences.
 
-        text: (str) a raw text
+        text: (str) an unprocessed text (optional)
 
         return: (list[str]) / (list[list[str]]) list of parses in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.parses = []
+        doc = self.nlp(text)
         if self.flat:
-            for token in self.nlp(text):
-                self.parses.append(token.dep_)
+            self.parses = [token.dep_ for token in doc]
         else:
-            for sent in self.nlp(text).sents:
-                sent_parses = []
-                for token in sent:
-                    sent_parses.append(token.dep_)
-                self.parses.append(sent_parses)
+            for sent in doc.sents:
+                self.parses.append([token.dep_ for token in sent])
         return self.parses
+
+    def get_noun_chunks(self, text=None):
+        """
+        Returns noun phrases from a raw text. If the attribute self.flat is True
+        the function returns a flat list of noun chunks, otherwise the noun
+        chunks are arranged by sentences.
+
+        text: (str) an unprocessed text (optional)
+
+        return: (list[str] / list[list[str]]) list of noun chunks in the text
+        """
+        text = self.preprocess(text) if text else self.text
+
+        self.noun_chunks = []
+        doc = self.nlp(text)
+        if self.flat:
+            self.noun_chunks = [chunk.text for chunk in doc.noun_chunks]
+        else:
+            for sent in doc.sents:
+                sent_doc = self.nlp(sent.text)
+                sent_npc = [chunk.text for chunk in sent_doc.noun_chunks]
+                self.noun_chunks.append(sent_npc)
+        return self.noun_chunks
 
     def full_spacy(self, text=None):
         """
+        !!! NOTE: Only run this method if you absolutely NEED to extract all
+        of the spaCy features. It is typically more efficient to instead run
+        only the `get_` methods of those spaCy features that you require. !!!
+
         Run the given text through the pretrained spaCy pipeline to extract
         sentences, tokens, lemmas, POS tags, morphology, and dependency parses
         for each sentence in the text.
@@ -267,8 +315,7 @@ class feature_pipeline:
         (no return values, the processed items are saved to lists that are
         attributes of the text_processor object)
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         self.sentences = []
         self.tokens = []
@@ -276,26 +323,38 @@ class feature_pipeline:
         self.pos_tags = []
         self.morphs = []
         self.parses = []
+        self.noun_chunks = []
+        self.get_noun_chunks()
         doc = self.nlp(text)
-        for sent in doc.sents:
-            sent_tokens = []
-            sent_lemmas = []
-            sent_tags = []
-            sent_morphs = []
-            sent_parses = []
-            for token in sent:
-                sent_tokens.append(token.text)
-                sent_lemmas.append(token.lemma_)
-                sent_tags.append(token.pos_)
-                sent_morphs.append(token.tag_)
-                sent_parses.append(token.dep_)
-            self.sentences.append(sent.text)
-            self.tokens.append(sent_tokens)
-            self.lemmas.append(sent_lemmas)
-            self.pos_tags.append(sent_tags)
-            self.morphs.append(sent_morphs)
-            self.parses.append(sent_parses)
-            self.sents.append(sent.text)
+        if self.flat:
+            for token in doc:
+                self.tokens.append(token.text)
+                self.lemmas.append(token.lemma_)
+                self.pos_tags.append(token.pos_)
+                self.morphs.append(token.tag_)
+                self.parses.append(token.dep_)
+            for sent in doc.sents:
+                self.sentences.append(sent.text)
+        else:
+            for sent in doc.sents:
+                sent_tokens = []
+                sent_lemmas = []
+                sent_tags = []
+                sent_morphs = []
+                sent_parses = []
+                for token in sent:
+                    sent_tokens.append(token.text)
+                    sent_lemmas.append(token.lemma_)
+                    sent_tags.append(token.pos_)
+                    sent_morphs.append(token.tag_)
+                    sent_parses.append(token.dep_)
+                self.sentences.append(sent.text)
+                self.tokens.append(sent_tokens)
+                self.lemmas.append(sent_lemmas)
+                self.pos_tags.append(sent_tags)
+                self.morphs.append(sent_morphs)
+                self.parses.append(sent_parses)
+                self.sentences.append(sent.text)
 
     def frequency_list_10k(self):
         """
@@ -345,7 +404,7 @@ class feature_pipeline:
                 freq_list.append(line.strip().split(" ")[0])
         return freq_list
 
-    def freq_lookup_from_list(self, word, freq_list=None):
+    def freq_lookup_from_list(self, word, freq_list):
         """
         Given a word to look up in an ordered frequency list, return the position
         of that word in the list (1-indexed). If the word is not present return 0.
@@ -355,30 +414,33 @@ class feature_pipeline:
 
         return: (int) the index of the word if present in the list
         """
-        if freq_list is None:
-            freq_list = self.freq_list
-
         try:
             idx = freq_list.index(word) + 1
         except:
             idx = 0
         return idx
 
-    def word_ranks_from_list(self, token_list=None, freq_list=None):
+    def word_ranks_from_list(self, text=None, token_list=None, freq_list=None):
         """
-        Given a tokenized text in the form of a lists of tokens and a frequency
-        list to search through, return a list of integers, where the integers
-        correspond to the ranks of the words in a frequency list.
+        Given an unprocessed text, or a tokenized text in the form of a list of
+        tokens, and a frequency list to search through, return a list of integers
+        where the integers correspond to the ranks of the words in a frequency list.
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
         freq_list: (list[str]) the ordered list of words to search through
 
         return: (list[int]) the ranks of each of the tokens in the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         if freq_list is None:
+            if self.freq_list is None:
+                self.freq_list = self.frequency_list_10k()
             freq_list = self.freq_list
 
         assert isinstance(
@@ -390,21 +452,28 @@ class feature_pipeline:
             ranked_tokens.append(freq_lookup_from_list(token, freq_list))
         return ranked_tokens
 
-    def word_ranks_from_df(self, lemma_list=None, df=None):
+    def word_ranks_from_df(self, text=None, lemma_list=None, df=None):
         """
-        Given a lemmatized text in the form of a lists of lemmas and a DataFrame
-        frequency list to search through, return a list of integers, where the
-        integers correspond to the ranks of the words in a frequency list.
+        Given an unprocessed text, or a lemmatized text in the form of a list of
+        lemmas, and a DataFrame frequency list to search through, return a list
+        of integers, where the integers correspond to the ranks of the words in
+        a frequency list.
 
-        lemma_list: (list[str]) the lemmatized text
+        text: (str) an unprocessed text (not necessary if lemma_list is given)
+        lemma_list: (list[str]) the lemmatized text (not necessary if text is given)
         df: (pandas.DataFrame) DataFrame containing the lemmas to search through
 
         return: (list[int]) the ranks of each of the lemmatized tokens
         """
-        if lemma_list is None:
-            lemma_list = self.lemmas
+        if text:
+            text = self.preprocess(text)
+            lemma_list = self.get_lemmas()
+
+        lemma_list = self.lemmas if self.lemmas else self.get_lemmas()
 
         if df is None:
+            if self.freq_list is None:
+                self.freq_list = self.frequency_list_10k()
             df = self.freq_list
 
         assert isinstance(
@@ -430,63 +499,78 @@ class feature_pipeline:
         ranked_text = self.word_ranks()
         return sum(ranked_text) / len(ranked_text)
 
-    def num_tokens(self, token_list=None):
+    def num_tokens(self, text=None, token_list=None):
         """
         Return the number of tokens in a list of tokens (tokenized text)
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
 
         return: (int) the number of tokens
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         return len(token_list)
 
-    def avg_sent_length(self, sentences=None):
+    def avg_sent_length(self, text=None, sentences=None):
         """
         Return the average number of tokens per sentence in a text
 
-        sentences: (list[str]) a text split into a list of sentences
+        text: (str) an unprocessed text (not necessary if sentences is given)
+        sentences: (list[str]) a text split into a list of sentences (not necessary if text is given)
 
         return: (float) the average number of tokens per sentence
         """
-        if sentences is None:
-            sentences = self.sentences
+        if text:
+            text = self.preprocess(text)
+            sentences = self.get_sentences()
+
+        sentences = self.sentences if self.sentences else self.get_sentences()
 
         tokenizer = self.nlp.tokenizer
         return mean([len(tokenizer(sent)) for sent in sentences])
 
-    def ttr(self, token_list=None):
+    def ttr(self, text=None, token_list=None):
         """
         Return the type-token ratio (TTR) for a text given a list of tokens
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
 
         return: (float) the type-token ratio
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         types = set(token_list)
         return len(types) / len(token_list)
 
-    def pos_proportions(self, pos_list=None):
+    def pos_proportions(self, text=None, pos_list=None):
         """
         Given the list of POS tags of a text, extract the proportions of each
         POS tag in the text as well as the proportions of content words and
         function words in the text.
 
-        pos_list: (list[str]) the POS tags of the text
+        text: (str) an unprocessed text (not necessary if pos_list is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
             pos_props: (dict{float}) dict of proportions of POS tags in the text
             cat_props: (dict{float}) dict of proportions of content and function
                        words in the text
         """
+        if text:
+            text = self.preprocess(text)
+            pos_list = self.get_pos_tags()
 
-        if pos_list is None:
-            pos_list = self.pos_tags
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
 
         CONTENT_POS = {"VERB", "NOUN", "PROPN", "ADP", "ADJ", "ADV"}
         FUNCTION_POS = {
@@ -546,17 +630,21 @@ class feature_pipeline:
 
         return pos_props, cat_props
 
-    def pronoun_density(self, pos_list=None):
+    def pronoun_density(self, text=None, pos_list=None):
         """
         Return the density of pronouns in a text, calculated as the proportion
         of the number of pronouns and the number of non-pronouns.
 
-        pos_list: (list[str]) the POS tags of the text
+        text: (str) an unprocessed text (not necessary if pos_list is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return: (float) the pronoun density of the text
         """
-        if pos_list is None:
-            pos_list = self.pos_tags
+        if text:
+            text = self.preprocess(text)
+            pos_list = self.get_pos_tags()
+
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
 
         total_prons = 0
         for pos in pos_list:
@@ -564,17 +652,21 @@ class feature_pipeline:
                 total_prons += 1
         return total_prons / (len(pos_list) - total_prons)
 
-    def logical_operators(self, token_list=None):
+    def logical_operators(self, text=None, token_list=None):
         """
         Return the density of logical operators in a text, calculated as the
         proportion of the number of logical operators and the number of non-operators.
 
-        token_list: (list[str]) the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list is given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
 
         return: (float) the logical operator density of the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
 
         LOGICAL_OPS = {"si", "y", "o", "u", "no"}  # if, and, or, not
 
@@ -588,12 +680,11 @@ class feature_pipeline:
         """
         Return the number of connective phrases in a text.
 
-        text: (str) the raw text
+        text: (str) a text
 
         return: (int) the number of connectives in the text
         """
-        if text is None:
-            text = self.text
+        text = self.preprocess(text) if text else self.text
 
         CONNECTIVES = {
             "por eso",
@@ -679,25 +770,28 @@ class feature_pipeline:
 
         return conn_count
 
-    def a_level_vocab_features(self, token_list=None, pos_list=None):
+    def a_level_vocab_features(self, text=None, token_list=None, pos_list=None):
         """
         Given a tokenized text in the form of a lists of tokens and the
         corresponding list of POS tags, extract the percentage of A-level word
         tokens and types after removing whitespaces and stopwords.
 
-        token_list: (list[str]) the tokenized text
-        pos_list: (list[str]) the POS tags of the tokenized text
+        text: (str) an unprocessed text (not necessary if token_list and pos_list are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
 
         return:
             no_sw_length: (int) length of the text with stopwords removed
             a_vocab_percent: (float) percentage of A-level word tokens in the text
             a_vocab_percent_set: (float) percentage of A-level word types in the text
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            pos_list = self.get_pos_tags()
 
-        if pos_list is None:
-            pos_list = self.pos_tags
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
 
         a_vocab = A1().vocab
         no_sw_length = 0
@@ -725,7 +819,7 @@ class feature_pipeline:
 
         return no_sw_length, a_vocab_percent, a_vocab_percent_set
 
-    def fernandez_huerta_score(self, token_list=None, sentences=None):
+    def fernandez_huerta_score(self, text=None, token_list=None, sentences=None):
         """
         This function calculates Fernandez-Huerta score (Spanish equivalent of
         Flesch score) and the average number of syllables per sentence for a
@@ -733,17 +827,20 @@ class feature_pipeline:
 
         Reference: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5831059/#:~:text=The%20Fernandez%2DHuerta%20Formula%20(Fern%C3%A1ndez,formulae%20(Flesch%2C%201948).&text=The%20output%20is%20an%20index,representing%20a%20more%20difficult%20text
 
-        token_list: (list[str]) the tokenized text
-        sentences: (list[str]) the list of sentences in the text
+        text: (str) an unprocessed text (not necessary if token_list and sentences are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        sentences: (list[str]) a text split into a list of sentences (not necessary if text is given)
 
         fh_score: (float) the calculated Fernandez-Huerta score
         syls_per_sent: (float) the average number of syllables per sentence
         """
-        if token_list is None:
-            token_list = self.tokens
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            sentences = self.get_sentences()
 
-        if sentences is None:
-            sentences = self.sentences
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        sentences = self.sentences if self.sentences else self.get_sentences()
 
         num_sents = len(sentences)
         num_tokens = len(token_list)
@@ -780,6 +877,285 @@ class feature_pipeline:
 
         return fh_score, syls_per_sent
 
+    def degree_of_abstraction(self, text=None, token_list=None, pos_list=None):
+        """
+        This function measures the degree of abstraction of a text by measuring
+        the distance of its nouns to the top level in the wordnet.
+
+        text: (str) an unprocessed text (not necessary if token_list and pos_list are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
+
+        return:
+            (float) the average degree of abstraction (the higher, less abstract),
+            (float) the min degree of abstraction in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            pos_list = self.get_pos_tags()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
+
+        """
+        Initialize Spanish WordNet
+        !!! Must have Spanish WordNet extracted into the given directory !!!
+        Download and extract this file:
+        https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
+        """
+        if not self.wncr:
+            self.wncr = WordNetCorpusReader(self.result_root, None)
+
+        top_synset = self.wncr.synset("entidad.n.01")  # Top synset
+        sent_nouns, sent_levels = [], []
+        num_levels, num_nouns = 0.0, 0
+
+        for i_token, token in enumerate(token_list):
+            # calculate levels for each sense of the token
+            token_levels, num_senses = 0.0, 0
+            tag = pos_list[i_token]
+            token = token.lower()
+            synsets = self.wncr.synsets(token)
+            if len(synsets) > 0 and tag == "NOUN":
+                for synset in synsets:
+                    if synset.name().split(".")[1] == "n":  # only process noun
+                        try:
+                            levels = 1 / synset.path_similarity(top_synset)
+                            token_levels += levels
+                            num_senses += 1
+                        except:
+                            pass
+                if num_senses > 0:
+                    num_nouns += 1
+                    sent_nouns.append(token)
+                    sent_levels.append(token_levels / num_senses)
+                    # average level over the senses
+                    num_levels += token_levels / num_senses
+
+        if num_nouns == 0:
+            return 1000, 1000  # no abstraction
+        else:
+            # first returns the average number of levels in the text,
+            # second returns the minimum num of levels in the text
+            return num_levels / num_nouns, min(sent_levels)
+
+    def polysemy_ambiguation(self, text=None, token_list=None, pos_list=None):
+        """
+        This function measures degree of ambiguation of a text by counting the
+        number of senses of each content word in the text.
+
+        text: (str) an unprocessed text (not necessary if token_list and pos_list are given)
+        token_list: (list[str]) the tokenized text (not necessary if text is given)
+        pos_list: (list[str]) the POS tags of the text (not necessary if text is given)
+
+        return:
+            (float) the mean degree of ambiguation over all tokens (the higher, more ambiguous),
+            (float) the mean degree of ambiguation over all content tokens
+        """
+        if text:
+            text = self.preprocess(text)
+            token_list = self.get_tokens()
+            pos_list = self.get_pos_tags()
+
+        token_list = self.tokens if self.tokens else self.get_tokens()
+        pos_list = self.pos_tags if self.pos_tags else self.get_pos_tags()
+
+        """
+        Initialize Spanish WordNet
+        !!! Must have Spanish WordNet extracted into the given directory !!!
+        Download and extract this file:
+        https://github.com/pln-fing-udelar/wn-mcr-transform/blob/master/wordnet_spa.tar.gz
+        """
+        if not self.wncr:
+            self.wncr = WordNetCorpusReader(self.result_root, None)
+
+        sent_senses = []
+        sent_cont_tokens, sent_cont_senses = [], []
+        num_senses, num_cont_senses = 0, 0
+
+        CONTENT_POS = {"VERB", "NOUN", "PROPN", "ADP", "ADJ", "ADV"}
+
+        for i_token, token in enumerate(token_list):
+            token = token.lower()
+            synsets = self.wncr.synsets(token)
+            # All words
+            if len(synsets) > 0:
+                num_senses += len(synsets)
+                sent_senses.append(len(synsets))
+            # Only content words
+            if pos_list[i_token] in CONTENT_POS and len(synsets) > 0:
+                num_cont_senses += len(synsets)
+                sent_cont_tokens.append(token)
+                sent_cont_senses.append(len(synsets))
+
+        if sent_senses == []:
+            return 0, 0
+
+        return mean(sent_senses), mean(sent_cont_senses)
+
+    def density_noun_chunks(self, text=None, noun_chunks=None):
+        """
+        This function calculates the mean number of modifiers of noun phrases in
+        the given text (either a text string or a list of noun phrase chunks).
+
+        text: (str) an unprocessed text (not necessary if noun_chunks is given)
+        noun_chunks: (list[str]) the noun phrase chunks in the text (not necessary if text is given)
+
+        return: (float) the mean number of noun phrases modifiers in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            noun_chunks = self.get_noun_chunks()
+
+        noun_chunks = self.noun_chunks if self.noun_chunks else self.get_noun_chunks()
+
+        try:
+            len_noun_chunks = 0
+            if len(noun_chunks) > 0:
+                len_noun_chunks = (
+                    mean([len(chunk.strip().split()) for chunk in noun_chunks]) - 1
+                )
+            else:
+                len_noun_chunks = 0
+
+            return len_noun_chunks
+
+        except:
+            return 0
+
+    def dependency_tree(self, sent):
+        """
+        This function returns the depth of sentence using dependency parsing.
+        Assumptions:
+         1. The input sent is a CoreNLP_pb2.Sentence data structure.
+         2. The dependency parsing information in sent (from CoreNLP) is correct.
+            (hence, dependency parsing is out of scope for testing)
+        Note: If sent has no edges, this function returns an empty tree.
+              Therefore, a one-word sentence will return an empty tree.
+
+        sent: (CoreNLP_pb2.Sentence) sentence for which the dependency tree is built
+
+        return: (int) depth of the tree
+        """
+        tree_list = [Tree()]
+
+        for edge in sent.basicDependencies.edge:
+            source = edge.source  # source of the edge
+            target = edge.target  # target of the edge
+
+            source_tree_idx = -1
+            target_tree_idx = -1
+            # find a tree which contains source and call it source_tree
+            for i, tree in enumerate(tree_list):
+                # find a tree which contains target and call it target_tree
+                if tree.get_node(source):
+                    source_tree_idx = i
+                if tree.get_node(target):
+                    target_tree_idx = i
+
+            # if no source tree, no target tree; then, create a new tree
+            if source_tree_idx < 0 and target_tree_idx < 0:
+                new_tree = Tree()
+                new_tree.create_node(source, source)
+                new_tree.create_node(target, target, parent=source)
+                tree_list.append(new_tree)
+
+            # if source_tree exists and no target_tree, add a target node
+            elif target_tree_idx < 0:
+                tree = tree_list[source_tree_idx]
+                tree.create_node(target, target, parent=source)
+
+            # if target_tree exists and no source_tree,
+            #  add the source node as the root of the tree
+            elif source_tree_idx < 0:
+                new_tree = Tree()
+                new_tree.create_node(source, source)
+                sub_tree = tree_list[target_tree_idx]
+                new_tree.paste(source, sub_tree)
+                tree_list[target_tree_idx] = new_tree
+
+            # if both source_tree and target_tree exist, connect these trees
+            else:
+                assert source_tree_idx != target_tree_idx
+                source_tree = tree_list[source_tree_idx]
+                target_tree = tree_list[target_tree_idx]
+
+                assert target_tree.root == target
+                source_tree.paste(source, target_tree)
+                tree_list[source_tree_idx] = source_tree
+                tree_list[target_tree_idx] = Tree()
+
+        # get the tree depth for each tree in the list
+        tree_depth_list = [tree.depth() for tree in tree_list]
+
+        # the tree with max depth is the final tree
+        return max(tree_depth_list), tree_list[np.argmax(tree_depth_list)]
+
+    def depth_dep_parse(self, text=None):
+        """
+        Given a text as a string this function calculates the average depth of
+        the sentences in the text using the dependency parse trees from CoreNLP.
+        This serves as a measure of the complexity of the sentences in the text.
+
+        Assumes that CoreNLPClient is already running.
+
+        text: (str) a text
+
+        return: (float) the average depth of the sentences in the text
+        """
+        text = self.preprocess(text) if text else self.text
+
+        spanish_ann = self.corenlp_client.annotate(text)
+
+        avg_depth = 0
+        for sent in spanish_ann.sentence:
+            depth, _ = self.dependency_tree(sent)
+            avg_depth += depth
+
+        if len(spanish_ann.sentence) == 0:
+            return 0
+        else:
+            return avg_depth / len(spanish_ann.sentence)
+
+    def verb_tense(self, text=None, morphs=None):
+        """
+        This function calculates the distribution of the verb tenses in the text,
+        given either a text string or a list of morphology tags for the text.
+        There are four possible verb tenses: Past, Present, Future, Imp.
+
+        text: (str) an unprocessed text (not necessary if morphs is given)
+        morphs: (list[str]) the morphology tags of the text (not necessary if text is given)
+
+        return: (dict{float}) dict of proportions of verb tenses in the text
+        """
+        if text:
+            text = self.preprocess(text)
+            morphs = self.get_morphology()
+
+        morphs = self.morphs if self.morphs else self.get_morphology()
+
+        regex = r"Tense=([^\|]+)\|"
+        morph_verbs = [s for s in morphs if "Tense" in s]
+        verb_tense_dict = {"Fut": 0, "Imp": 0, "Past": 0, "Pres": 0}
+
+        for s in morph_verbs:
+            match = re.search(regex, s)
+            if match:
+                verb_tense_dict[match.group(1)] += 1
+
+        verb_tense_dist_dict = {}
+        total = sum(verb_tense_dict.values())
+        
+        # Check for zeroes to avoid zero division error
+        if not total:
+            return {"Fut": 0.0, "Imp": 0.0, "Past": 0.0, "Pres": 0.0}
+        
+        for tense in verb_tense_dict.keys():
+            verb_tense_dist_dict[tense] = verb_tense_dict[tense] / total
+
+        return verb_tense_dist_dict
+
     def feature_extractor(self, text=None):
         """
         Perform preprocessing and extract all the features from the text
@@ -788,17 +1164,15 @@ class feature_pipeline:
 
         return: (dict) the features extracted from the text
         """
-
-        if text is None:
-            text = self.text
-        else:
-            _ = self.preprocess(text)
+        text = self.preprocess(text) if text else self.text
 
         if self.class_mode == "document":
             _ = self.get_sentences()
             _ = self.get_tokens()
             _ = self.get_lemmas()
             _ = self.get_pos_tags()
+            _ = self.get_morphology()
+            _ = self.get_noun_chunks()
 
         num_tokens = self.num_tokens()
         avg_sent_length = self.avg_sent_length()
@@ -809,6 +1183,12 @@ class feature_pipeline:
         ttr = self.ttr()
         avg_word_freq = self.avg_word_freq()
         fh_score, syls_per_sent = self.fernandez_huerta_score()
+        avg_abstraction, min_abstraction = self.degree_of_abstraction()
+        avg_ambiguation, avg_content_ambiguation = self.polysemy_ambiguation()
+        np_density = self.density_noun_chunks()
+        if self.dep_parse_flag:
+            avg_text_depth = self.depth_dep_parse()
+        tense_props = self.verb_tense()
         pos_props, cat_props = self.pos_proportions()
 
         features = {
@@ -824,7 +1204,16 @@ class feature_pipeline:
             "avg_rank_of_lemmas_in_freq_list": avg_word_freq,
             "fernandez_huerta_score": fh_score,
             "syllables_per_sentence": syls_per_sent,
+            "avg_degree_of_abstraction": avg_abstraction,
+            "min_degree_of_abstraction": min_abstraction,
+            "avg_ambiguation_all_words": avg_ambiguation,
+            "avg_ambiguation_content_words": avg_content_ambiguation,
+            "noun_phrase_density": np_density,
         }
+        if self.dep_parse_flag:
+            features.update({"avg_parse_tree_depth": avg_text_depth})
+        
+        features.update(tense_props)
         features.update(pos_props)
         features.update(cat_props)
 
