@@ -489,14 +489,16 @@ class feature_pipeline:
             ranked_text.append(rank)
         return ranked_text
 
-    def avg_word_freq(self):
+    def avg_word_freq(self, text=None):
         """
         Compute the average rank of a token in a text from a list of Spanish
         token frequencies.
 
+        text: (str) an unprocessed text (optional)
+
         return: (float) the average token frequency rank
         """
-        ranked_text = self.word_ranks()
+        ranked_text = self.word_ranks(text) if text else self.word_ranks()
         return sum(ranked_text) / len(ranked_text)
 
     def num_tokens(self, text=None, token_list=None):
