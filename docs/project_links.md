@@ -37,3 +37,6 @@ https://docs.google.com/presentation/d/11NPbXNfUf7QnGsDWCLsO8e9JZ6-QYRnmsmyeFqaE
 - week 6 meeting slides:
 https://docs.google.com/presentation/d/1iUpPk-Bhfyh_tj5-lN6Gh1ihUqUSH62bNM4Y6GovcDk/edit?usp=sharing
 
+- week 6 plan & checklist:
+https://docs.google.com/document/d/16NtLd7c3OGJ92ZlncVJ73LWZPCdPo9M99u8FzVyghgs/edit?usp=sharing
+
