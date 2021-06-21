@@ -29,3 +29,11 @@ Team:
 - [Saved models](./models/)
 - [Model predictions](./predictions/)
 - [Feature distribution visualization](./visuals/)
+
+
+### Run Instructions
+- Please ensure that you have `data/*.json` files and `src/rule-based_model.ipynb, tree_models.ipynb, svm_pipeline.ipynb and bert_pipe_darya.ipynb files`. 
+- For the rule-based model, please run src/rule-based_model.ipynb. 
+- For tree models, src/tree_models.ipynb.
+- For SVM, svm_pipeline.ipyn. 
+- For the neural network BERT model, src/bert_pipe_darya.ipynb. We recommend to use Google Colab to run the BERT model. 
