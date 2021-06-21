@@ -15,8 +15,17 @@ Team:
 ### Data
 - [Corpus](./corpus/)
 - [Lexicons](./vocab/)
-- [Data splits](./data/)
+- [Data splits and feature matrices](./data/)
 
 ### Code
 - [Text scraping](./text_scraping/)
-- [SVM baseline](./src/svm_baseline.ipynb)
+- Model pipelines:
+  - [Rule-based pipeline](./src/rule-based_model.ipynb)
+  - [Tree-based pipeline](./src/tree_models.ipynb)
+  - [SVM pipeline](./src/svm_pipeline.ipynb)
+  - [BERT pipeline](./src/bert_pipeline_darya.ipynb)
+
+### Outputs
+- [Saved models](./models/)
+- [Model predictions](./predictions/)
+- [Feature distribution visualization](./visuals/)
