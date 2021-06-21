@@ -36,4 +36,4 @@ Team:
 - For the rule-based model, please run src/rule-based_model.ipynb. 
 - For tree models, src/tree_models.ipynb.
 - For SVM, svm_pipeline.ipyn. 
-- For the neural network BERT model, src/bert_pipe_darya.ipynb. We recommend to use Google Colab to run the BERT model. 
+- For the neural network BERT model, src/bert_pipe_darya.ipynb. We recommend to use Google Colab to run the BERT model. Ensure that you copy `*.json` files in `data` directory into `/content/drive/MyDrive/capstone/corpus` before using the BERT model. 
