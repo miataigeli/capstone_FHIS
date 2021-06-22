@@ -31,4 +31,3 @@ dependencies:
     - stanza==1.2
     - psutil>=5.7.2
     - xgboost>=1.*
-    - git+git://github.com/pln-fing-udelar/wn-mcr-transform.git
