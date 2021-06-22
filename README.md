@@ -1,21 +1,24 @@
 # FHIS Capstone Project
+**UBC Department of French, Hispanic and Italian Studies; UBC Department of Linguistics**
 
-Team:
+## Team Members:
 * Christina Park
 * Darya Shyroka
 * Mia Li
 * Shreyas Shankar
 
-## Links 
+Mentor: Jungyeul Park
+
+## Important Links 
 
 ### Documents
 - [Teamwork Contract](./docs/Teamwork_contract.md)
-- [Project Plan](./docs/Project_Plan.md)
+- [Initial Project Plan](./docs/Project_Plan.md)
 
 ### Data
-- [Corpus](./corpus/): Folder containing scraped texts organized in `.json` format by source
+- [Corpus](./corpus/): Folder containing scraped texts organized in `.json` format, labelled by source
 - [Lexicons](./vocab/): Folder containing A-level Spanish vocabulary and most frequent Spanish words
-- [Data splits and feature matrices](./data/): Folder containing cleaned up and organized data ready to be fed into the model
+- [Data splits and feature matrices](./data/): Folder containing cleaned up and organized data, ready to be fed into models
 
 ### Code
 - [Text scraping](./text_scraping/): Folder containing notebooks used for scraping
@@ -28,15 +31,15 @@ Team:
 ### Outputs
 - [Saved models](./models/): Folder containing best model checkpoints
 - [Model predictions](./predictions/): Folder containing predictions made by best performing models
-- [Feature distribution visualization](./visuals/): Folder containing feature distribution visualization
+- [Feature distribution visualization](./visuals/): Folder containing feature distribution visualizations
 
 
 ### Run Instructions
 - Features:
-  - To use the feature pipeline to generate a single feature, please run the notebook `src/feature_pipeline_usage_tutorial.ipynb`.
-  - To generate the feature matrices, please run the notebook `src/build_feature_matrices.ipynb`.
+  - To learn to use the feature extraction pipeline for use on individual texts or to generate single features, please view the notebook [`feature_pipeline_usage_tutorial.ipynb`](./src/feature_pipeline_usage_tutorial.ipynb).
+  - To generate all of the feature matrices for training, validation and testing, please run the notebook [`build_feature_matrices.ipynb`](./src/build_feature_matrices.ipynb).
 - Models:
-  - Please ensure that you have `data/*.json` files and `src/rule-based_model.ipynb, tree_models.ipynb, svm_pipeline.ipynb and bert_pipe_darya.ipynb files`. 
+  - Please ensure that you have all of the JSON data files in `./data/`, and the notebooks `src/rule-based_model.ipynb`, `src/tree_models.ipynb`, `src/svm_pipeline.ipynb` and `src/bert_pipeline_darya.ipynb`. 
   - For the rule-based model, please run `src/rule-based_model.ipynb`. 
   - For tree models, please run `src/tree_models.ipynb`.
   - For SVM, please run `svm_pipeline.ipyn`. 
