@@ -24,10 +24,9 @@ dependencies:
   - pytorch
   - pip>=20
   - pip:
-    - tika==1.17
+    - tika==1.24
     - pylabeador
     - stanza==1.2
-    - psutil>=5.7.2
     - xgboost>=1.*
     - datasets
     - transformers
