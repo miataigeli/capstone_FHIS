@@ -21,6 +21,7 @@ dependencies:
   - urllib3==1.26.4
   - textract==1.6.3
   - ipykernel
+  - pytorch
   - pip>=20
   - pip:
     - tika==1.17
@@ -29,5 +30,4 @@ dependencies:
     - psutil>=5.7.2
     - xgboost>=1.*
     - datasets
-    - pytorch
     - transformers
