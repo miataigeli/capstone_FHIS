@@ -1,1 +1,23 @@
-
+# Text Directory
+This directory contains raw text files of many of the scraped documents.
+- `01 La llegada de Sam.txt`: transcript of the first episode of Extras en Espanol
+- `02 Sam va de compras.txt`: transcript of the second episode of Extras en Espanol
+- `03 Sam aprende a ligar.txt`: transcript of the third episode of Extras en Espanol
+- `04 Sam busca un trabajo.txt`: transcript of the fourth episode of Extras en Espanol
+- `05 Ha nacido una estrella.txt`: transcript of the fifth episode of Extras en Espanol
+- `06 El día de la primitiva.txt`: transcript of the sixth episode of Extras en Espanol
+- `07 La gemela.txt`: transcript of the seventh episode of Extras en Espanol
+- `08 La prima de la dueña.txt`: transcript of the eighth episode of Extras en Espanol
+- `09 Trabajos para los chicos.txt`: transcript of the ninth episode of Extras en Espanol
+- `10 ANA PROTESTA.txt`: transcript of the tenth episode of Extras en Espanol
+- `11 Tiempo de vacaciones.txt`: transcript of the eleventh episode of Extras en Espanol
+- `12 Fanáticos del fútbol.txt`: transcript of the twelfth episode of Extras en Espanol
+- `13 Boda en el aire.txt`: transcript of the thirteenth episode of Extras en Espanol
+- `Aventura Joven 01 Text.txt`: clean text from the 1st Aventura Joven book
+- `Aventura Joven 02 Text.txt`: clean text from the 2nd Aventura Joven book
+- `Aventura Joven 03 Text.txt`: clean text from the 3rd Aventura Joven book
+- `Aventura Joven 04 Text.txt`: clean text from the 4th Aventura Joven book
+- `Aventura Joven 05 Text.txt`: clean text from the 5th Aventura Joven book
+- `Aventura Joven 06 Text.txt`: clean text from the 6th Aventura Joven book
+- `Hola a Todos 1.txt`: text manually extracted from the first “Hola a Todos” textbook (not used in our corpus)
+- `a1_a2_lingua_genre.json`: A1 and A2 texts from the Lingua corpus with preliminary genre annotations.
