@@ -23,11 +23,11 @@ dependencies:
   - ipykernel
   - pip>=20
   - pip:
-    - datasets>=1.6.2
-    - pytorch==1.9.0
-    - transformers==4.7.0
     - tika==1.17
     - pylabeador
     - stanza==1.2
     - psutil>=5.7.2
     - xgboost>=1.*
+    - datasets
+    - pytorch
+    - transformers
