@@ -1,0 +1,35 @@
+name: 'fhis'
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - spacy>=2.3.4
+  - scikit-learn>=0.24
+  - nltk>=3.5
+  - pylabeador
+  - beautifulsoup4>=4.9.3
+  - requests>=2.24
+  - lightgbm
+  - catboost
+  - graphviz
+  - python-graphviz
+  - treelib
+  - matplotlib>=3.3.2
+  - datasets>=1.6.2
+  - pandas
+  - numpy
+  - scipy
+  - altair>=4.1.0
+  - urllib3==1.26.4
+  - pytorch==1.9.0
+  - transformers==4.7.0
+  - keras
+  - tika==1.17
+  - textract==1.6.3
+  - ipykernel
+  - pip>=20
+  - pip:
+    - stanza==1.2
+    - psutil>=5.7.2
+    - xgboost>=1.*
+    - git+git://github.com/pln-fing-udelar/wn-mcr-transform.git
