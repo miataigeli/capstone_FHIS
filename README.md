@@ -34,9 +34,26 @@ Mentor: Jungyeul Park
 - [Feature distribution visualization](./visuals/): Folder containing feature distribution visualizations
 
 
+### Setup Instructions
+- Install the package dependencies found in [`fhis_conda_env.yml`](./fhis_conda_env.yml) using Conda:
+  ```
+  conda env create -f fhis_conda_env.yaml python=3.8
+  conda activate fhis
+  ```
+  If an error(s) occur during installation they will likely occur due to the pip installation section of the YAML file. The most sure-fire solution to this seems to be to manually install the dependencies contained within the YAML file.
+- Download the Spanish MCR Wordnet from [here](https://github.com/pln-fing-udelar/wn-mcr-transform).
+- Download the Open Multilingual Wordnet by executing the following code within an IPython console or IPython notebook cell:
+  ```
+  import nltk
+  nltk.download('omw')
+  ```
+- Follow the download instructions [here](https://stanfordnlp.github.io/CoreNLP/download.html#steps-to-setup-from-the-official-release) to install the Stanford CoreNLP client.
+  - After this we strongly recommend running the [`stanford_corenlp_parser.ipynb`](./src/stanford_corenlp_parser.ipynb) notebook to better understand the CoreNLP client and to verify its installation.
+- You are now ready to run some notebooks!
+
 ### Run Instructions
 - Features:
-  - To learn to use the feature extraction pipeline for use on individual texts or to generate single features, please view the notebook [`feature_pipeline_usage_tutorial.ipynb`](./src/feature_pipeline_usage_tutorial.ipynb).
+  - To learn to use the feature extraction pipeline for analyzing individual texts or to generate single features, please view the notebook [`feature_pipeline_usage_tutorial.ipynb`](./src/feature_pipeline_usage_tutorial.ipynb).
   - To generate all of the feature matrices for training, validation and testing, please run the notebook [`build_feature_matrices.ipynb`](./src/build_feature_matrices.ipynb).
 - Models:
   - Please ensure that you have all of the JSON data files in `./data/`, and the notebooks `src/rule-based_model.ipynb`, `src/tree_models.ipynb`, `src/svm_pipeline.ipynb` and `src/bert_pipeline_darya.ipynb`. 
