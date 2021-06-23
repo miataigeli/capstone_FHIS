@@ -47,6 +47,10 @@ Mentor: Jungyeul Park
   import nltk
   nltk.download('omw')
   ```
+- Install spaCy's Spanish processing pipeline by running the following in a terminal (assuming Python and spaCy have been installed first):
+  ```
+  python -m spacy download es_core_news_md
+  ```
 - Follow the download instructions [here](https://stanfordnlp.github.io/CoreNLP/download.html#steps-to-setup-from-the-official-release) to install the Stanford CoreNLP client (NOTE: requires Java 8).
   - After this we strongly recommend running the [`stanford_corenlp_parser.ipynb`](./src/stanford_corenlp_parser.ipynb) notebook to better understand the CoreNLP client and to verify its installation.
 - You are now ready to run some notebooks!
