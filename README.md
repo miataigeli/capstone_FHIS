@@ -47,7 +47,7 @@ Mentor: Jungyeul Park
   import nltk
   nltk.download('omw')
   ```
-- Follow the download instructions [here](https://stanfordnlp.github.io/CoreNLP/download.html#steps-to-setup-from-the-official-release) to install the Stanford CoreNLP client.
+- Follow the download instructions [here](https://stanfordnlp.github.io/CoreNLP/download.html#steps-to-setup-from-the-official-release) to install the Stanford CoreNLP client (NOTE: requires Java 8).
   - After this we strongly recommend running the [`stanford_corenlp_parser.ipynb`](./src/stanford_corenlp_parser.ipynb) notebook to better understand the CoreNLP client and to verify its installation.
 - You are now ready to run some notebooks!
 
