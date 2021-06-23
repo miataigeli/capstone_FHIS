@@ -1,1 +1,37 @@
-
+# Source Directory
+This directory contains all of the source code enabling this project.
+- `bert_pipeline.ipynb`: Colab notebook for training and evaluating a BERT model pipeline
+- `build_feature_matrices.ipynb`: contains code for building all the feature matrices for training, validation and testing
+- `change_corpus_labels.ipynb`: contains code for relabelling B1- and B2-level texts to B-level
+- `corpus_exploration.ipynb`: scratchpad for investigating alternate existing Spanish corpora
+- `corpus_reader.ipynb`: demo of loading the corpus from file using the `read_corpus` function
+- `corpus_stats.ipynb`: contains code for computing broad statistics about the corpus
+- `data_splitting.ipynb`: contains code for splitting the corpus into training, validation and testing splits
+- `deg_abstract_ambig.ipynb`: contains code for generating the degree of abstraction and degree of ambiguation features
+- `deg_abstract_ambig_features_pp.ipynb`: contains code for generating the degree of abstraction and degree of ambiguation features (this file is an updated version of `deg_abstraction_ambig.ipynb`)
+- `density_noun_chunks.ipynb`: contains code for generating the density of noun phrase feature
+- `depth_depend_parse.ipynb`: contains code for generating the sentence complexity feature
+- `depth_depend_parse_plot.ipynb`: contains code for generating density plot of the sentence complexity feature
+- `extract_verb_tense.ipynb`: contains code for generating the verb tense features
+- `feature_pipeline_usage_tutorial.ipynb`: tutorial notebook exhibiting the many correct ways of using the feature extraction pipeline API to analyze texts
+- `feature_selection_on_tree_models.ipynb`: contains code for building a pipeline for training, performing feature selection, and evaluating five tree-based models
+- `features.py`: API for feature extraction pipeline, contains all of the features developed and tested in the other notebooks, as well as a handful of utility functions
+- `flesch_score.ipynb`: contains code for generating the Fernandez-Huerta score (note that this code contains a bug)
+- `flesch_score_correction.ipynb`: contains code for generating the Fernandez-Huerta score (this file is the corrected version of `flesch_score.ipynb`)
+- `lexicon_matching_exploration.ipynb`: scratchpad for investigating lexicon matching methods for rule-based models
+- `port9000.png`: image embedded in `stanford_corenlp_parser.ipynb`
+- `pos_tag_features.ipynb`: contains code for generating the part-of-speech tag features
+- `prons_conns_log_features.ipynb`: contains code for generating pronoun density, percentage of connectives and percentage of logical operators features
+- `rule-based_model.ipynb`: pipeline to construct a rule-based model that uses only 2 A-level vocabulary related features
+- `stanford_corenlp_parser.ipynb`: contains information on how to install and use the Stanford Corenlp Parser
+- `svm_experiments.ipynb`: contains preliminary code to train an SVM model. To train and evaluate a SVM model from end to end, please see `svm_pipeline.ipynb`.
+- `svm_pipeline.ipynb`: contains code for building a pipeline for training, performing feature selection and hyperparameter tuning, and evaluating an SVM model
+- `text_vocab_overlap.ipynb`: contains code for investigating lexicon matching methods for rule-based models
+- `top_10k_rae.ipynb`: contains code for extracting a list of 10,000 most frequent words in Spanish (source: http://corpus.rae.es/frec/10000_formas.TXT)
+- `top_5k_std_wiki.ipynb`: contains code for extracting a list of 5,000 most frequent words in Spanish (source: https://en.wiktionary.org/wiki/User:Matthias_Buchmeier/Spanish_frequency_list-1-5000)
+- `top_5k_wiki.ipynb`: contains code for extracting a list of 5,000 most frequent words in Spanish (source: https://en.wiktionary.org/wiki/User:Matthias_Buchmeier/Spanish_frequency_list-1-5000)
+- `tree_models.ipynb`: contains code for training and evaluating five tree-based models
+- `utils.py`: contains utility code for reading the corpus from file, and for scraping vocabulary lists
+- `visuals_for_features.ipynb`: contains code for generating visualizations for all of the features in the feature matrices
+- `vocab_building.ipynb`: scratchpad for developing vocab list scrapers
+- `vocab_lists_by_level.ipynb`: scratchpad for developing vocab lists for each level (defunct)
